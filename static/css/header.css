@@ -1,0 +1,34 @@
+/* Estilos pleca */
+
+#pleca {
+    background: white;
+    height: 95px;
+}
+
+#logoSEP img {
+    height: 80px;
+    margin-top: 7px;
+    float: left;
+    padding: 0px 10px;
+    border-right: solid 1px rgb(212, 193, 156);
+}
+
+#logoIPN p {
+    display: inline-block;
+    color: #807e82;
+    font-size: 14.5px;
+}
+
+#logoIPN p span {
+    font-size: 12px;
+}
+
+#logoIPN img {
+    margin-top: 7px;
+    margin-left: 10px;
+    height: 80px;
+}
+
+#texto_ipn {
+    font-size: 14px;
+}

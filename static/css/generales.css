@@ -1,0 +1,20 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    text-decoration: none;
+    font-family: 'Open Sans', Verdana;
+}
+
+.clearfix {
+    clear: both;
+    float: none;
+}
+
+body {
+    background: white;
+}
+
+.container {
+    width: 85%;
+    margin: 0px auto;
+}
