@@ -6,11 +6,9 @@
 }
 
 #logoSEP img {
-    height: 80px;
-    margin-top: 7px;
+    height: 95px;
     float: left;
     padding: 0px 10px;
-    border-right: solid 1px rgb(212, 193, 156);
 }
 
 #logoIPN p {
