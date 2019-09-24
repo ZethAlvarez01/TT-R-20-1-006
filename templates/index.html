@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/generales.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/content.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}" />
 </head>
 
 <body>
@@ -36,14 +37,34 @@
 
     <div id="content">
         <div class="container">
-            Hola
+            <div class="grid-container">
+                <div class="titulo">
+                    <h1>Prototipo de asistente corrector gramatical y ortográfico</h1>
+                    <p id="no-tt">Trabajo terminal remedial 20-1-006</p>
+                </div>
+                <div class="text-area">
+                    <textarea placeholder="Escribe o pega (Ctrl+V) tu texto  aquí..."></textarea>
+                    <p id="n-caracteres">Número de caracteres</p>
+                </div>
+                <div class="sug-desc">
+                    <p id="sug-titulo">Sugerencias</p>
+                    <div id="tarjeta">
+                        tarjeta de sugerencias
+                    </div>
+                    <select>
+                        <option value="txt">Archivo de texto (.txt)</option>
+                        <option value="pdf">Archivo PDF (.pdf)</option>
+                    </select>
+                    <button>Descargar</button>
+                </div>
+            </div>
         </div>
         <!--Fin container-->
     </div>
 
     <footer>
-        <div class="container">
-
+        <div class="container" id="footer">
+            Footer
         </div>
         <!--Fin container-->
     </footer>
