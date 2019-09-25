@@ -12,7 +12,7 @@
 
 .sug-desc {
     grid-area: sugdes;
-    background: blue;
+    background: rgb(0,255,0);
     height: 500px;
 }
 
@@ -33,17 +33,21 @@ h1 {
 }
 
 textarea {
+    grid-area: hoja;
     display: block;
     margin-left: auto;
     margin-right: auto;
     height: 70%;
     width: 80%;
-    border: 1px solid rgb(210, 210, 210);
+    border: none;
+    border-left: 15px solid red;
     margin-top: 50px;
-    border-radius: 10px;
+    border-radius: 0px 20px 20px 0px;
     padding: 10px;
     font-size: 15px;
     color: black;
+    resize: none;
+    box-shadow: 2px 2px 2px 0px #ebebeb;
 }
 
 textarea:focus {
@@ -55,7 +59,7 @@ textarea:focus {
 }
 
 textarea::-webkit-input-placeholder {
-    color: rgb(116, 206, 254);
+    color: rgb(210, 210, 210);
     font-weight: 500;
     font-size: 15px;
 }
