@@ -2,11 +2,11 @@
 
 #pleca {
     background: white;
-    height: 95px;
+    height: 80px;
 }
 
 #logoSEP img {
-    height: 95px;
+    height: 80px;
     float: left;
     padding: 0px 10px;
 }
@@ -14,19 +14,19 @@
 #logoIPN p {
     display: inline-block;
     color: #807e82;
-    font-size: 14.5px;
+    font-size: 13.5px;
 }
 
 #logoIPN p span {
-    font-size: 12px;
+    font-size: 11px;
 }
 
 #logoIPN img {
-    margin-top: 7px;
+    margin-top: 5px;
     margin-left: 10px;
-    height: 80px;
+    height: 70px;
 }
 
 #texto_ipn {
-    font-size: 14px;
+    font-size: 13px;
 }
