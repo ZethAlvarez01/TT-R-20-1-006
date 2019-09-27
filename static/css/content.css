@@ -56,6 +56,7 @@ textarea::-webkit-input-placeholder {
     margin-top: 20px;
     margin-right: 10%;
     margin-bottom: 10px;
+    cursor: pointer;
 }
 
 .container-s {
@@ -93,7 +94,7 @@ textarea::-webkit-input-placeholder {
     margin: 10px 30px 10px 10px;
     border-radius: 5px;
     height: 150px;
-    padding: 5px;
+    padding: 10px;
     width: 300px;
 }
 
@@ -126,6 +127,14 @@ textarea::-webkit-input-placeholder {
 
 select {
     margin-top: 20px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 4px 4px 4px 4px #ebebeb;
+    padding: 10px;
+}
+
+button {
+    display: none;
 }
 
 select:focus {
