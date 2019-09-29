@@ -1,43 +1,54 @@
 /* Titulo */
 
 h1 {
+    font-weight: 200;
     text-align: center;
-    font-size: 20px;
-    font-family: 'Montserrat', sans-serif;
-    margin-top: 20px;
+    font-family: 'Gentium Book Basic', serif;
+    font-size: 25px;
 }
 
 #no-tt {
     float: right;
     margin-top: 5px;
     font-size: 12px;
-    margin-bottom: 10px;
+}
+
+#sim {
+    float: right;
+    height: 25px;
+    margin-right: 8%;
+    cursor: pointer;
 }
 
 
 /* Contenido textarea */
 
 #content-titulo {
-    height: 80px;
+    height: 70px;
+    background: white;
+    padding: 15px 10px 0px 10px;
 }
 
 textarea {
+    text-align: justify;
     grid-area: hoja;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    height: 70%;
-    width: 80%;
+    height: 80%;
+    width: 75%;
     border: none;
     /*border-left: 20px solid red;*/
     margin-top: 30px;
     /* border-radius: 0px 20px 20px 0px;*/
-    border-radius: 20px;
-    padding: 10px;
+    border-radius: 10px;
+    padding: 15px;
+    font-family: 'Times New Roman', Times, serif;
     font-size: 18px;
     color: black;
     resize: none;
     box-shadow: 4px 4px 4px 0px #ebebeb;
+    background: white;
 }
 
 textarea:focus {
@@ -47,24 +58,25 @@ textarea:focus {
 
 textarea::-webkit-input-placeholder {
     color: #a7a7a7;
-    font-weight: 400;
+    font-weight: 200;
     font-size: 18px;
 }
 
 #n-caracteres {
     float: right;
-    margin-top: 20px;
-    margin-right: 10%;
+    margin-top: 10px;
+    margin-right: 12.5%;
     margin-bottom: 10px;
-    cursor: pointer;
+    cursor: default;
 }
 
 .container-s {
     width: 95%;
-    margin-left: 5%;
+    margin: 0 3%;
     display: grid;
     /*grid-template-areas: 'textarea textarea textarea textarea textarea textarea suger';*/
-    grid-template-columns: 4fr 1fr;
+    grid-template-columns: 4fr 1.2fr;
+    background: white;
 }
 
 .text-area {
@@ -82,6 +94,7 @@ textarea::-webkit-input-placeholder {
 .sug-desc {
     background: white;
     height: 70vh;
+    padding: 10px;
 }
 
 #sug-titulo {
@@ -91,11 +104,11 @@ textarea::-webkit-input-placeholder {
 }
 
 .tarjeta {
-    margin: 10px 30px 10px 10px;
+    /*margin: 10px 30px 10px 10px;*/
     border-radius: 5px;
-    height: 150px;
+    height: 180px;
     padding: 10px;
-    width: 300px;
+    margin-bottom: 20px;
 }
 
 .circulo {
@@ -106,35 +119,38 @@ textarea::-webkit-input-placeholder {
 }
 
 #otr {
-    background-color: green;
-}
-
-#grg {
-    background-color: blue;
+    background-color: red;
 }
 
 #tarjeta-ortg:hover {
-    background-color: rgba(119, 221, 105, 0.185);
+    background-color: rgba(221, 105, 105, 0.185);
     transition: 0.5s;
     cursor: pointer;
 }
 
-#tarjeta-grag:hover {
-    background-color: rgba(105, 103, 216, 0.1);
-    transition: 0.5s;
+button {
+    border: 1px solid black;
+    background: white;
+    padding: 10px;
+    margin: 10px auto;
+    border-radius: 5px;
+    width: 100%;
+    color: black;
     cursor: pointer;
+    outline: none !important;
+}
+
+button:hover {
+    background-color: rgba(221, 105, 105, 0.185);
+    transition: 0.5s;
 }
 
 select {
     margin-top: 20px;
     border-radius: 5px;
-    border: none;
-    box-shadow: 4px 4px 4px 4px #ebebeb;
-    padding: 10px;
-}
-
-button {
-    display: none;
+    border: 1px solid black;
+    padding: 5px;
+    width: 100%;
 }
 
 select:focus {
@@ -144,4 +160,15 @@ select:focus {
 
 #lorem {
     font-size: 12px;
+}
+
+#titulo-desc {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+#texto-desc {
+    font-size: 12px;
+    text-align: justify;
 }

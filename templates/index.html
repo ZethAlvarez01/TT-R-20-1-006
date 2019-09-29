@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='image/logo-ipn.png') }}" />
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Gentium+Book+Basic&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/generales.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/content.css') }}" />
@@ -48,6 +49,7 @@
     <div id="content">
         <div class="container-s">
             <div class="text-area">
+                <img id="sim" src="/static/image/information.png" alt="información">
                 <textarea maxlength="2500" onkeyup="contadorCaracter(this);" placeholder="Escribe o pega (Ctrl+V) tu texto aquí..."></textarea>
                 <p id="n-caracteres">Número de caracteres: 0</p>
             </div>
@@ -63,13 +65,14 @@
                         <del>incorrecta</del> -> Correcta
                     </p>
                     <br>
-                    <hr style="border: 0.5px solid rgba(77, 255, 92, 0.479);"> <br>
+                    <hr style="border: 0.5px solid red"> <br>
                     <p id="lorem">Significado de la palabra.</p>
                 </div>
 
-
                 <!--------------------------->
 
+                <p id="titulo-desc">Descargar</p>
+                <p id="texto-desc">Puedes descargar tu texto corregido aquí. Selecciona el tipo de archivo y presiona en <i>Descargar</i>.</p>
                 <select>
                         <option value="txt">Archivo de texto (.txt)</option>
                         <option value="pdf">Archivo PDF (.pdf)</option>
