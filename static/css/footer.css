@@ -1,4 +1,10 @@
-#footer {
-    background: pink;
-    height: 100px;
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(108, 29, 69);
+    color: white;
+    text-align: center;
+    height: 2;
 }

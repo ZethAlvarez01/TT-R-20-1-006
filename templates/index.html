@@ -6,16 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>TT-R 20-1-006</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='image/logo-ipn.png') }}" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Gentium+Book+Basic&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/generales.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/content.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}" />
+    <script src="/static/script/contador.js"></script>
 </head>
 
 <body>
 
     <header>
-        <div class="container-s">
+        <div class="container-h">
             <div id="pleca">
                 <div id="logoSEP">
                     <a href="https://www.gob.mx/sep">
@@ -35,36 +39,58 @@
         <!--Fin container-->
     </header>
 
-    <div id="content">
+    <div id="content-titulo">
         <div class="container">
-            <div class="grid-container">
-                <div class="titulo">
-                    <h1>Prototipo de asistente corrector gramatical y ortográfico</h1>
-                    <p id="no-tt">Trabajo terminal remedial 20-1-006</p>
+            <h1>Prototipo de asistente corrector gramatical y ortográfico</h1>
+            <p id="no-tt">Trabajo terminal remedial 20-1-006</p>
+        </div>
+    </div>
+
+    <div id="content">
+        <div class="container-s">
+            <div class="text-area">
+                <img id="sim" src="/static/image/information.png" alt="información">
+                <form action="submit" id="textform" method="POST">
+                    <textarea name="text" maxlength="2500" onkeyup="contadorCaracter(this);" placeholder="Escribe o pega (Ctrl+V) tu texto aquí..."></textarea>
+                    <input type="submit" value="Descargar">
+                </form>
+                
+                <p id="n-caracteres">Número de caracteres: 0</p>
+            </div>
+            <div class="sug-desc">
+                <p id="sug-titulo">Sugerencias</p>
+
+                <!--Tarjetas de sigerencias-->
+
+                <div class="tarjeta" id="tarjeta-ortg">
+                    <div class="circulo" id="otr"></div>
+                    Alertas ortográfica <br><br>
+                    <p id="lorem">
+                        <del>incorrecta</del> -> Correcta
+                    </p>
+                    <br>
+                    <hr style="border: 0.5px solid rgb(0,170,228)"> <br>
+                    <p id="lorem">Significado de la palabra.</p>
                 </div>
-                <div class="text-area">
-                    <textarea maxlength="2500" placeholder="Escribe o pega (Ctrl+V) tu texto  aquí..."></textarea>
-                    <p id="n-caracteres">Número de caracteres</p>
-                </div>
-                <div class="sug-desc">
-                    <p id="sug-titulo">Sugerencias</p>
-                    <div id="tarjeta">
-                        tarjeta de sugerencias
-                    </div>
-                    <select>
+
+                <!--------------------------->
+
+                <p id="titulo-desc">Descargar</p>
+                <p id="texto-desc">Puedes descargar tu texto corregido aquí. Selecciona el tipo de archivo y presiona en <i>Descargar</i>.</p>
+                <select>
                         <option value="txt">Archivo de texto (.txt)</option>
                         <option value="pdf">Archivo PDF (.pdf)</option>
-                    </select>
-                    <button>Descargar</button>
-                </div>
+                </select>
+                <label>Descargar</label>
+
             </div>
         </div>
         <!--Fin container-->
     </div>
 
-    <footer>
-        <div class="container-s" id="footer">
-            Footer
+    <footer class="footer">
+        <div class="container-h" id="footer">
+
         </div>
         <!--Fin container-->
     </footer>
