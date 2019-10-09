@@ -128,25 +128,7 @@ textarea::-webkit-input-placeholder {
     cursor: pointer;
 }
 
-label {
-    border: 1px solid black;
-    background: white;
-    padding: 10px;
-    margin: 10px auto;
-    border-radius: 5px;
-    width: 100%;
-    color: black;
-    cursor: pointer;
-    outline: none !important;
-}
-
-label:hover {
-    background-color: rgba(0,170,228,0.5);
-    border: 1px solid blue;
-    transition: 0.8s;
-    color: blue;
-}
-
+/*
 select {
     margin-top: 20px;
     border-radius: 5px;
@@ -159,18 +141,13 @@ select:focus {
     outline: none !important;
     outline-width: 0 !important;
 }
+*/
 
 #lorem {
     font-size: 12px;
 }
 
-#titulo-desc {
-    text-align: center;
-    font-weight: bold;
-    margin-bottom: 20px;
-}
-
-#texto-desc {
-    font-size: 12px;
-    text-align: justify;
+select{
+    outline: none !important;
+    outline-width: 0 !important;
 }
