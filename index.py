@@ -1,4 +1,5 @@
-from flask import Flask, render_template,request,make_response
+from flask import Flask, render_template,request,make_response,json
+from Principal import validacion
 import pdfkit
 
 app = Flask(__name__)
@@ -16,10 +17,11 @@ def get_text():
     response.headers['Content-Disposition'] = 'inline; filename=TT-R-20-1-006.pdf'
     return response
 
-@app.route('/background_process_test/<string:texto>')
+@app.route('/background_process_test/<string:texto>/')
 def background_process_test(texto):
-    print(texto)
-    return "nothing"
+    return json.jsonify({
+        'lista': validacion(texto)
+    })
 
 if __name__ == '__main__':
-    app.run(debug=True, port=9119)
+    app.run(debug=True, port=9156)

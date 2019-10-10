@@ -51,8 +51,8 @@
         <div class="container-s">
             <div class="text-area">
                 <img id="sim" src="/static/image/information.png" alt="información">
-                    <textarea id="texto-area" name="text" maxlength="2500" onkeyup="contadorCaracter(this);" onkeypress="detecta(event)" placeholder="Escribe o pega (Ctrl+V) tu texto aquí..."></textarea>
-                
+                <textarea id="texto-area" name="text" maxlength="2500" onkeyup="contadorCaracter(this);" onkeypress="detecta(event)" placeholder="Escribe o pega (Ctrl+V) tu texto aquí..."></textarea>
+
                 <p id="n-caracteres">Número de caracteres: 0</p>
             </div>
             <div class="sug-desc">
@@ -72,25 +72,6 @@
                 </div>
 
                 <!--------------------------->
-
-                <script type=text/javascript>
-                    $(function() {
-                      $('a#test').bind('click', function() {
-                          let str2=document.getElementById("texto-area").value;
-                          let str1='/background_process_test/texto='+str2;
-                          let res = str1.concat(str2);
-                        $.getJSON(str1,
-                            function(data) {
-    
-                        });
-                        return false;
-                      });
-                    });
-            </script>
-
-                <form>
-                    <a href=# id=test><button class='chalala'>Pruebas01</button></a>
-                </form>
 
                 <div id="descargas-tarjeta">
                     <p id="titulo-desc">Descargar</p>
