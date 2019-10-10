@@ -4,6 +4,6 @@ function contadorCaracter(obj) {
 
 function detecta(e){
     if(e.keyCode == 32){
-        alert("Espacio detectado");
+        console.log("Espacio");
     }
 }

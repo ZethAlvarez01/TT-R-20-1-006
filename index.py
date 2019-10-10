@@ -16,10 +16,10 @@ def get_text():
     response.headers['Content-Disposition'] = 'inline; filename=TT-R-20-1-006.pdf'
     return response
 
-@app.route('/background_process_test')
-def background_process_test():
-    print("Hello")
+@app.route('/background_process_test/<string:texto>')
+def background_process_test(texto):
+    print(texto)
     return "nothing"
 
 if __name__ == '__main__':
-    app.run(debug=True, port=9110)
+    app.run(debug=True, port=9119)
