@@ -10,8 +10,27 @@ function detecta(e) {
         }).done(function(res) {
             var lista = res.lista
             for (let i = 0; i < lista.length; i++) {
-                console.log(lista[i])
+                console.log(lista[i]);
             }
+
         });
     }
+}
+
+function descargar() {
+    var texto = document.getElementById("texto-area").value
+
+    var combo = document.getElementById("combo-opciones");
+    var selected = combo.options[combo.selectedIndex].value;
+    var opcion;
+    if (selected == 'txt') {
+        opcion = 0;
+    } else {
+        opcion = 1;
+    }
+
+    var res = texto.replace(" ", "%20")
+    url = "/return_file/" + res + "/" + opcion
+    document.getElementById("download").setAttribute("href", url);
+
 }

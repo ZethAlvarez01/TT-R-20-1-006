@@ -1,6 +1,9 @@
+from tkinter import filedialog, Tk
 from flask import Flask, render_template,request,make_response,json
+from flask import send_file, send_from_directory
 from Principal import validacion
-import pdfkit
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import A4, letter
 
 app = Flask(__name__)
 
@@ -8,20 +11,32 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-@app.route('/submit',methods=['POST'])
-def get_text():
-    text=request.form.get("text")
-    pdf=pdfkit.from_string(text,False)
-    response = make_response(pdf)
-    response.headers['Content-Type'] = 'application/pdf'
-    response.headers['Content-Disposition'] = 'inline; filename=TT-R-20-1-006.pdf'
-    return response
-
 @app.route('/background_process_test/<string:texto>/')
 def background_process_test(texto):
     return json.jsonify({
         'lista': validacion(texto)
     })
 
+@app.route('/return_file/<texto>/<opcion>')
+def return_file(texto,opcion):
+
+    root = Tk()
+    root.withdraw()
+    directorio = filedialog.askdirectory()
+    #directorio = eg.diropenbox(title="Seleccionar ruta",default='/home/')
+
+    if opcion == "1":
+        c = canvas.Canvas(directorio + '/Prototipo_de_asistente_corrector_gramatical_y_ortográfico.pdf',pagesize=A4)
+        c.drawString(50,800, texto)
+        c.save()
+        return send_file(directorio + '/Prototipo_de_asistente_corrector_gramatical_y_ortográfico.pdf', attachment_filename='Prototipo_de_asistente_corrector_gramatical_y_ortográfico.pdf')
+    else:
+        file = open(directorio + "/Prototipo_de_asistente_corrector_gramatical_y_ortográfico_ruta.txt", "w")
+        file.write(texto)
+        file.close()
+        return send_file(directorio + "/Prototipo_de_asistente_corrector_gramatical_y_ortográfico_ruta.txt", attachment_filename='Prototipo_de_asistente_corrector_gramatical_y_ortográfico.txt')
+    
+
+
 if __name__ == '__main__':
-    app.run(debug=True, port=9156)
+    app.run(debug=True, port=9213)

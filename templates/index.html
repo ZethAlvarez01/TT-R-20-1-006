@@ -76,11 +76,12 @@
                 <div id="descargas-tarjeta">
                     <p id="titulo-desc">Descargar</p>
                     <p id="texto-desc">Puedes descargar tu texto corregido aquí. Selecciona el tipo de archivo y presiona en <i>Descargar</i>.</p>
-                    <select>
+                    <select id="combo-opciones">
                         <option value="txt">Archivo de texto (.txt)</option>
                         <option value="pdf">Archivo PDF (.pdf)</option>
                     </select>
-                    <label for="">Descargar</label>
+                    <a id="download" onclick="descargar()"><label>Descargar</label></a>
+
                 </div>
 
 
