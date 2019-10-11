@@ -29,7 +29,19 @@ function descargar() {
         opcion = 1;
     }
 
-    var res = texto.replace(" ", "%20")
+    texto = texto.replace(" ", "%20")
+    texto = texto.replace("?", "%3F")
+    texto = texto.replace("/", "%2F")
+
+
+
+
+
+    let res = texto;
+
+
+
+
     url = "/return_file/" + res + "/" + opcion
     document.getElementById("download").setAttribute("href", url);
 
