@@ -34,9 +34,9 @@ def return_file(texto,opcion):
         file = open(directorio + "/Prototipo_de_asistente_corrector_gramatical_y_ortográfico_ruta.txt", "w")
         file.write(texto)
         file.close()
-        return send_file(directorio + "/Prototipo_de_asistente_corrector_gramatical_y_ortográfico_ruta.txt", attachment_filename='Prototipo_de_asistente_corrector_gramatical_y_ortográfico.txt')
+        return "noting"
     
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=9339)
+    app.run(debug=True, port=9347)

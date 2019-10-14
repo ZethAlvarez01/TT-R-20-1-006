@@ -1,11 +1,15 @@
 # Algoritmo para identificar errores de mayúsculas y minúsculas en las palabras.
 def validacion(cadena):
-    # Aqui metes la cadena, frase, texto que vayas a validar.
-    # Esto es solo para que veas en la terminal tu texto
+    tipo_error = 0 #Variableque guarda el numero de identificacion de error:
+                   # 0 = Correcto
+                   # 1 = Palabra con mayusculas o minusculas intercaladas
+                   # 2 = Primer caracter despues de un punto es minuscula
+                   # 3 = Si mayusculas sueltas
     print(cadena)
-    # Contadores i, h
+# Contadores i, h
     i = 0
     h = 0
+    n = 0
     j = len(cadena)  # Tamaño de la cadena de caracteres
     flg = False  # Bandera para identificar los espacios 0 = letra, 1 = espacio
     flg2 = False  # Bandera para identificar si la palabra esta bien escrita o no
@@ -14,59 +18,70 @@ def validacion(cadena):
     cad = ""  # Variable para concatenar los caracteres que formen cada palabra
     print("La cadena tiene %d caracteres" % j)
 
-
     for i in range(j):  # Ciclo para separar palabra por palabra
-        # Bandera identificadora de espacios
         flg = cadena[i].isspace()
-        # Si hay un espacio, guarda los caracteres concatenados como una palabra
         if flg is True and cad != "":
-            palabras.append(cad)  # Agrega cada palabra al arreglo
+            palabras.append(cad)
             cad = ""
         # Si es un caracter, lo concatena con los demas caracteres en cad
         else:
-            if cadena[i] != " ":  # Valida que no haya espacios juntos
+            if cadena[i] != " ":
                 cad = cad + cadena[i]
     if cad != " " and cad != "":
-        palabras.append(cad)  # Agrega la ultima palabra al arreglo si no es un espacio o cadena vacía
-
+        if cad != 0:
+            palabras.append(cad)  # Agrega la ultima palabra al arreglo si no es un espacio o cadena vacía
 
     print(palabras)
     npal = palabras.__len__()  # Número de palabras encontradas
     i = 0
-    lista=list()
+    lista = list()
     for i in range(npal):  # Ciclo para checar palabra por palabra.
         h = 0
+        if i > 0:
+            n = len(palabras[i-1]) - 1
         flg2 = True
-        # While que recorre caracter por caracter cada palabra
+        
         while h < len(palabras[i]):
-            # Valida si toda la palabra está en mayusculas
-            if len(palabras[i]) > 1 and palabras[i].isupper() is True:
-                flg2 = True
-                break
-            # Valida que las palabras de un caracter dentro de la frase sean con minúsculas
-            if len(palabras[i]) == 1 and palabras[i].islower() is True and flgptr is False:
-                flg2 = True
-                break
-            # Valida que las palabras de un caracter dentro de la frase no sean con mayusculas
-            if len(palabras[i]) == 1 and palabras[i].isupper() is True and flgptr is False:
+
+            if palabras[i-1].__getitem__(n) is '.':  # Indica si la palabra anterior tenía un punto
+                flgptr = True
+            if palabras[i-1].__getitem__(n) != '.':  # Indica si la palabra anterior no tenía un punto
+                flgptr = False
+            if i == 0:  # Indica que al inicio de la cadena debe haber una mayuscula
+                flgptr = True
+
+            if palabras[i].islower() is True and flgptr is True:  # manda error si es minuscula despues del punto
                 flg2 = False
+                tipo_error = 2
                 break
+
+            if len(palabras[i]) == 1 and palabras[i].isupper() is True and flgptr is False:  # error si mayusculas sueltas
+                flg2 = False
+                tipo_error = 3
+                break
+
             # Verifica si el primer caracter tiene que ser mayuscula dependiendo de la bandera de punto
             if (h == 0) and (flgptr is True):
                 flg2 = palabras[i].__getitem__(h).isupper()
-                flgptr = False
-            # Indica si es mayuscula o no desde el segundo caracter
-            if (h >= 1) and (h < len(palabras[i])) and (palabras[i].__getitem__(h).isupper()) is True:
-                flg2 = False
-            # Indica si la palabra anterior tenía un punto al final
-            if (h == len(palabras[i]) - 1) and palabras[i].__getitem__(h) == '.':
-                flgptr = True
-                # print("Latra %d: %s ===> %s" % (h + 1, palabras[i].__getitem__(h), flg2))
+                if(flg2 is True):
+                    tipo_error = 0
+                else:
+                    tipo_error = 2
+                break
+
+            if palabras[i].islower() is False and palabras[i].isupper() is False:  # Manda error si hay mayusculas y minusculas
+                if h > 0 and palabras[i].__getitem__(h).islower() is False:
+                    flg2 = False
+                    tipo_error = 1
+                    break
+
             h += 1
         # Se imprime la palabra, True = valido, False = rechazado
         print("Palabra %d: %s ==> %s" % (i + 1, palabras[i], flg2))
         lista.append(palabras[i])
         lista.append(flg2)
+        lista.append(tipo_error)
+        tipo_error = 0
         
         
     return lista

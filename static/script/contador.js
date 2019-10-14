@@ -33,14 +33,7 @@ function descargar() {
     texto = texto.replace("?", "%3F")
     texto = texto.replace("/", "%2F")
 
-
-
-
-
     let res = texto;
-
-
-
 
     url = "/return_file/" + res + "/" + opcion
     document.getElementById("download").setAttribute("href", url);

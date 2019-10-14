@@ -119,14 +119,15 @@ textarea::-webkit-input-placeholder {
 }
 
 #otr {
-    background-color: rgb(0,170,228);
+    background-color: rgb(0, 170, 228);
 }
 
 #tarjeta-ortg:hover {
-    background-color: rgba(0,170,228,0.1);
+    background-color: rgba(0, 170, 228, 0.1);
     transition: 0.8s;
     cursor: pointer;
 }
+
 
 /*
 select {
@@ -147,7 +148,12 @@ select:focus {
     font-size: 12px;
 }
 
-select{
+select {
     outline: none !important;
     outline-width: 0 !important;
+}
+
+#download {
+    padding: 10px;
+    text-align: center;
 }
