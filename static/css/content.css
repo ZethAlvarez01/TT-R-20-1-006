@@ -23,12 +23,48 @@ h1 {
 
 /* Contenido textarea */
 
+
+/* div editable*/
+
+[contentEditable=true]:empty:not(:focus):before {
+    content: attr(data-text)
+}
+
+#text-area-div {
+    text-align: justify;
+    height: 50%;
+    width: 60%;
+    margin-top: 30px;
+    border-radius: 10px;
+    padding: 15px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+    color: black;
+    resize: none;
+    margin-left: 4%;
+    display: block;
+    box-shadow: 4px 4px 4px 0px #ebebeb;
+    background: white;
+    overflow-y: scroll;
+    position: absolute;
+}
+
+#text-area-div:focus {
+    outline: none !important;
+    outline-width: 0 !important;
+}
+
+
+/*-------------*/
+
 #content-titulo {
     height: 70px;
     background: white;
     padding: 15px 10px 0px 10px;
 }
 
+
+/*
 textarea {
     text-align: justify;
     grid-area: hoja;
@@ -39,9 +75,13 @@ textarea {
     width: 75%;
     border: none;
     /*border-left: 20px solid red;*/
-    margin-top: 30px;
+
+
+/* margin-top: 30px;
     /* border-radius: 0px 20px 20px 0px;*/
-    border-radius: 10px;
+
+
+/* border-radius: 10px;
     padding: 15px;
     font-family: 'Times New Roman', Times, serif;
     font-size: 18px;
@@ -61,6 +101,7 @@ textarea::-webkit-input-placeholder {
     font-weight: 200;
     font-size: 18px;
 }
+*/
 
 #n-caracteres {
     float: right;

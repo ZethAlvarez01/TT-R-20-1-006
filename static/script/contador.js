@@ -1,5 +1,12 @@
 function contadorCaracter(obj) {
-    document.getElementById("n-caracteres").innerHTML = 'Número de caracteres: ' + obj.value.length;
+    var max = 100;
+    document.getElementById("n-caracteres").innerHTML = 'Número de caracteres: ' + $("#" + obj).text().length;
+    let texto = $("#" + obj).text();
+    let aux = "";
+    for (let i = 0; i < max; i++) {
+        aux = aux + texto[i];
+    }
+    document.getElementById(obj).innerHTML = aux;
 }
 
 function detecta(e) {
