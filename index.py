@@ -29,14 +29,14 @@ def return_file(texto,opcion):
         c = canvas.Canvas(directorio + '/Prototipo_de_asistente_corrector_gramatical_y_ortográfico.pdf',pagesize=A4)
         c.drawString(50,800, texto)
         c.save()
-        return send_file(directorio + '/Prototipo_de_asistente_corrector_gramatical_y_ortográfico.pdf', attachment_filename='Prototipo_de_asistente_corrector_gramatical_y_ortográfico.pdf')
+        return "nothing"
     else:
         file = open(directorio + "/Prototipo_de_asistente_corrector_gramatical_y_ortográfico_ruta.txt", "w")
         file.write(texto)
         file.close()
-        return "noting"
+        return "nothing"
     
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=9385)
+    app.run(debug=True, port=9416)

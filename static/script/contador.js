@@ -1,12 +1,23 @@
-function contadorCaracter(obj) {
-    var max = 100;
-    document.getElementById("n-caracteres").innerHTML = 'Número de caracteres: ' + $("#" + obj).text().length;
-    let texto = $("#" + obj).text();
-    let aux = "";
-    for (let i = 0; i < max; i++) {
-        aux = aux + texto[i];
+function contar() {
+    let num = parseInt($("#text-area-div").text().length) + 1
+    document.getElementById("n-caracteres").innerHTML = "Número de caracteres: " + num
+    document.getElementById("text-area-div").click();
+}
+
+
+function limitar(e, contenido, caracteres) {
+    contar();
+    var unicode = e.keyCode ? e.keyCode : e.charCode;
+
+    if (unicode == 8 || unicode == 46 || unicode == 13 || unicode == 9 || unicode == 37 || unicode == 39 || unicode == 38 || unicode == 40)
+        return true;
+
+    if (contenido.length >= caracteres) {
+        return false;
     }
-    document.getElementById(obj).innerHTML = aux;
+
+
+    return true;
 }
 
 function detecta(e) {
