@@ -57,7 +57,13 @@
                     $(".hijo").on("paste", function(e) {
                         
                         var texto = $(".hijo").text() + e.originalEvent.clipboardData.getData('text');
-                        document.getElementById("texto-area-div").innerHTML = texto
+                        console.log(texto);
+                        var div = document.getElementById("text-area-div");
+                        for(let i=0;i<div.length;i++){
+                            console.log(div[i]);
+                        }
+                        
+                        
                         if (texto.length >= 100) {
                             alert("No es posible pegar textos con mas de 3500 caracteres.")
                             e.preventDefault();
