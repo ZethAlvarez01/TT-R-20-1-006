@@ -1,12 +1,11 @@
 function contar() {
-    let num = parseInt($("#text-area-div").text().length) + 1
+    let num = parseInt($("#text-area-div").text().length)
     document.getElementById("n-caracteres").innerHTML = "Número de caracteres: " + num
     document.getElementById("text-area-div").click();
 }
 
 
 function limitar(e, contenido, caracteres) {
-    contar();
     var unicode = e.keyCode ? e.keyCode : e.charCode;
 
     if (unicode == 8 || unicode == 46 || unicode == 13 || unicode == 9 || unicode == 37 || unicode == 39 || unicode == 38 || unicode == 40)
