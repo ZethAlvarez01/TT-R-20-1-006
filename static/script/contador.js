@@ -4,7 +4,6 @@ function contar() {
     document.getElementById("text-area-div").click();
 }
 
-
 function limitar(e, contenido, caracteres) {
     var unicode = e.keyCode ? e.keyCode : e.charCode;
 

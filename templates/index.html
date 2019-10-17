@@ -55,23 +55,23 @@
 
                 <script>
                     $(".hijo").on("paste", function(e) {
-                        
-                        var texto = $(".hijo").text() + e.originalEvent.clipboardData.getData('text');
+
+                        var texto = e.originalEvent.clipboardData.getData('text/plain');
                         console.log(texto);
-                        var div = document.getElementById("text-area-div");
-                        for(let i=0;i<div.length;i++){
-                            console.log(div[i]);
-                        }
-                        
-                        
-                        if (texto.length >= 100) {
+
+                        e.preventDefault();
+                        var aux = $(".hijo").text() + e.originalEvent.clipboardData.getData('text/plain');
+                        if (aux.length >= 100) {
                             alert("No es posible pegar textos con mas de 3500 caracteres.")
                             e.preventDefault();
+                        } else {
+                            if ($(".hijo").text().length < 99) {
+                                $(".hijo").text().substring(0, 4);
+                                document.execCommand("insertHTML", false, texto);
+                            }
                         }
 
-                        if ($(".hijo").text().length < 100) {
-                            $(".hijo").text().substring(0, 4);
-                        }
+
                     });
                 </script>
 

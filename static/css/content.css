@@ -32,7 +32,7 @@ h1 {
 
 #text-area-div {
     text-align: justify;
-    height: 50%;
+    height: 60%;
     width: 60%;
     margin-top: 30px;
     border-radius: 10px;
@@ -52,6 +52,10 @@ h1 {
 #text-area-div:focus {
     outline: none !important;
     outline-width: 0 !important;
+}
+
+#text-area-div::-webkit-scrollbar {
+    display: none;
 }
 
 
