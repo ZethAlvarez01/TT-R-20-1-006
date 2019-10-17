@@ -20,7 +20,7 @@ function limitar(e, contenido, caracteres) {
 
 function detecta(e) {
     if ((e.keyCode == 32) || (e.keyCode == 46)) {
-        let text = document.getElementById('texto-area').value;
+        let text = $(".hijo").text();
         $.ajax({
             url: "/background_process_test/" + text + "/"
         }).done(function(res) {
