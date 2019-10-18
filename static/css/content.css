@@ -13,12 +13,13 @@ h1 {
     font-size: 12px;
 }
 
-#sim {
+
+/*#sim {
     float: right;
     height: 25px;
     margin-right: 8%;
     cursor: pointer;
-}
+}*/
 
 
 /* Contenido textarea */
@@ -71,8 +72,8 @@ h1 {
 #n-caracteres {
     float: right;
     margin-top: 10px;
-    margin-right: 12.5%;
-    margin-bottom: 10px;
+    margin-right: 20%;
+    margin-bottom: 100px;
     cursor: default;
 }
 

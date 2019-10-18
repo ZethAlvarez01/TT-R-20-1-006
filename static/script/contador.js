@@ -21,6 +21,11 @@ function limitar(e, contenido, caracteres) {
 function detecta(e) {
     if ((e.keyCode == 32) || (e.keyCode == 46) || (e.keyCode == 13)) {
         let text = $(".hijo").text();
+        console.log(text);
+        text = text.replace("?", "%3F");
+        text = text.replace("/", "%2F");
+        console.log(text);
+
         $.ajax({
             url: "/background_process_test/" + text + "/"
         }).done(function(res) {
