@@ -25,10 +25,23 @@ function detecta(e) {
             url: "/background_process_test/" + text + "/"
         }).done(function(res) {
             var lista = res.lista
+            var cadena_rec="";
+
             for (let i = 0; i < lista.length; i++) {
                 console.log(lista[i]);
+                
+                /*if((i % 3) == 1){
+                    if(lista[i] == false){
+                        cadena_rec = cadena_rec + "<span style=\"color: red;\">" + lista[i-1] + "</span>" + " ";
+                    }else{
+                        cadena_rec = cadena_rec + lista[i-1] + " ";
+                    }
+                }*/
             }
 
+            //document.getElementById("text-area-div").innerHTML = cadena_rec;
+
+            
         });
     }
 }
@@ -47,7 +60,7 @@ function descargar() {
 
     texto = texto.replace(" ", "%20")
     texto = texto.replace("?", "%3F")
-    texto = texto.replace("/", "%2F")
+    texto = texto.replace("/", "//")
 
     let res = texto;
 

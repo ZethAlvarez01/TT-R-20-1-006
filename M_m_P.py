@@ -1,5 +1,5 @@
 
-cadena="hola esTo es una a A ver que 2  PaSA PRUEBA. esto sigue siendo una. Prueba. . ."
+cadena="ZeTh"
 i = 0
 l_cad = len(cadena)
 flg = True
