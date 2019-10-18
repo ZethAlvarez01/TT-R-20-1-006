@@ -31,6 +31,7 @@ h1 {
 }
 
 #text-area-div {
+    line-height: 125%;
     text-align: justify;
     height: 60%;
     width: 60%;
@@ -67,46 +68,6 @@ h1 {
     padding: 15px 10px 0px 10px;
 }
 
-
-/*
-textarea {
-    text-align: justify;
-    grid-area: hoja;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    height: 80%;
-    width: 75%;
-    border: none;
-    /*border-left: 20px solid red;*/
-
-
-/* margin-top: 30px;
-    /* border-radius: 0px 20px 20px 0px;*/
-
-
-/* border-radius: 10px;
-    padding: 15px;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 18px;
-    color: black;
-    resize: none;
-    box-shadow: 4px 4px 4px 0px #ebebeb;
-    background: white;
-}
-
-textarea:focus {
-    outline: none !important;
-    outline-width: 0 !important;
-}
-
-textarea::-webkit-input-placeholder {
-    color: #a7a7a7;
-    font-weight: 200;
-    font-size: 18px;
-}
-*/
-
 #n-caracteres {
     float: right;
     margin-top: 10px;
@@ -122,11 +83,6 @@ textarea::-webkit-input-placeholder {
     /*grid-template-areas: 'textarea textarea textarea textarea textarea textarea suger';*/
     grid-template-columns: 4fr 1.2fr;
     background: white;
-}
-
-.text-area {
-    background: white;
-    height: 70vh;
 }
 
 .container-h {
@@ -173,22 +129,6 @@ textarea::-webkit-input-placeholder {
     cursor: pointer;
 }
 
-
-/*
-select {
-    margin-top: 20px;
-    border-radius: 5px;
-    border: 1px solid black;
-    padding: 5px;
-    width: 100%;
-}
-
-select:focus {
-    outline: none !important;
-    outline-width: 0 !important;
-}
-*/
-
 #lorem {
     font-size: 12px;
 }
@@ -201,4 +141,10 @@ select {
 #download {
     padding: 10px;
     text-align: center;
+}
+
+span:hover {
+    background: rgba(255, 0, 0, 0.2);
+    transition: 0.8s;
+    padding: 2px 5px;
 }

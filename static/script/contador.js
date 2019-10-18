@@ -19,29 +19,35 @@ function limitar(e, contenido, caracteres) {
 }
 
 function detecta(e) {
-    if ((e.keyCode == 32) || (e.keyCode == 46)) {
+    if ((e.keyCode == 32) || (e.keyCode == 46) || (e.keyCode == 13)) {
         let text = $(".hijo").text();
         $.ajax({
             url: "/background_process_test/" + text + "/"
         }).done(function(res) {
             var lista = res.lista
-            var cadena_rec="";
+            var cadena_rec = "";
 
             for (let i = 0; i < lista.length; i++) {
                 console.log(lista[i]);
-                
-                /*if((i % 3) == 1){
-                    if(lista[i] == false){
-                        cadena_rec = cadena_rec + "<span style=\"color: red;\">" + lista[i-1] + "</span>" + " ";
-                    }else{
-                        cadena_rec = cadena_rec + lista[i-1] + " ";
+
+                if ((i % 3) == 1) {
+                    if (lista[i] == false) {
+                        cadena_rec = cadena_rec +
+                            "<span style=\"color:rgb(194,0,0); " +
+                            "border-radius: 5px; " +
+                            "font-family: 'Times New Roman', Times, serif; " +
+                            "font-size: 18px; " +
+                            "cursor: pointer;\">" + lista[i - 1] + "</span>&nbsp";
+                    } else {
+                        cadena_rec = cadena_rec + lista[i - 1] + "&nbsp";
                     }
-                }*/
+                }
             }
 
-            //document.getElementById("text-area-div").innerHTML = cadena_rec;
+            document.getElementById("text-area-div").innerText = " ";
+            document.execCommand("insertHTML", false, cadena_rec);
 
-            
+
         });
     }
 }
