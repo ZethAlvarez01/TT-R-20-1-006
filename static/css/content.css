@@ -33,7 +33,6 @@ h1 {
 
 #text-area-div {
     line-height: 125%;
-    text-align: justify;
     height: 60%;
     width: 60%;
     margin-top: 30px;
@@ -44,11 +43,12 @@ h1 {
     color: black;
     resize: none;
     margin-left: 4%;
-    display: block;
+    display: inline-block;
     box-shadow: 4px 4px 4px 0px #ebebeb;
     background: white;
-    overflow-y: scroll;
     position: absolute;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 #text-area-div:focus {

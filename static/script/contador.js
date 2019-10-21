@@ -7,14 +7,12 @@ function contar() {
 function limitar(e, contenido, caracteres) {
     var unicode = e.keyCode ? e.keyCode : e.charCode;
 
-    if (unicode == 8 || unicode == 46 || unicode == 13 || unicode == 9 || unicode == 37 || unicode == 39 || unicode == 38 || unicode == 40)
+    if (unicode == 8 || unicode == 46 /*|| unicode == 13*/ || unicode == 9 || unicode == 37 || unicode == 39 || unicode == 38 || unicode == 40)
         return true;
 
     if (contenido.length >= caracteres) {
         return false;
     }
-
-
     return true;
 }
 
@@ -22,8 +20,7 @@ function detecta(e) {
     if ((e.keyCode == 32) || (e.keyCode == 46) || (e.keyCode == 13)) {
         let text = $(".hijo").text();
         console.log(text);
-        text = text.replace("?", "%3F");
-        text = text.replace("/", "%2F");
+        text = encodeURIComponent(text);
         console.log(text);
 
         $.ajax({
@@ -51,6 +48,7 @@ function detecta(e) {
 
             document.getElementById("text-area-div").innerText = " ";
             document.execCommand("insertHTML", false, cadena_rec);
+            document.getElementById("text-area-div").setAttribute("text-align", "none");
 
 
         });
@@ -58,7 +56,7 @@ function detecta(e) {
 }
 
 function descargar() {
-    var texto = document.getElementById("texto-area").value
+    var texto = document.getElementById("texto-area").value;
 
     var combo = document.getElementById("combo-opciones");
     var selected = combo.options[combo.selectedIndex].value;
