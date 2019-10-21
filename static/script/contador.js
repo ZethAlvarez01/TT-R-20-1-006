@@ -4,6 +4,23 @@ function contar() {
     document.getElementById("text-area-div").click();
 }
 
+function detecta2(e){
+    if ((e.keyCode == 32) || (e.keyCode == 46) || (e.keyCode == 13)) {
+        let text = $(".hijo").text();
+        console.log(text);
+        text = encodeURIComponent(text);
+        console.log(text);
+
+        $.ajax({
+            url: "/background_process_test2/" + text + "/"
+        }).done(function(res) {
+            for(let i=0;i<res.length;i++){
+                console.log(res[i])
+            }
+        });
+    }
+}
+
 
 function sugerencias(elemento) {
     var cte = elemento.getAttribute('id');
@@ -79,6 +96,22 @@ function detecta(e) {
             for (let i = 0; i < lista.length; i++) {
                 console.log(lista[i]);
 
+                if((i % 3) == 0){
+                    if(lista[i + 1] == false){
+                        cadena_rec = cadena_rec +
+                            "<span class=\"palabra-mala\" onclick=\"sugerencias(this);\"" +
+                            "id='" + lista[i - 1] + "-" + lista[i] + "-" + lista[i + 1] + "'" +
+                            "style=\"color:rgb(254,0,0); " +
+                            "border-radius: 5px; " +
+                            "font-family: 'Times New Roman', Times, serif; " +
+                            "font-size: 18px; " +
+                            "cursor: pointer;\">" + lista[i - 1] + "</span>";
+                    }else{
+                        cadena_rec = cadena_rec + lista[i];
+                    }
+                }
+
+                /*
                 if ((i % 3) == 1) {
                     if (lista[i] == false) {
                         cadena_rec = cadena_rec +
@@ -88,12 +121,12 @@ function detecta(e) {
                             "border-radius: 5px; " +
                             "font-family: 'Times New Roman', Times, serif; " +
                             "font-size: 18px; " +
-                            "cursor: pointer;\">" + lista[i - 1] + "</span>&nbsp";
+                            "cursor: pointer;\">" + lista[i - 1] + "</span>";
                         //Palabra-Correcta-Tipo
-                    } else {
-                        cadena_rec = cadena_rec + lista[i - 1] + "&nbsp";
+                    }else {
+                        cadena_rec = cadena_rec + lista[i - 1];
                     }
-                }
+                } */
             }
 
             document.getElementById("text-area-div").innerText = " ";

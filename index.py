@@ -2,6 +2,7 @@ from tkinter import filedialog, Tk
 from flask import Flask, render_template,request,make_response,json
 from flask import send_file, send_from_directory
 from Principal import validacion
+from Puntuacion import error_signos
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4, letter
 
@@ -15,6 +16,12 @@ def index():
 def background_process_test(texto):
     return json.jsonify({
         'lista': validacion(texto)
+    })
+
+@app.route('/background_process_test2/<string:texto>/')
+def background_process_test2(texto):
+    return json.jsonify({
+        'aerr': error_signos(texto)
     })
 
 @app.route('/return_file/<texto>/<opcion>')
@@ -38,5 +45,5 @@ def return_file(texto,opcion):
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=9612)
+    app.run(debug=True, port=9622)
 

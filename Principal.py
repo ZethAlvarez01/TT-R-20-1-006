@@ -2,9 +2,10 @@
 def validacion(cadena):
     tipo_error = 0 #Variableque guarda el numero de identificacion de error:
                    # 0 = Correcto
-                   # 1 = Palabra con mayusculas o minusculas intercaladas
+                   # 1 = Palabra con mayusculas / minusculas / numeros intercalados
                    # 2 = Primer caracter despues de un punto es minuscula
                    # 3 = Numeros
+                   # 4 = Mayuscula sola dentro de la frase
     # Aqui metes la cadena, frase, texto que vayas a validar.
     #cadena = "H0La PruEba de Alan grupo de A.A. audio. S.A. de C.V. pedro H0LA hoLa hola. hola. A continuacion."
     signos = ['(', ')', ',', '-', ':', ';', '¿', '?', '¡', '!', '"', ' ']
@@ -24,15 +25,25 @@ def validacion(cadena):
     cad = ""  # Variable para concatenar los caracteres que formen cada palabra
     print("La cadena tiene %d caracteres" % j)
 
-    # Esto solo separa la cadena por palabras sin poner los signos de puntuacion
+    # Esto solo separa la cadena por palabras sin poner los signos de puntuacion poniendo los signos de puntuacion por separado
     for i in range(j):
         flg = cadena[i].isspace()
         if cadena[i].islower() is True or cadena[i].isupper() is True or cadena[i] == '.' or \
                 num.__contains__(cadena[i]) is True:
             cad = cad + cadena[i]
-        if flg is True and len(cad) != 0:
+        elif flg is True and len(cad) != 0:
             palabras.append(cad)
             cad = ""
+            palabras.append(' ')
+        elif flg is True and len(cad) == 0:
+            palabras.append(' ')
+        elif cadena[i].islower() is False and cadena[i].isupper() is False or cadena[i] != '.' or \
+                num.__contains__(cadena[i]) is False:
+            if len(cad) != 0:
+                palabras.append(cad)
+                cad = ""
+            palabras.append(cadena[i])
+
     if cad != " " and len(cad) != 0:
         if cad != 0:
             palabras.append(cad)  # Agrega la ultima palabra al arreglo si no es un espacio o cadena vacía
@@ -85,17 +96,17 @@ def validacion(cadena):
                 #print("aqui se mando el error")
                 break
 
-            # error si hay mayusculas entre la frase
+            # error si hay mayusculas sola entre la frase
             if len(palabras[i]) == 1 and palabras[i].isupper() is True and flgptr is False:
                 flg2 = False
-                tipo_error = 1
+                tipo_error = 4
                 break
 
             # si la palabra empieza con mayuscula y tiene mezcla de minúsculas o números
             if palabras[i].__getitem__(0).isupper() is True and n > 0:
-                if palabras[i].__getitem__(h).islower() is True and r == 0:
+                if palabras[i].__getitem__(h).isupper() is True and r == 0:
                     r = h
-                if palabras[i].__getitem__(h).isupper() is True and r > 0:
+                if palabras[i].__getitem__(h).islower() is True and r > 0:
                     flg2 = False
                     tipo_error = 1
                     break
@@ -107,9 +118,9 @@ def validacion(cadena):
 
             # checa si la palabra empieza con minusculas y tiene mayusculas o numeros
             if palabras[i].__getitem__(0).islower() is True and n > 0:
-                if palabras[i].__getitem__(h).isupper() is True and s == 0:
+                if palabras[i].__getitem__(h).islower() is True and s == 0:
                     s = h
-                if palabras[i].__getitem__(h).islower() is True and s > 0:
+                if palabras[i].__getitem__(h).isupper() is True and s > 0:
                     flg2 = False
                     tipo_error = 1
                     break
