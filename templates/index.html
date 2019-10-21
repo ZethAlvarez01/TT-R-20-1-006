@@ -83,14 +83,11 @@
                 <!--Tarjetas de sigerencias-->
 
                 <div class="tarjeta" id="tarjeta-ortg">
-                    <div class="circulo" id="otr"></div>
-                    Alertas ortográfica <br><br>
-                    <p id="lorem">
-                        <del>incorrecta</del> -> Correcta
-                    </p>
-                    <br>
-                    <hr style="border: 0.5px solid rgb(0,170,228)"> <br>
-                    <p id="lorem">Significado de la palabra.</p>
+                    <div id="tipo-error"></div><br>
+                    <div id="mala-buena"></div><br>
+                    <div id="sugerencia"></div><br>
+                    <div id="error"></div><br><br>
+                    <hr id="linea">
                 </div>
 
                 <!--------------------------->
@@ -102,7 +99,7 @@
                         <option value="txt">Archivo de texto (.txt)</option>
                         <option value="pdf">Archivo PDF (.pdf)</option>
                     </select>
-                    <a id="download" onclick="descargar()"><label>Descargar</label></a>
+                    <a id="download" onclick="descargar()"><label id="boton-descargar">Descargar</label></a>
 
                 </div>
 

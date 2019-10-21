@@ -23,20 +23,20 @@ def return_file(texto,opcion):
     root = Tk()
     root.withdraw()
     directorio = filedialog.askdirectory()
-    #directorio = eg.diropenbox(title="Seleccionar ruta",default='/home/')
 
     if opcion == "1":
         c = canvas.Canvas(directorio + '/Prototipo_de_asistente_corrector_gramatical_y_ortográfico.pdf',pagesize=A4)
         c.drawString(50,800, texto)
         c.save()
-        return "nothing"
+        return render_template('index.html')
     else:
         file = open(directorio + "/Prototipo_de_asistente_corrector_gramatical_y_ortográfico_ruta.txt", "w")
         file.write(texto)
         file.close()
-        return "nothing"
+        return render_template('index.html')
     
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=9582)
+    app.run(debug=True, port=9612)
+
