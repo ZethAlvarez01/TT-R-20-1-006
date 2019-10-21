@@ -144,8 +144,15 @@ select {
     text-align: center;
 }
 
+#boton-descargar{
+    cursor: pointer;
+    padding: 5px;
+    display: block;
+}
+
 span:hover {
-    background: rgba(255, 0, 0, 0.2);
+    color: rgb(155, 0, 0);
+    background: rgba(254, 0, 0, 0.233);
     transition: 0.8s;
     padding: 2px 5px;
 }

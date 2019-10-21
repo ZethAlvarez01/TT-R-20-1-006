@@ -22,8 +22,7 @@ function detecta(e) {
     if ((e.keyCode == 32) || (e.keyCode == 46) || (e.keyCode == 13)) {
         let text = $(".hijo").text();
         console.log(text);
-        text = text.replace("?", "%3F");
-        text = text.replace("/", "%2F");
+        text = encodeURIComponent(text);
         console.log(text);
 
         $.ajax({
@@ -38,11 +37,14 @@ function detecta(e) {
                 if ((i % 3) == 1) {
                     if (lista[i] == false) {
                         cadena_rec = cadena_rec +
-                            "<span style=\"color:rgb(194,0,0); " +
+                            "<span class=\"palabra-mala\" onclick=\"alert('Hola');\"" +
+                            "id='"+lista[i - 1]+"-"+lista[i]+"-"+lista[i + 1]+"'" + 
+                            "style=\"color:rgb(254,0,0); " +
                             "border-radius: 5px; " +
                             "font-family: 'Times New Roman', Times, serif; " +
                             "font-size: 18px; " +
                             "cursor: pointer;\">" + lista[i - 1] + "</span>&nbsp";
+                            //Palabra-Correcta-Tipo
                     } else {
                         cadena_rec = cadena_rec + lista[i - 1] + "&nbsp";
                     }
@@ -58,7 +60,8 @@ function detecta(e) {
 }
 
 function descargar() {
-    var texto = document.getElementById("texto-area").value
+    
+    var texto = document.getElementById("text-area-div").value
 
     var combo = document.getElementById("combo-opciones");
     var selected = combo.options[combo.selectedIndex].value;
@@ -69,13 +72,9 @@ function descargar() {
         opcion = 1;
     }
 
-    texto = texto.replace(" ", "%20")
-    texto = texto.replace("?", "%3F")
-    texto = texto.replace("/", "//")
-
-    let res = texto;
+    let res = encodeURIComponent(texto);
 
     url = "/return_file/" + res + "/" + opcion
     document.getElementById("download").setAttribute("href", url);
-
+    
 }

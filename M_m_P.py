@@ -1,5 +1,5 @@
 
-cadena="ZeTh"
+cadena="hola HOLA HoLa hOlA Hola lalala. lalala. Lalala. LalaLa. "+'"'+"jaja"+'"'+"k"
 i = 0
 l_cad = len(cadena)
 flg = True
