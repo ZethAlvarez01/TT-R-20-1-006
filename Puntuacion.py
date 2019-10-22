@@ -16,55 +16,37 @@ def error_signos(cadena):
     i = 0  # contador 1
     j = len(cadena)  # contador de caracteres de cadena
 
-    flgpar = True  # Bandera para parentesis ( )
-    auxpar: int = 0  # Auxiliar para parentesis
-    flgcom = True  # Bandera para comas ,
-    flgg = True  # Bandera para guiones -
-    flgpt = True  # Bandera para puntos .
-    flgdp = True  # Bandera para doble punto :
-    flgpyc = True  # Bandera para punto y coma ;
-    flgi = True  # Bandera para signos de interrogación ¿ ?
-    auxi: int = 0  # Auxiliar para signos de interrogación
-    flge = True  # Bandera para signos de exclamación ¡ !
-    auxe: int = 0  # Auxiliar para signos de exclamación
-    flgcd = True  # Bandera para comillas dobles " "
     auxcda: int = 0  # Auxiliar para comillas dobles
-    auxcdd: int = 0  # Auxiliar para comillas dobles
+
 
     for i in range(j):
 
         #   Aqui se manejan las reglas para el punto .********************************************
 
-        flgpt = True
         if cadena[i] is '.':
             if i > 0 and cadena[i - 1].isspace() is True:  # Si el punto está después de un espacio
-                flgpt = False
                 print("Caracter: %d: no puede haber espacio antes del punto." % i)
                 aerr.append(cadena[i])
                 aerr.append(i)
                 aerr.append(1)
             if 0 < i < j - 1 and cadena[
                 i + 1].islower() is True:  # Si el punto está antes de una letra minuscula
-                flgpt = False
                 print("Caracter: %d: no puede llevar un caracter minúscula despues del punto." % i)
                 aerr.append(cadena[i])
                 aerr.append(i)
                 aerr.append(1)
             if 0 < i < j - 1 and (cadena[i + 1].islower() is True and cadena[
                 i + 2].islower() is True):  # Si hay una palabra despues del punto
-                flgpt = False
                 print("Caracter: %d: no puede llevar una palabra despues del punto." % i)
                 aerr.append(cadena[i])
                 aerr.append(i)
                 aerr.append(1)
             if i < j - 4 and cadena[i + 1] == cadena[i + 2] == cadena[i + 3] == '.':
-                flgpt = False
                 print("Caracter: %d: solo se utilizan 3 puntos para puntos suspensivos." % i)
                 aerr.append(cadena[i])
                 aerr.append(i)
                 aerr.append(1)
             if i > 1 and (cadena[i - 1] == ':' or cadena[i - 1] == ';'):
-                flgpt = False
                 print("Caracter: %d: no se puede poner un punto despues de un doble punto." % i)
                 aerr.append(cadena[i])
                 aerr.append(i)
@@ -72,35 +54,28 @@ def error_signos(cadena):
 
         #   Aqui se manejan las reglas para la coma ,********************************************
 
-        flgcom = True
-
         if cadena[i] is ',':
             if i < j - 1 and cadena[i + 1].isspace() is False:
-                flgcom = False
                 print("Caracter: %d: no se puede poner una coma antes de otro caracter." % i)
                 aerr.append(cadena[i])
                 aerr.append(i)
                 aerr.append(2)
             if i > 0 and signos2.__contains__(cadena[i - 1]) is True:
-                flgcom = False
                 print("Caracter: %d: no se puede poner una coma despues de un signo de puntuación." % i)
                 aerr.append(cadena[i])
                 aerr.append(i)
                 aerr.append(2)
             if i == 0:
-                flgcom = False
                 print("Caracter: %d: no se puede iniciar una frase con una coma." % i)
                 aerr.append(cadena[i])
                 aerr.append(i)
                 aerr.append(2)
             if i > 0 and cadena[i - 1].isspace() is True:
-                flgcom = False
                 print("Caracter: %d: no puede llevar espacio antes de la coma." % i)
                 aerr.append(cadena[i])
                 aerr.append(i)
                 aerr.append(2)
             if i < j - 1 and (cadena[i + 1].islower() is True or cadena[i + 1].isupper() is True):
-                flgpt = False
                 print("Caracter: %d: no puede llevar un caracter despues de la coma." % i)
                 aerr.append(cadena[i])
                 aerr.append(i)
@@ -108,23 +83,18 @@ def error_signos(cadena):
 
         #   Aqui se manejan las reglas para el guion -********************************************
 
-        flgg = True
-
         if cadena[i] is '-':
             if i < j - 1 and signos1.__contains__(cadena[i + 1]) is True:
-                flgg = False
                 print("Caracter: %d: el guion no puede ir seguido de otro signo." % i)
                 aerr.append(cadena[i])
                 aerr.append(i)
                 aerr.append(3)
             if i > 0 and signos.__contains__(cadena[i - 1]) is True:
-                flgg = False
                 print("Caracter: %d: el guion no puede ir despues de otro signo." % i)
                 aerr.append(cadena[i])
                 aerr.append(i)
                 aerr.append(3)
             if i == j - 1:
-                flgpyc = False
                 print("Caracter: %d: el guión no puede ir al final del texto." % i)
                 aerr.append(cadena[i])
                 aerr.append(i)
@@ -132,18 +102,14 @@ def error_signos(cadena):
 
         #   Aqui se manejan las reglas para el doble punto :********************************************
 
-        flgdp = True
-
         if cadena[i] is ':':
             if i < j - 1 and signos.__contains__(cadena[i + 1]) is True:
-                flgg = False
                 print("Caracter: %d: el doble punto no puede ir seguido de otro signo." % i)
                 aerr.append(cadena[i])
                 aerr.append(i)
                 aerr.append(4)
             if i > 0 and (
                     cadena[i - 1].isupper() is False and cadena[i - 1].islower() is False and cadena[i - 1] != '.'):
-                flgg = False
                 print("Caracter: %d: caracter no valido antes del doble punto." % i)
                 aerr.append(cadena[i])
                 aerr.append(i)
@@ -151,23 +117,18 @@ def error_signos(cadena):
 
         #   Aqui se manejan las reglas para el punto y coma ;********************************************
 
-        flgpyc = True
-
         if cadena[i] is ';':
             if i == 0:
-                flgpyc = False
                 print("Caracter: %d: el punto y coma no puede ir al inicio de una oración." % i)
                 aerr.append(cadena[i])
                 aerr.append(i)
                 aerr.append(5)
             if i > 0 and cadena[i - 1].isspace() is True:
-                flgpyc = False
                 print("Caracter: %d: el punto y coma no puede ir después de un espacio." % i)
                 aerr.append(cadena[i])
                 aerr.append(i)
                 aerr.append(5)
             if i == j - 1:
-                flgpyc = False
                 print("Caracter: %d: el punto y coma no puede ir al final del texto." % i)
                 aerr.append(cadena[i])
                 aerr.append(i)
@@ -179,24 +140,20 @@ def error_signos(cadena):
 
             if auxcda == 0:  # Doble comilla abierta
                 auxcda = i
-                flgcd = False
 
             if auxcda != 0 and auxcda != i:  # Doble comilla cerrada
                 auxcda = 0
-                flgcd = True
 
             if auxcda == i and 0 < i and (signos4.__contains__(cadena[i - 1]) is  # Antes de abrir "
                                         True or cadena[i - 1].isalpha() is True
                                         or cadena[i - 1].isupper() is True or
                                         cadena[i - 1].islower() is True):
-                flgcd = False
                 print("Caracter: %d: la doble comilla no puede ir despues de %s." % (i, cadena[i + 1]))
                 aerr.append(cadena[i])
                 aerr.append(i)
                 aerr.append(6)
 
             if auxcda == i and 0 < i and signos5.__contains__(cadena[i + 1]) is True:  # Despues de abrir "
-                flgcd = False
                 print("Caracter: %d: la doble comilla no puede ir antes de %s." % (i, cadena[i + 1]))
                 aerr.append(cadena[i])
                 aerr.append(i)
@@ -206,14 +163,12 @@ def error_signos(cadena):
                                             True or cadena[i + 1].isalpha() is True
                                             or cadena[i + 1].isupper() is True or
                                             cadena[i + 1].islower() is True):
-                flgcd = False
                 print("Caracter: %d: la doble comilla no puede ir antes de %s." % (i, cadena[i + 1]))
                 aerr.append(cadena[i])
                 aerr.append(i)
                 aerr.append(6)
 
             if auxcda == 0 and i < j - 1 and signos5.__contains__(cadena[i - 1]) is True:  # Antes de cerrar "
-                flgcd = False
                 print("Caracter: %d: la doble comilla no puede ir despues de %s." % (i, cadena[i + 1]))
                 aerr.append(cadena[i])
                 aerr.append(i)
@@ -233,14 +188,12 @@ def error_signos(cadena):
                         True or cadena[i - 1].isalpha() is True
                         or cadena[i - 1].isupper() is True or
                         cadena[i - 1].islower() is True):
-                flgpar = False
                 print("Caracter: %d: el signo %s no puede ir despues de %s." % (i, cadena[i], cadena[i - 1]))
                 aerr.append(cadena[i])
                 aerr.append(i)
                 aerr.append(7)
 
             if 0 < i and signos6.__contains__(cadena[i + 1]) is True:  # Despues de abrir (
-                flgpar = False
                 print("Caracter: %d: el signo %s no puede ir antes de %s." % (i, cadena[i], cadena[i + 1]))
                 aerr.append(cadena[i])
                 aerr.append(i)
@@ -249,7 +202,6 @@ def error_signos(cadena):
         if cadena[i] is ')' or cadena[i] is '?' or cadena[i] is '!':
 
             if i < j - 1 and signos6.__contains__(cadena[i - 1]) is True:  # Antes de cerrar "
-                flgpar = False
                 print("Caracter: %d: el signo %s no puede ir despues de %s." % (i, cadena[i], cadena[i + 1]))
                 aerr.append(cadena[i])
                 aerr.append(i)
@@ -259,7 +211,6 @@ def error_signos(cadena):
                             True or cadena[i + 1].isalpha() is True
                             or cadena[i + 1].isupper() is True or
                             cadena[i + 1].islower() is True):
-                flgpar = False
                 print("Caracter: %d: el signo %s no puede ir antes de %s." % (i, cadena[i], cadena[i + 1]))
                 aerr.append(cadena[i])
                 aerr.append(i)
