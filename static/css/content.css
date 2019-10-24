@@ -125,9 +125,28 @@ h1 {
     text-align: center;
 }
 
-#mala-buena {
-    font-size: 14px;
+#mala-buena1 {
+    font-size: 12px;
     text-align: center;
+    cursor: pointer;
+}
+
+#mala-buena2 {
+    font-size: 12px;
+    text-align: center;
+    cursor: pointer;
+}
+
+#mala-buena1:hover {
+    background: rgba(254, 0, 0, 0.233);
+    transition: 0.8s;
+    padding: 2px 5px;
+}
+
+#mala-buena2:hover {
+    background: rgba(254, 0, 0, 0.233);
+    transition: 0.8s;
+    padding: 2px 5px;
 }
 
 #sugerencia {
@@ -162,6 +181,13 @@ select {
 span:hover {
     color: rgb(155, 0, 0);
     background: rgba(254, 0, 0, 0.233);
+    transition: 0.8s;
+    padding: 2px 5px;
+}
+
+.spanlabel:hover {
+    color: #439bff;
+    background: rgba(0, 0, 254, 0.233);
     transition: 0.8s;
     padding: 2px 5px;
 }
