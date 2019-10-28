@@ -1,10 +1,10 @@
-from tkinter import filedialog, Tk
 from flask import Flask, render_template,request,make_response,json
 from flask import send_file, send_from_directory
 from Principal import validacion
 from Puntuacion import error_signos
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4, letter
+from datetime import date
 
 app = Flask(__name__)
 
@@ -26,23 +26,17 @@ def background_process_test2(texto):
 
 @app.route('/return_file/<texto>/<opcion>')
 def return_file(texto,opcion):
-
-    root = Tk()
-    root.withdraw()
-    directorio = filedialog.askdirectory()
-
-    if opcion == "1":
-        c = canvas.Canvas(directorio + '/Prototipo_de_asistente_corrector_gramatical_y_ortográfico.pdf',pagesize=A4)
-        c.drawString(50,800, texto)
+    if(opcion == '1'):
+        c = canvas.Canvas("static/files/Texto_corregido_"+ date.today().strftime("%d-%B-%y") +".pdf")
+        c.drawString(50, 1024, texto)
         c.save()
-        return render_template('index.html')
+        return send_file('static/files/Texto_corregido_'+ date.today().strftime("%d-%B-%y") +'.pdf',attachment_filename="Texto_corregido_"+ date.today().strftime("%d-%B-%y") +".pdf",as_attachment=True)
     else:
-        file = open(directorio + "/Prototipo_de_asistente_corrector_gramatical_y_ortográfico_ruta.txt", "w")
-        file.write(texto)
-        file.close()
-        return render_template('index.html')
-    
+        archivo = open("static/files/Texto_corregido_"+ date.today().strftime("%d-%B-%y") +".txt", "w") 
+        archivo.write(texto)
+        archivo.close()
+        return send_file('static/files/Texto_corregido_'+ date.today().strftime("%d-%B-%y") +'.txt',attachment_filename="Texto_corregido_"+ date.today().strftime("%d-%B-%y") +".txt",as_attachment=True)
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=9693)
+    app.run(debug=True, port=9780)

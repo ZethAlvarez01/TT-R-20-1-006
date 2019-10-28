@@ -13,20 +13,6 @@ h1 {
     font-size: 12px;
 }
 
-
-/*#sim {
-    float: right;
-    height: 25px;
-    margin-right: 8%;
-    cursor: pointer;
-}*/
-
-
-/* Contenido textarea */
-
-
-/* div editable*/
-
 [contentEditable=true]:empty:not(:focus):before {
     content: attr(data-text)
 }
@@ -105,11 +91,22 @@ h1 {
     margin-bottom: 20px;
 }
 
+#titulo-desc {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+#texto-desc {
+    font-size: 12px;
+    margin: 10px 0px;
+}
+
 .tarjeta {
     /*margin: 10px 30px 10px 10px;*/
     visibility: hidden;
     border-radius: 5px;
-    height: 180px;
+    height: 200px;
     padding: 10px;
     margin-bottom: 20px;
 }
@@ -123,30 +120,6 @@ h1 {
 
 #tipo-error {
     text-align: center;
-}
-
-#mala-buena1 {
-    font-size: 12px;
-    text-align: center;
-    cursor: pointer;
-}
-
-#mala-buena2 {
-    font-size: 12px;
-    text-align: center;
-    cursor: pointer;
-}
-
-#mala-buena1:hover {
-    background: rgba(254, 0, 0, 0.233);
-    transition: 0.8s;
-    padding: 2px 5px;
-}
-
-#mala-buena2:hover {
-    background: rgba(254, 0, 0, 0.233);
-    transition: 0.8s;
-    padding: 2px 5px;
 }
 
 #sugerencia {
@@ -165,17 +138,28 @@ h1 {
 select {
     outline: none !important;
     outline-width: 0 !important;
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #e9e8e8f8;
+    cursor: pointer;
 }
 
 #download {
     padding: 10px;
     text-align: center;
+    margin: 20px 0px;
 }
 
 #boton-descargar {
     cursor: pointer;
     padding: 5px;
     display: block;
+}
+
+#boton-descargar:hover {
+    background: rgb(240, 242, 252);
+    border-radius: 5px;
+    transition: 0.8s;
 }
 
 span:hover {
