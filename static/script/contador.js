@@ -53,7 +53,7 @@ function bubbleSort(myArr1, myArr2, myArr3) {
 function limitar(e, contenido, caracteres) {
     var unicode = e.keyCode ? e.keyCode : e.charCode;
 
-    if (unicode == 8 || unicode == 46 /*|| unicode == 13*/ || unicode == 9 || unicode == 37 || unicode == 39 || unicode == 38 || unicode == 40)
+    if (unicode == 8 || unicode == 46 || unicode == 13 || unicode == 9 || unicode == 37 || unicode == 39 || unicode == 38 || unicode == 40)
         return true;
 
     if (contenido.length >= caracteres) {
@@ -65,7 +65,7 @@ function limitar(e, contenido, caracteres) {
 var tamaños = [];
 
 function detecta(e) {
-    if ((e.keyCode == 32) || (e.keyCode == 46) || (e.keyCode == 13)) {
+    if ((e.keyCode == 32) || (e.keyCode == 46)) {
         let text = $(".hijo").text();
         //console.log(text);
         text = encodeURIComponent(text);
@@ -159,6 +159,10 @@ function detecta(e) {
 
             console.log("Arreglo de lista de signos mal ordenado: ");
 
+                console.log(listaC);
+                console.log(listaP);
+                console.log(listaE);
+
             listaC = val.segundo;
             listaP = val.primero;
             listaE = val.tercero;
@@ -169,6 +173,7 @@ function detecta(e) {
             var aux_tam = 0;
             var flg = 0;
             var flg2 = 0;
+            var aux_ca;
 
 
             if (lista.length != 0) {
@@ -176,25 +181,32 @@ function detecta(e) {
                     if (i == listaP[aux]) {
                         if (cadena_rec[i] == listaC[aux]) {
 
-                            let caracter;
+                                if(aux_ca == listaP[aux]){
+                                    i--;
+                                }
 
-                            if (listaC[aux] == '"') {
-                                caracter = "3";
-                            } else {
-                                caracter = listaC[aux];
-                            }
+                                let caracter;
 
-                            cadena = cadena +
-                                "<span class=\"spanlabel\" onclick=\"sugerencias(this);\" " +
-                                "id=\"" + caracter + "-" + listaP[aux] + "-" + listaE[aux] + "\" " +
-                                "style=\"color:#439bff; " +
-                                "border-radius: 5px; " +
-                                "font-family: 'Times New Roman', Times, serif; " +
-                                "font-size: 18px; " +
-                                "cursor: pointer;\"'>" + listaC[aux] + "</span>";
+                                if (listaC[aux] == '"') {
+                                    caracter = "3";
+                                } else {
+                                    caracter = listaC[aux];
+                                }
+    
+                                cadena = cadena +
+                                    "<span class=\"spanlabel\" onclick=\"sugerencias(this);\" " +
+                                    "id=\"" + caracter + "-" + listaP[aux] + "-" + listaE[aux] + "\" " +
+                                    "style=\"color:#439bff; " +
+                                    "border-radius: 5px; " +
+                                    "font-family: 'Times New Roman', Times, serif; " +
+                                    "font-size: 18px; " +
+                                    "cursor: pointer;\"'>" + listaC[aux] + "</span>";
+                                    
                             flg = 1;
+                            aux_ca = listaP[aux];
                             aux++;
                             aux_tam = 0;
+                           
                         } else {
                             for (let j = 0; j < listaP.length; j++) {
                                 listaP[j] = listaP[j] + tamaños[aux_tam];

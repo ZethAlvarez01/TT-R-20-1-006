@@ -28,7 +28,7 @@ def background_process_test2(texto):
 def return_file(texto,opcion):
     if(opcion == '1'):
         c = canvas.Canvas("static/files/Texto_corregido_"+ date.today().strftime("%d-%B-%y") +".pdf")
-        c.drawString(50, 1024, texto)
+        c.drawString(50, 800, texto)
         c.save()
         return send_file('static/files/Texto_corregido_'+ date.today().strftime("%d-%B-%y") +'.pdf',attachment_filename="Texto_corregido_"+ date.today().strftime("%d-%B-%y") +".pdf",as_attachment=True)
     else:
@@ -39,4 +39,4 @@ def return_file(texto,opcion):
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=9780)
+    app.run(debug=True, port=9791)
