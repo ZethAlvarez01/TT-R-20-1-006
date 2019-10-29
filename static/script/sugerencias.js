@@ -3,8 +3,6 @@ function sugerencias(elemento) {
     console.log(cte);
     var lista = cte.split("-");
     let oog = 0;
-    var correcta;
-
     var tarjeta = document.getElementById("tarjeta-ortg");
 
     if (oog == 0) {
@@ -64,8 +62,6 @@ function sugerencias(elemento) {
             $("#mala-buena2").css("background", "white");
 
         });
-
-
 
         $("#tarjeta-ortg").hover(function() {
             $(this).css("background-color", "rgb(240, 242, 252)");
@@ -132,7 +128,7 @@ function sugerencias(elemento) {
                 document.getElementById("mala-buena1").setAttribute("onclick",
                     "cambiar(this,'" + cte + "')");
                 $("#mala-buena2").css("visibility", "hidden");
-                document.getElementById("mala-buena2").innerText = "-----";
+                document.getElementById("mala-buena2").innerText = "";
                 document.getElementById("mala-buena2").setAttribute("onclick",
                     "");
 
@@ -147,7 +143,7 @@ function sugerencias(elemento) {
                     "cambiar(this,'" + cte + "')");
 
                 $("#mala-buena2").css("visibility", "hidden");
-                document.getElementById("mala-buena2").innerText = "-----";
+                document.getElementById("mala-buena2").innerText = "";
                 document.getElementById("mala-buena2").setAttribute("onclick", "");
             }
 
@@ -166,7 +162,7 @@ function sugerencias(elemento) {
             document.getElementById("mala-buena1").setAttribute("onclick", "");
 
             $("#mala-buena2").css("visibility", "hidden");
-            document.getElementById("mala-buena2").innerText = "---";
+            document.getElementById("mala-buena2").innerText = "";
             document.getElementById("mala-buena2").setAttribute("onclick", "");
 
             document.getElementById("sugerencia").innerText = "El error esta en: ";
