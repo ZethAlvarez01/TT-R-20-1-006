@@ -50,6 +50,14 @@ function detecta(e) {
             var contador = 0;
             arreglo_ser = res.aerr;
 
+            for(let i=0;i<lista.length;i++){
+                console.log(lista[i]);
+            }
+
+            for(let i=0;i<arreglo_ser.length;i++){
+                console.log(arreglo_ser[i]);
+            }
+
             for (let i = 0; i < (lista.length - 1); i++) {
 
 
@@ -65,7 +73,7 @@ function detecta(e) {
                         caracter = lista[i - 1];
                         correcto = lista[i];
                         tipo_err = lista[i + 1];
-                        //sugerencias = "sugerencias(this);";
+                        sugerencias = "buscar(this);";
                     } else if (lista[i] == false) {
                         color = "color: rgb(254, 0, 0);";
                         mal_bien = "palabra-mala";
@@ -96,8 +104,6 @@ function detecta(e) {
                         "font-family: 'Times New Roman', Times, serif; " +
                         "font-size: 18px; " +
                         "cursor: pointer;\">" + lista[i - 1] + "</span>";
-
-
 
 
                     id_pal++;

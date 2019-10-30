@@ -12,11 +12,10 @@ def error_signos(cadena):
     signos7 = ['?', '¿', '!', '¡', '(', ')', '"']  # Signos para validación de apertura
     pilac = []
     pilan = []
+    piladc = []
     aerr = []  # 1 = '.', 2 = ',', 3 = '-', 4 = ':', 5 = ';', 6 = '"' y 7 = '(' ')' '¿' '?' '¡' '!'
     i = 0  # contador 1
     j = len(cadena)  # contador de caracteres de cadena
-
-    auxcda: int = 0  # Auxiliar para comillas dobles
 
 
     for i in range(j):
@@ -136,48 +135,40 @@ def error_signos(cadena):
 
         #   Aqui se manejan las reglas para las comillas dobles " "********************************************
 
-        if cadena[i] is '"':
+    if cadena[i] is '"':
+        if len(piladc) == 0:
+            piladc.append(i)
+        elif len(piladc) > 0:
+            piladc.pop()
 
-            if auxcda == 0:  # Doble comilla abierta
-                auxcda = i
+        if len(piladc) == 1 and i > 0 and (signos4.__contains__(cadena[i - 1]) is  # Antes de abrir "
+                                      True or cadena[i - 1].isalpha() is True
+                                      or cadena[i - 1].isupper() is True or
+                                      cadena[i - 1].islower() is True):
+            print("Caracter: %d: la doble comilla no puede ir despues de %s." % (i, cadena[i + 1]))
+            aerr.append(cadena[i])
+            aerr.append(i)
+            aerr.append(6)
 
-            if auxcda != 0 and auxcda != i:  # Doble comilla cerrada
-                auxcda = 0
+        if len(piladc) == 1 and 0 < i and signos5.__contains__(cadena[i + 1]) is True:  # Despues de abrir "
+            print("Caracter: %d: la doble comilla no puede ir antes de %s." % (i, cadena[i + 1]))
+            aerr.append(cadena[i])
+            aerr.append(i)
+            aerr.append(6)
 
-            if auxcda == i and 0 < i and (signos4.__contains__(cadena[i - 1]) is  # Antes de abrir "
-                                        True or cadena[i - 1].isalpha() is True
-                                        or cadena[i - 1].isupper() is True or
-                                        cadena[i - 1].islower() is True):
-                print("Caracter: %d: la doble comilla no puede ir despues de %s." % (i, cadena[i + 1]))
-                aerr.append(cadena[i])
-                aerr.append(i)
-                aerr.append(6)
+        if len(piladc) == 0 and i < j - 1 and (signos3.__contains__(cadena[i + 1]) is  # Despues de cerrar "
+                                          True or cadena[i + 1].isalpha() is True
+                                          or cadena[i + 1].isupper() is True or
+                                          cadena[i + 1].islower() is True):
+            print("Caracter: %d: la doble comilla no puede ir antes de %s." % (i, cadena[i + 1]))
+            aerr.append(cadena[i])
+            aerr.append(i)
+            aerr.append(6)
 
-            if auxcda == i and 0 < i and signos5.__contains__(cadena[i + 1]) is True:  # Despues de abrir "
-                print("Caracter: %d: la doble comilla no puede ir antes de %s." % (i, cadena[i + 1]))
-                aerr.append(cadena[i])
-                aerr.append(i)
-                aerr.append(6)
-
-            if auxcda == 0 and i < j - 1 and (signos3.__contains__(cadena[i + 1]) is  # Despues de cerrar "
-                                            True or cadena[i + 1].isalpha() is True
-                                            or cadena[i + 1].isupper() is True or
-                                            cadena[i + 1].islower() is True):
-                print("Caracter: %d: la doble comilla no puede ir antes de %s." % (i, cadena[i + 1]))
-                aerr.append(cadena[i])
-                aerr.append(i)
-                aerr.append(6)
-
-            if auxcda == 0 and i < j - 1 and signos5.__contains__(cadena[i - 1]) is True:  # Antes de cerrar "
-                print("Caracter: %d: la doble comilla no puede ir despues de %s." % (i, cadena[i + 1]))
-                aerr.append(cadena[i])
-                aerr.append(i)
-                aerr.append(6)
-
-        if auxcda != 0 and i == j - 1:  # Se muestra la posicion en caso de que las comillas dobles no se hayan cerrado
-            print("Caracter: %d: la doble comilla no se cerró." % auxcda)
-            aerr.append(cadena[auxcda])
-            aerr.append(auxcda)
+        if len(piladc) == 0 and i < j - 1 and signos5.__contains__(cadena[i - 1]) is True:  # Antes de cerrar "
+            print("Caracter: %d: la doble comilla no puede ir despues de %s." % (i, cadena[i + 1]))
+            aerr.append(cadena[i])
+            aerr.append(i)
             aerr.append(6)
 
         #   Aqui se manejan las reglas para ( ) ¿ ? y ¡ !********************************************
