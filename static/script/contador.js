@@ -48,16 +48,21 @@ function detecta(e) {
             var id_pal = 0;
             var ctrl_err = 0;
             var contador = 0;
+            var aux_arreglo_ser = [];
             arreglo_ser = res.aerr;
-
-            for(let i=0;i<lista.length;i++){
+            console.log("Palabras");
+            for (let i = 0; i < lista.length; i++) {
                 console.log(lista[i]);
             }
-
-            for(let i=0;i<arreglo_ser.length;i++){
+            console.log("Arreglo de errores de signo");
+            for (let i = 0; i < arreglo_ser.length; i++) {
                 console.log(arreglo_ser[i]);
+                if (arreglo_ser[i] == " ") {
+                    console.log("Espacio");
+                }
             }
 
+            console.log("------");
             for (let i = 0; i < (lista.length - 1); i++) {
 
 

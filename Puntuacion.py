@@ -1,7 +1,10 @@
 # Algoritmo para identificar errores de puntuación: paréntesis, comas, guiones, puntos,
 # doble punto, punto y coma, interrogación, exclamación y comillas dobles
 def error_signos(cadena):
-    #cadena = "Intentemos probar esto (esto es una prueba) ( hj."
+    # Algoritmo para identificar errores de puntuación: paréntesis, comas, guiones, puntos,
+    # doble punto, punto y coma, interrogación, exclamación y comillas dobles
+    #cadena = "Hola coMo estas? (\"Hola helado ) \" \""
+    print(cadena)
     signos = ['(', ')', ',', '-', '.', ':', ';', '¿', '?', '¡', '!', '"']  # Arreglo de signos a validar
     signos1 = ['(', ')', '-', ':', ';', '¿', '?', '¡', '!', '"']  # Arreglo de signos a validar
     signos2 = [',', '.', ':', ';']  # Arreglo de signos sin interrogacion, exclamacion , parentesis y doble comilla
@@ -10,13 +13,12 @@ def error_signos(cadena):
     signos5 = [',', '-', ':', ';', '"']  # Signos para comparar domillas dobles
     signos6 = [',', '-', ':', ';', '.', ')', '(']  # Signos para comparar parentesis
     signos7 = ['?', '¿', '!', '¡', '(', ')', '"']  # Signos para validación de apertura
-    pilac = []
-    pilan = []
+    pilac = []  # Pila para guardar los signos que tienen que cerrarse
+    pilan = []  # Pila para guardar la posición de los signos que tienen que cerrarse
+    aerr = []  # 1 = '.', 2 = ',', 3 = '-', 4 = ':', 5 = ';', 6 = '"' y 7 = '(' ')' '¿' '?' '¡' '!', 8 = error de apertura
     piladc = []
-    aerr = []  # 1 = '.', 2 = ',', 3 = '-', 4 = ':', 5 = ';', 6 = '"' y 7 = '(' ')' '¿' '?' '¡' '!'
     i = 0  # contador 1
     j = len(cadena)  # contador de caracteres de cadena
-
 
     for i in range(j):
 
@@ -107,8 +109,7 @@ def error_signos(cadena):
                 aerr.append(cadena[i])
                 aerr.append(i)
                 aerr.append(4)
-            if i > 0 and (
-                    cadena[i - 1].isupper() is False and cadena[i - 1].islower() is False and cadena[i - 1] != '.'):
+            if i > 0 and (cadena[i - 1].isupper() is False and cadena[i - 1].islower() is False and cadena[i - 1] != '.'):
                 print("Caracter: %d: caracter no valido antes del doble punto." % i)
                 aerr.append(cadena[i])
                 aerr.append(i)
@@ -135,41 +136,47 @@ def error_signos(cadena):
 
         #   Aqui se manejan las reglas para las comillas dobles " "********************************************
 
-    if cadena[i] is '"':
-        if len(piladc) == 0:
-            piladc.append(i)
-        elif len(piladc) > 0:
-            piladc.pop()
+        if cadena[i] is '"':
+            if len(piladc) == 0:
+                piladc.append(i)
+            elif len(piladc) > 0:
+                piladc.pop()
 
-        if len(piladc) == 1 and i > 0 and (signos4.__contains__(cadena[i - 1]) is  # Antes de abrir "
-                                      True or cadena[i - 1].isalpha() is True
-                                      or cadena[i - 1].isupper() is True or
-                                      cadena[i - 1].islower() is True):
-            print("Caracter: %d: la doble comilla no puede ir despues de %s." % (i, cadena[i + 1]))
-            aerr.append(cadena[i])
-            aerr.append(i)
-            aerr.append(6)
+            if len(piladc) == 1 and i > 0 and (signos4.__contains__(cadena[i - 1]) is  # Antes de abrir "
+                                        True or cadena[i - 1].isalpha() is True
+                                        or cadena[i - 1].isupper() is True or
+                                        cadena[i - 1].islower() is True):
+                print("Caracter: %d: la doble comilla no puede ir despues de %s." % (i, cadena[i + 1]))
+                aerr.append(cadena[i])
+                aerr.append(i)
+                aerr.append(6)
 
-        if len(piladc) == 1 and 0 < i and signos5.__contains__(cadena[i + 1]) is True:  # Despues de abrir "
-            print("Caracter: %d: la doble comilla no puede ir antes de %s." % (i, cadena[i + 1]))
-            aerr.append(cadena[i])
-            aerr.append(i)
-            aerr.append(6)
+            if len(piladc) == 1 and 0 < i < j-1 and signos5.__contains__(cadena[i + 1]) is True:  # Despues de abrir "
+                print("Caracter: %d: la doble comilla no puede ir antes de %s." % (i, cadena[i + 1]))
+                aerr.append(cadena[i])
+                aerr.append(i)
+                aerr.append(6)
 
-        if len(piladc) == 0 and i < j - 1 and (signos3.__contains__(cadena[i + 1]) is  # Despues de cerrar "
-                                          True or cadena[i + 1].isalpha() is True
-                                          or cadena[i + 1].isupper() is True or
-                                          cadena[i + 1].islower() is True):
-            print("Caracter: %d: la doble comilla no puede ir antes de %s." % (i, cadena[i + 1]))
-            aerr.append(cadena[i])
-            aerr.append(i)
-            aerr.append(6)
+            if len(piladc) == 0 and i < j - 1 and (signos3.__contains__(cadena[i + 1]) is  # Despues de cerrar "
+                                            True or cadena[i + 1].isalpha() is True
+                                            or cadena[i + 1].isupper() is True or
+                                            cadena[i + 1].islower() is True):
+                print("Caracter: %d: la doble comilla no puede ir antes de %s." % (i, cadena[i + 1]))
+                aerr.append(cadena[i])
+                aerr.append(i)
+                aerr.append(6)
 
-        if len(piladc) == 0 and i < j - 1 and signos5.__contains__(cadena[i - 1]) is True:  # Antes de cerrar "
-            print("Caracter: %d: la doble comilla no puede ir despues de %s." % (i, cadena[i + 1]))
-            aerr.append(cadena[i])
-            aerr.append(i)
-            aerr.append(6)
+            if len(piladc) == 0 and i < j - 1 and signos5.__contains__(cadena[i - 1]) is True:  # Antes de cerrar "
+                print("Caracter: %d: la doble comilla no puede ir despues de %s." % (i, cadena[i + 1]))
+                aerr.append(cadena[i])
+                aerr.append(i)
+                aerr.append(6)
+
+        #if auxcda != 0 and i == j - 1:  # Se muestra la posicion en caso de que las comillas dobles no se hayan cerrado
+            #print("Caracter: %d: la doble comilla no se cerró." % auxcda)
+            #aerr.append(cadena[auxcda])
+            #aerr.append(auxcda)
+            #aerr.append(6)
 
         #   Aqui se manejan las reglas para ( ) ¿ ? y ¡ !********************************************
 
@@ -208,27 +215,101 @@ def error_signos(cadena):
                 aerr.append(7)
 
         if signos7.__contains__(cadena[i]) is True:  # Para verificar que se abra y cierre correctamente cada signo
+            a1 = 0
+            c = cadena[i]
+            while a1 < 1:
+                if len(pilac) == 0:
+                    if c == '?' or c == '!' or c == ')':
+                        print("En la posición %d el signo %s se usó sin abrir" % (i, c))
+                        aerr.append(c)
+                        aerr.append(i)
+                        aerr.append(8)
+                        a1 = 1
+                        break
+                    if c == '¿' or c == '¡' or c == '"' or c == '(':
+                        pilac.append(c)
+                        pilan.append(i)
+                        a1 = 1
+                        break
+                elif len(pilac) > 0:
+                    if (c == '?' and pilac.__contains__('¿') is False) or \
+                    (c == '!' and pilac.__contains__('¡') is False) or \
+                    (c == ')' and pilac.__contains__('(') is False) or \
+                    (c == '"' and pilac.__contains__('"') is False):
+                        print("En la posición %d el signo %s se usó sin cerrar" % (i, c))
+                        aerr.append(c)
+                        aerr.append(i)
+                        aerr.append(8)
+                        a1 = 1
+                        break
 
-            if len(pilac) >= 1:
-                if pilac[len(pilac) - 1] is '(' and cadena[i] is ')':
-                    pilac.pop()
-                    pilan.pop()
+                    elif (c == '?' and pilac[len(pilac) - 1] == '¿') or \
+                        (c == '!' and pilac[len(pilac) - 1] == '¡') or \
+                        (c == ')' and pilac[len(pilac) - 1] == '(') or \
+                        (c == '"' and pilac[len(pilac) - 1] == '"'):
+                        pilac.pop()
+                        pilan.pop()
+                        a1 = 1
+                        break
 
-                elif pilac[len(pilac) - 1] is '¡' and cadena[i] is '!':
-                    pilac.pop()
-                    pilan.pop()
+                    elif (c == '?' and pilac[len(pilac) - 1] != '¿') or \
+                        (c == '!' and pilac[len(pilac) - 1] != '¡') or \
+                        (c == ')' and pilac[len(pilac) - 1] != '(') or \
+                        (c == '"' and pilac[len(pilac) - 1] != '"'):
+                        print(pilac[len(pilac) - 1])
+                        print(pilan[len(pilan) - 1])
+                        print("En la posición %d el signo %s se usó sin abrir" % (pilan[len(pilan) - 1], pilac[len(pilac) - 1]))
+                        aerr.append(pilac[len(pilac) - 1])
+                        aerr.append(pilan[len(pilan) - 1])
+                        aerr.append(8)
+                        pilac.pop()
+                        pilan.pop()
+                        a1 = 1
+                        break
 
-                elif pilac[len(pilac) - 1] is '¿' and cadena[i] is '?':
-                    pilac.pop()
-                    pilan.pop()
+            """
+            if len(pilac) == 0:
+                if cadena[i] is '?' or cadena[i] is '!' or cadena[i] is ')':
+                    print("En la posición %d el signo %s se usó sin abrir" % (i, cadena[i]))
+                    aerr.append(cadena[i])
+                    aerr.append(i)
+                    aerr.append(8)
 
-                else:
+                elif cadena[i] is '¿' or cadena[i] is '¡' or cadena[i] is '(' or cadena[i] is '"':
                     pilac.append(cadena[i])
                     pilan.append(i)
 
-            elif len(pilac) == 0:
-                pilac.append(cadena[i])
-                pilan.append(i)
+            else:
+                if (pilac[len(pilac) - 1] is '(' and cadena[i] is ')') or \
+                        (pilac[len(pilac) - 1] is '¡' and cadena[i] is '!') or \
+                        (pilac[len(pilac) - 1] is '¿' and cadena[i] is '?') or \
+                        (pilac[len(pilac) - 1] is '"' and cadena[i] is '"'):
+                    pilac.pop()
+                    pilan.pop()
+
+                elif (cadena[i] is '?' and pilac.__contains__('¿') is False) or \
+                        (cadena[i] is '!' and pilac.__contains__('¡') is False) or \
+                        (cadena[i] is ')' and pilac.__contains__('(') is False):
+                    aerr.append(cadena[i])
+                    aerr.append(i)
+                    aerr.append(8)
+
+                elif (pilac[len(pilac) - 1] != '(' and cadena[i] is ')') or \
+                        (pilac[len(pilac) - 1] != '¡' and cadena[i] is '!') or \
+                        (pilac[len(pilac) - 1] != '¿' and cadena[i] is '?') or \
+                        (pilac[len(pilac) - 1] != '"' and cadena[i] is '"'):
+                    aerr.append(pilac[len(pilac) - 1])
+                    aerr.append(pilan[len(pilan) - 1])
+                    aerr.append(8)
+                    print("En la posición %d el signo %s se usó sin abrir" % (pilan[len(pilan) - 1], pilac[len(pilac) - 1]))
+                    pilac.pop()
+                    pilan.pop()
+                """
+    if cadena[len(cadena) - 1] != '.':  # Si el texto no termina en punto manda error
+        print("Al final el texto debe llevar un punto.")
+        aerr.append(cadena[i])
+        aerr.append(i)
+        aerr.append(1)
 
     i = 0
     if len(pilac) > 0:
@@ -243,6 +324,7 @@ def error_signos(cadena):
                 aerr.append(pilac[i])
                 aerr.append(pilan[i])
                 aerr.append(8)
-
     print(aerr)
+    print("fin")
+
     return aerr
