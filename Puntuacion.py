@@ -3,6 +3,7 @@
 def error_signos(cadena):
     # Algoritmo para identificar errores de puntuación: paréntesis, comas, guiones, puntos,
     # doble punto, punto y coma, interrogación, exclamación y comillas dobles
+
     #cadena = "Hola coMo estas? (\"Hola helado ) \" \""
     print(cadena)
     signos = ['(', ')', ',', '-', '.', ':', ';', '¿', '?', '¡', '!', '"']  # Arreglo de signos a validar
@@ -19,6 +20,8 @@ def error_signos(cadena):
     piladc = []
     i = 0  # contador 1
     j = len(cadena)  # contador de caracteres de cadena
+
+    #auxcda: int = 0  # Auxiliar para comillas dobles
 
     for i in range(j):
 
@@ -217,99 +220,67 @@ def error_signos(cadena):
         if signos7.__contains__(cadena[i]) is True:  # Para verificar que se abra y cierre correctamente cada signo
             a1 = 0
             c = cadena[i]
-            while a1 < 1:
-                if len(pilac) == 0:
-                    if c == '?' or c == '!' or c == ')':
-                        print("En la posición %d el signo %s se usó sin abrir" % (i, c))
-                        aerr.append(c)
-                        aerr.append(i)
-                        aerr.append(8)
-                        a1 = 1
-                        break
-                    if c == '¿' or c == '¡' or c == '"' or c == '(':
-                        pilac.append(c)
-                        pilan.append(i)
-                        a1 = 1
-                        break
-                elif len(pilac) > 0:
-                    if (c == '?' and pilac.__contains__('¿') is False) or \
-                    (c == '!' and pilac.__contains__('¡') is False) or \
-                    (c == ')' and pilac.__contains__('(') is False) or \
-                    (c == '"' and pilac.__contains__('"') is False):
-                        print("En la posición %d el signo %s se usó sin cerrar" % (i, c))
-                        aerr.append(c)
-                        aerr.append(i)
-                        aerr.append(8)
-                        a1 = 1
-                        break
 
-                    elif (c == '?' and pilac[len(pilac) - 1] == '¿') or \
+            while len(pilac) > 0 and a1 == 0:
+                if (c == '?' and pilac.__contains__('¿') is False) or \
+                        (c == '!' and pilac.__contains__('¡') is False) or \
+                        (c == ')' and pilac.__contains__('(') is False):
+                    print("En la posición %d el signo %s se usó sin cerrar" % (i, c))
+                    aerr.append(i)
+                    aerr.append(8)
+                    a1 = 1
+                    break
+
+                elif c == '"' and pilac.__contains__('"') is False:
+                    pilac.append(c)
+                    pilan.append(i)
+                    a1 = 1
+
+                elif c == '¿' or c == '¡' or c == '(':
+                    pilac.append(c)
+                    pilan.append(i)
+                    a1 = 1
+
+                elif (c == '?' and pilac[len(pilac) - 1] == '¿') or \
                         (c == '!' and pilac[len(pilac) - 1] == '¡') or \
                         (c == ')' and pilac[len(pilac) - 1] == '(') or \
                         (c == '"' and pilac[len(pilac) - 1] == '"'):
-                        pilac.pop()
-                        pilan.pop()
-                        a1 = 1
-                        break
+                    pilac.pop()
+                    pilan.pop()
+                    # a1 = 1
+                    a1 = 1
 
-                    elif (c == '?' and pilac[len(pilac) - 1] != '¿') or \
+                elif (c == '?' and pilac[len(pilac) - 1] != '¿') or \
                         (c == '!' and pilac[len(pilac) - 1] != '¡') or \
                         (c == ')' and pilac[len(pilac) - 1] != '(') or \
                         (c == '"' and pilac[len(pilac) - 1] != '"'):
-                        print(pilac[len(pilac) - 1])
-                        print(pilan[len(pilan) - 1])
-                        print("En la posición %d el signo %s se usó sin abrir" % (pilan[len(pilan) - 1], pilac[len(pilac) - 1]))
-                        aerr.append(pilac[len(pilac) - 1])
-                        aerr.append(pilan[len(pilan) - 1])
-                        aerr.append(8)
-                        pilac.pop()
-                        pilan.pop()
-                        a1 = 1
-                        break
-
-            """
-            if len(pilac) == 0:
-                if cadena[i] is '?' or cadena[i] is '!' or cadena[i] is ')':
-                    print("En la posición %d el signo %s se usó sin abrir" % (i, cadena[i]))
-                    aerr.append(cadena[i])
-                    aerr.append(i)
-                    aerr.append(8)
-
-                elif cadena[i] is '¿' or cadena[i] is '¡' or cadena[i] is '(' or cadena[i] is '"':
-                    pilac.append(cadena[i])
-                    pilan.append(i)
-
-            else:
-                if (pilac[len(pilac) - 1] is '(' and cadena[i] is ')') or \
-                        (pilac[len(pilac) - 1] is '¡' and cadena[i] is '!') or \
-                        (pilac[len(pilac) - 1] is '¿' and cadena[i] is '?') or \
-                        (pilac[len(pilac) - 1] is '"' and cadena[i] is '"'):
-                    pilac.pop()
-                    pilan.pop()
-
-                elif (cadena[i] is '?' and pilac.__contains__('¿') is False) or \
-                        (cadena[i] is '!' and pilac.__contains__('¡') is False) or \
-                        (cadena[i] is ')' and pilac.__contains__('(') is False):
-                    aerr.append(cadena[i])
-                    aerr.append(i)
-                    aerr.append(8)
-
-                elif (pilac[len(pilac) - 1] != '(' and cadena[i] is ')') or \
-                        (pilac[len(pilac) - 1] != '¡' and cadena[i] is '!') or \
-                        (pilac[len(pilac) - 1] != '¿' and cadena[i] is '?') or \
-                        (pilac[len(pilac) - 1] != '"' and cadena[i] is '"'):
+                    print("En la posición %d el signo %s está mal implementado" % (
+                        pilan[len(pilan) - 1], pilac[len(pilac) - 1]))
                     aerr.append(pilac[len(pilac) - 1])
                     aerr.append(pilan[len(pilan) - 1])
                     aerr.append(8)
-                    print("En la posición %d el signo %s se usó sin abrir" % (pilan[len(pilan) - 1], pilac[len(pilac) - 1]))
                     pilac.pop()
                     pilan.pop()
-                """
-    if cadena[len(cadena) - 1] != '.':  # Si el texto no termina en punto manda error
+
+                if len(pilac) == 0:
+                    a1 = 1
+
+            if len(pilac) == 0 and a1 == 0:
+                if c == '?' or c == '!' or c == ')':
+                    print("En la posición %d el signo %s se usó sin abrir" % (i, c))
+                    aerr.append(c)
+                    aerr.append(i)
+                    aerr.append(8)
+
+                elif c == '¿' or c == '¡' or c == '"' or c == '(':
+                    pilac.append(c)
+                    pilan.append(i)
+
+    """if cadena[len(cadena) - 1] != '.':  # Si el texto no termina en punto manda error
         print("Al final el texto debe llevar un punto.")
         aerr.append(cadena[i])
         aerr.append(i)
-        aerr.append(1)
+        aerr.append(1)"""
 
     i = 0
     if len(pilac) > 0:
@@ -320,11 +291,10 @@ def error_signos(cadena):
                 aerr.append(pilan[i])
                 aerr.append(8)
             if pilac[i] == '?' or pilac[i] == '!' or pilac[i] == ')':
+
                 print("En la posición %d el signo %s se usó sin abrir" % (pilan[i], pilac[i]))
                 aerr.append(pilac[i])
                 aerr.append(pilan[i])
                 aerr.append(8)
     print(aerr)
-    print("fin")
-
     return aerr

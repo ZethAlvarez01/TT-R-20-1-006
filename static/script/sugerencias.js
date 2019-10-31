@@ -128,7 +128,7 @@ function sugerencias(elemento) {
                 document.getElementById("mala-buena1").setAttribute("onclick",
                     "cambiar(this,'" + cte + "')");
                 $("#mala-buena2").css("visibility", "hidden");
-                document.getElementById("mala-buena2").innerText = "&nbsp";
+                document.getElementById("mala-buena2").innerText = "  ";
                 document.getElementById("mala-buena2").setAttribute("onclick",
                     "");
 
@@ -143,7 +143,7 @@ function sugerencias(elemento) {
                     "cambiar(this,'" + cte + "')");
 
                 $("#mala-buena2").css("visibility", "hidden");
-                document.getElementById("mala-buena2").innerText = "&nbsp";
+                document.getElementById("mala-buena2").innerText = "  ";
                 document.getElementById("mala-buena2").setAttribute("onclick", "");
             }
 
@@ -162,7 +162,7 @@ function sugerencias(elemento) {
             document.getElementById("mala-buena1").setAttribute("onclick", "");
 
             $("#mala-buena2").css("visibility", "hidden");
-            document.getElementById("mala-buena2").innerText = "&nbsp";
+            document.getElementById("mala-buena2").innerText = "  ";
             document.getElementById("mala-buena2").setAttribute("onclick", "");
 
             document.getElementById("sugerencia").innerText = "El error esta en: ";
