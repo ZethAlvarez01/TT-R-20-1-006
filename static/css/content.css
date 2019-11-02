@@ -162,7 +162,7 @@ select {
     transition: 0.8s;
 }
 
-span:hover {
+.palabra-mala:hover {
     color: rgb(155, 0, 0);
     background: rgba(254, 0, 0, 0.233);
     transition: 0.8s;

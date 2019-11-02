@@ -1,4 +1,3 @@
-# Algoritmo para identificar errores de mayúsculas y minúsculas en las palabras.
 def validacion(cadena):
     tipo_error = 0 #Variableque guarda el numero de identificacion de error:
                    # 0 = Correcto
@@ -7,8 +6,9 @@ def validacion(cadena):
                    # 3 = Numeros
                    # 4 = Mayuscula sola dentro de la frase
     # Algoritmo para identificar errores de mayúsculas y minúsculas en las palabras.
+
     # Aqui metes la cadena, frase, texto que vayas a validar.
-    #cadena = "intentemos probar Adios esto (esto es una pruEBa) AdioS ( hj. esto sigue siendo uNa bonita prueba DE si JaLa o  del ALv"
+    #cadena = "Hola hola MuY mUy muY MUy mUY"
     #signos = ['(', ')', ',', '-', ':', ';', '¿', '?', '¡', '!', '"', ' ']
     num = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
     # Esto es solo para que veas en la terminal tu texto
@@ -101,13 +101,18 @@ def validacion(cadena):
             # si la palabra empieza con mayuscula y tiene mezcla de minúsculas o números
             if palabras[i].__getitem__(0).isupper() is True and n > 0:
                 if h > 0 and palabras[i].__getitem__(h).isupper() is True and r == 0:
-                    r += 1
-                if palabras[i].__getitem__(h).islower() is True and r > 0:
+                    r = 1
+                if h > 0 and palabras[i].__getitem__(h).islower() is True and r > 0:
                     flg2 = False
                     tipo_error = 1
                     break
-                if palabras[i].__getitem__(h).isupper() is False and palabras[i].__getitem__(h).islower() is False and \
-                        palabras[i].__getitem__(h) != '.':
+                if h > 0 and palabras[i].__getitem__(h).isupper() is True and \
+                        palabras[i].__getitem__(h-1).islower() is True:
+                    flg2 = False
+                    tipo_error = 1
+                    break
+                if h > 0 and palabras[i].__getitem__(h).isupper() is False and palabras[i].__getitem__(h).islower() is \
+                        False and palabras[i].__getitem__(h) != '.':
                     flg2 = False
                     tipo_error = 1
                     break
@@ -116,12 +121,12 @@ def validacion(cadena):
             if palabras[i].__getitem__(0).islower() is True and n > 0:
                 if h > 0 and palabras[i].__getitem__(h).islower() is True and s == 0:
                     s += 1
-                if palabras[i].__getitem__(h).isupper() is True and s > 0:
+                if h > 0 and palabras[i].__getitem__(h).isupper() is True:
                     flg2 = False
                     tipo_error = 1
                     break
-                if palabras[i].__getitem__(h).isupper() is False and palabras[i].__getitem__(h).islower() is False and \
-                        palabras[i].__getitem__(h) != '.':
+                if h > 0 and palabras[i].__getitem__(h).isupper() is False and palabras[i].__getitem__(h).islower() is \
+                        False and palabras[i].__getitem__(h) != '.':
                     flg2 = False
                     tipo_error = 1
                     break
@@ -140,5 +145,5 @@ def validacion(cadena):
         lista.append(flg2)
         lista.append(tipo_error)
         tipo_error = 0
-        
+
     return lista
