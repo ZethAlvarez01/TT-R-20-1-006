@@ -1,9 +1,16 @@
-function sugerencias(elemento) {
+function sugerencias(elemento, cadena) {
     var cte = elemento.getAttribute('id');
-    console.log("Sugerencias: "+cte);
-    var lista = cte.split("-");
+    console.log("Sugerencias: " + cte);
+    var lista = cadena.split("-");
     let oog = 0;
     var tarjeta = document.getElementById("tarjeta-ortg");
+
+
+    for (let i = 0; i < lista.length; i++) {
+        if (lista[i] == "♥") {
+            lista[i] = '"';
+        }
+    }
 
     if (oog == 0) {
 
@@ -129,8 +136,7 @@ function sugerencias(elemento) {
                     "cambiar(this,'" + cte + "')");
                 $("#mala-buena2").css("visibility", "hidden");
                 document.getElementById("mala-buena2").innerText = "  ";
-                document.getElementById("mala-buena2").setAttribute("onclick",
-                    "");
+                document.getElementById("mala-buena2").setAttribute("onclick", "");
 
 
             } else if (lista[2] == '3') {
@@ -151,12 +157,7 @@ function sugerencias(elemento) {
 
             document.getElementById("tipo-error").innerText = "Alerta de ortografía";
 
-            let caracter;
-            if (lista[0] == '3') {
-                caracter = '"';
-            } else {
-                caracter = lista[0];
-            }
+            caracter = lista[0];
 
             document.getElementById("mala-buena1").innerText = "Error de signo " + caracter;
             document.getElementById("mala-buena1").setAttribute("onclick", "");
@@ -188,7 +189,7 @@ function sugerencias(elemento) {
                 if (lista[0] == '(' || lista[0] == ')') {
                     document.getElementById("error").innerText = "El uso de los \"( )\"";
                 }
-                if (lista[0] == '3' || lista[0] == '3') {
+                if (lista[0] == '"' || lista[0] == '"') {
                     document.getElementById("error").innerText = "El uso de las comillas \" \"";
                 }
             } else if (lista[2] == '8') {
@@ -213,8 +214,8 @@ function sugerencias(elemento) {
                         document.getElementById("error").innerText = "No se abrió el signo \"" + lista[0] + "\"";
                     }
                 }
-                if (lista[0] == '3' || lista[0] == '3') {
-                    if (lista[0] == '3') {
+                if (lista[0] == '"' || lista[0] == '"') {
+                    if (lista[0] == '"') {
                         document.getElementById("error").innerText = "No se cerró el signo \"";
                     } else {
                         document.getElementById("error").innerText = "No se abrió el signo \"";

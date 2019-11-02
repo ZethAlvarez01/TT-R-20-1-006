@@ -1,4 +1,3 @@
-
 function limitar(e, contenido, caracteres) {
     var unicode = e.keyCode ? e.keyCode : e.charCode;
 
@@ -35,10 +34,9 @@ function detecta(e) {
             var cadena = "";
             var n_errores = 0;
             var id_pal = 0;
-            var ctrl_err = 0;
             var contador = 0;
-            var aux_arreglo_ser = [];
             arreglo_ser = res.aerr;
+
             console.log("Palabras");
             for (let i = 0; i < lista.length; i++) {
                 console.log(lista[i]);
@@ -60,6 +58,12 @@ function detecta(e) {
                     let mal_bien;
                     let sugerencias;
                     let caracter, correcto, tipo_err;
+                    let palabra_id;
+
+                    caracter = lista[i - 1];
+                    correcto = lista[i];
+                    tipo_err = lista[i + 1];
+                    palabra_id = caracter + "-" + correcto + "-" + tipo_err + "-" + n_errores + "-" + id_pal;
 
                     if (lista[i] == true) {
                         color = "color: black;";
@@ -67,32 +71,43 @@ function detecta(e) {
                         caracter = lista[i - 1];
                         correcto = lista[i];
                         tipo_err = lista[i + 1];
-                        sugerencias = "buscar(this);";
+                        palabra_id = caracter + "-" + correcto + "-" + tipo_err + "-" + n_errores + "-" + id_pal;
+                        sugerencias = "buscar('" + palabra_id + "');";
                     } else if (lista[i] == false) {
                         color = "color: rgb(254, 0, 0);";
                         mal_bien = "palabra-mala";
                         n_errores++;
-                        sugerencias = "sugerencias(this);";
                         caracter = lista[i - 1];
                         correcto = lista[i];
                         tipo_err = lista[i + 1];
+                        palabra_id = caracter + "-" + correcto + "-" + tipo_err + "-" + n_errores + "-" + id_pal;
+                        sugerencias = "sugerencias(this,'" + palabra_id + "');";
+
                     }
 
                     for (let j = 0; j < arreglo_ser.length; j++) {
-                        if (contador == arreglo_ser[j]) {
-                            color = "color:#439bff;";
-                            mal_bien = "spanlabel";
-                            n_errores++;
-                            sugerencias = "sugerencias(this);";
-                            caracter = arreglo_ser[0];
-                            correcto = arreglo_ser[1];
-                            tipo_err = arreglo_ser[2];
+                        if ((j % 3) == 1) {
+                            if (contador == arreglo_ser[j]) {
+                                color = "color:#439bff;";
+                                mal_bien = "spanlabel";
+                                n_errores++;
+                                if (arreglo_ser[j - 1] == '"') {
+                                    caracter = "♥"
+                                } else {
+                                    caracter = arreglo_ser[j - 1];
+                                }
+                                correcto = arreglo_ser[j];
+                                tipo_err = arreglo_ser[j + 1];
+                                palabra_id = caracter + "-" + correcto + "-" + tipo_err + "-" + n_errores + "-" + id_pal;
+                                sugerencias = "sugerencias(this,'" + palabra_id + "');";
+                            }
                         }
+
                     }
 
                     cadena = cadena +
                         "<span class=\"" + mal_bien + "\" onclick=\"" + sugerencias + "\" " +
-                        "id=\"" + caracter + "-" + correcto + "-" + tipo_err + "-" + n_errores + "-" + id_pal + "\" " +
+                        "id=\"" + palabra_id + "\" " +
                         "style=\"" + color + " " +
                         "border-radius: 5px; " +
                         "font-family: 'Times New Roman', Times, serif; " +
