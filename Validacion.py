@@ -47,7 +47,7 @@ def validacion(cadena):
         if cad != 0:
             palabras.append(cad)  # Agrega la ultima palabra al arreglo si no es un espacio o cadena vacía
 
-    print(palabras)  # se imprimen las palabras
+    print(palabras)  # se imprimen las palabras 
 
     npal = palabras.__len__()  # Número de palabras encontradas
 
