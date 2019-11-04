@@ -71,7 +71,7 @@ function sugerencias(elemento, cadena) {
         });
 
         $("#tarjeta-ortg").hover(function() {
-            $(this).css("background-color", "rgb(240, 242, 252)");
+            $(this).css("background-color", "rgb(251, 247, 255)");
             $(this).css("transition", "0.8s");
             $(this).css("cursor", "pointer");
 

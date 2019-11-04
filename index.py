@@ -1,7 +1,8 @@
 from flask import Flask, render_template,request,make_response,json
 from flask import send_file, send_from_directory
-from Principal import validacion
-from Puntuacion import error_signos
+from Validacion import validacion
+from Error_signos import error_signos
+from Validar_palabra import validar_palabra_d
 from buscar_significado import buscar_significado
 from descargar import descargar
 from datetime import date
@@ -36,15 +37,16 @@ def buscar_palabra(texto):
 
 # Valida palabra con el diccionario, regresa si esta correcta o no
 @app.route('/validar_palabra/<string:texto>/')
-def buscar_palabra(texto):
+def validar_palabra(texto):
     return json.jsonify({
-        'palabra': buscar_significado(texto)
+        'validar': validar_palabra_d(texto)
     })
 
+# Descarga el texto en archivos pdf y txt
 @app.route('/return_file/<texto>/<opcion>')
 def return_file(texto,opcion):
     return descargar(texto,opcion)
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=9864)
+    app.run(debug=True, port=9868)

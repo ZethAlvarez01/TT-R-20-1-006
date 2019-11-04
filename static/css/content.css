@@ -157,7 +157,7 @@ select {
 }
 
 #boton-descargar:hover {
-    background: rgb(240, 242, 252);
+    background: rgb(247, 240, 255);
     border-radius: 5px;
     transition: 0.8s;
 }

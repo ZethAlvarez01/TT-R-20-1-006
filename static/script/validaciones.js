@@ -120,6 +120,13 @@ function detecta(e) {
                 }
             }
 
+            $.ajax({
+                url: "/validar_palabra/" + text + "/"
+            }).done(function(res) {
+                var cadena = res.validar;
+                console.log(cadena)
+            });
+
             document.getElementById("text-area-div").innerText = " ";
             document.execCommand("insertHTML", false, cadena);
             document.getElementById("text-area-div").setAttribute("text-align", "none");
