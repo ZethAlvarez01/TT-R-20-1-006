@@ -59438,7 +59438,6 @@ srta
 ss
 stand
 stands
->>>>>>> Stashed changes
 sto
 su
 suadir
@@ -64424,7 +64423,6 @@ upa
 Upahuacho
 upar
 Upata
-<<<<<<< Updated upstream
 Upía
 Urabá
 Urabará
