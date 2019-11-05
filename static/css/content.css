@@ -157,7 +157,7 @@ select {
 }
 
 #boton-descargar:hover {
-    background: rgb(247, 240, 255);
+    background: rgba(214,214,214,0.8);
     border-radius: 5px;
     transition: 0.8s;
 }
@@ -165,6 +165,13 @@ select {
 .palabra-mala:hover {
     color: rgb(155, 0, 0);
     background: rgba(254, 0, 0, 0.233);
+    transition: 0.8s;
+    padding: 2px 5px;
+}
+
+.palabra-no-encontrada:hover {
+    color: rgb(0, 155, 0);
+    background: rgba(0, 254, 0, 0.233);
     transition: 0.8s;
     padding: 2px 5px;
 }

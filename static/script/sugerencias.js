@@ -1,8 +1,7 @@
-function sugerencias(elemento, cadena) {
+function sugerencias(elemento, cadena,oog) {
     var cte = elemento.getAttribute('id');
     console.log("Sugerencias: " + cte);
     var lista = cadena.split("-");
-    let oog = 0;
     var tarjeta = document.getElementById("tarjeta-ortg");
 
 
@@ -71,7 +70,7 @@ function sugerencias(elemento, cadena) {
         });
 
         $("#tarjeta-ortg").hover(function() {
-            $(this).css("background-color", "rgb(251, 247, 255)");
+            $(this).css("background-color", "rgba(214,214,214,0.8)");
             $(this).css("transition", "0.8s");
             $(this).css("cursor", "pointer");
 

@@ -14,8 +14,9 @@ function detecta(e) {
     if ((e.keyCode == 32) || (e.keyCode == 46)) {
         let text = $(".hijo").text();
         text = encodeURIComponent(text);
-        var arreglo_ser;
-        var lista;
+        var arreglo_err_sig;
+        var arreglo_pal_val_mym;
+        var arreglo_dicc;
 
         /*Corrección de mayusculas, minusculas y números*/
 
@@ -23,7 +24,7 @@ function detecta(e) {
             url: "/validacion_minusculas_mayusculas/" + text + "/"
         }).done(function(res) {
             var arreglo_pal = res.lista;
-            lista = arreglo_pal;
+            arreglo_pal_val_mym = arreglo_pal;
         });
 
         /*Corrección de signos de puntuación*/
@@ -31,78 +32,101 @@ function detecta(e) {
         $.ajax({
             url: "/validacion_signos/" + text + "/"
         }).done(function(res) {
+            var arreglo_pal = res.aerr;
+            arreglo_err_sig = arreglo_pal;
+        });
+
+        /*Validacion en el diccionario las palabras*/
+
+        $.ajax({
+            url: "/validar_palabra/" + text + "/"
+        }).done(function(res) {
             var cadena = "";
             var n_errores = 0;
             var id_pal = 0;
             var contador = 0;
-            arreglo_ser = res.aerr;
 
+            arreglo_dicc = res.validar;
             console.log("Palabras");
-            for (let i = 0; i < lista.length; i++) {
-                console.log(lista[i]);
+            for (let i = 0; i < arreglo_pal_val_mym.length; i++) {
+                console.log(arreglo_pal_val_mym[i]);
             }
             console.log("Arreglo de errores de signo");
-            for (let i = 0; i < arreglo_ser.length; i++) {
-                console.log(arreglo_ser[i]);
-                if (arreglo_ser[i] == " ") {
+            for (let i = 0; i < arreglo_err_sig.length; i++) {
+                console.log(arreglo_err_sig[i]);
+                if (arreglo_err_sig[i] == " ") {
                     console.log("Espacio");
                 }
             }
-
+            console.log("Valida palabras en el diccionario");
+            for(let i=0;i<arreglo_dicc.length;i++){
+                console.log(arreglo_dicc[i]);
+            }
             console.log("------");
-            for (let i = 0; i < (lista.length - 1); i++) {
 
-
-                if ((i % 3) == 1) {
+            for(let i = 0; i < arreglo_pal_val_mym.length; i++){
+                
+                if((i % 3) == 1){
                     let color;
                     let mal_bien;
                     let sugerencias;
                     let caracter, correcto, tipo_err;
                     let palabra_id;
 
-                    caracter = lista[i - 1];
-                    correcto = lista[i];
-                    tipo_err = lista[i + 1];
+                    caracter = arreglo_pal_val_mym[i - 1];
+                    correcto = arreglo_pal_val_mym[i];
+                    tipo_err = arreglo_pal_val_mym[i + 1];
                     palabra_id = caracter + "-" + correcto + "-" + tipo_err + "-" + n_errores + "-" + id_pal;
 
-                    if (lista[i] == true) {
+                    if (arreglo_pal_val_mym[i] == true) {
                         color = "color: black;";
                         mal_bien = "palabra-buena";
-                        caracter = lista[i - 1];
-                        correcto = lista[i];
-                        tipo_err = lista[i + 1];
+                        caracter = arreglo_pal_val_mym[i - 1];
+                        correcto = arreglo_pal_val_mym[i];
+                        tipo_err = arreglo_pal_val_mym[i + 1];
                         palabra_id = caracter + "-" + correcto + "-" + tipo_err + "-" + n_errores + "-" + id_pal;
                         sugerencias = "buscar('" + palabra_id + "');";
-                    } else if (lista[i] == false) {
+                    } 
+
+                    if (arreglo_dicc[i] == 0){
+                        color = "color: rgb(0, 155, 0);";
+                        mal_bien = "palabra-no-encontrada";
+                        n_errores++;
+                        caracter = arreglo_pal_val_mym[i - 1];
+                        correcto = arreglo_pal_val_mym[i];
+                        tipo_err = arreglo_pal_val_mym[i + 1];
+                        palabra_id = caracter + "-" + correcto + "-" + tipo_err + "-" + n_errores + "-" + id_pal;
+                        sugerencias = "sugerencias(this,'" + palabra_id + "',1);";
+                    }
+                    
+                    if (arreglo_pal_val_mym[i] == false) {
                         color = "color: rgb(254, 0, 0);";
                         mal_bien = "palabra-mala";
                         n_errores++;
-                        caracter = lista[i - 1];
-                        correcto = lista[i];
-                        tipo_err = lista[i + 1];
+                        caracter = arreglo_pal_val_mym[i - 1];
+                        correcto = arreglo_pal_val_mym[i];
+                        tipo_err = arreglo_pal_val_mym[i + 1];
                         palabra_id = caracter + "-" + correcto + "-" + tipo_err + "-" + n_errores + "-" + id_pal;
-                        sugerencias = "sugerencias(this,'" + palabra_id + "');";
-
+                        sugerencias = "sugerencias(this,'" + palabra_id + "',0);";
                     }
-
-                    for (let j = 0; j < arreglo_ser.length; j++) {
+                    
+                    for (let j = 0; j < arreglo_err_sig.length; j++) {
                         if ((j % 3) == 1) {
-                            if (contador == arreglo_ser[j]) {
+                            if (contador == arreglo_err_sig[j]) {
                                 color = "color:#439bff;";
                                 mal_bien = "spanlabel";
                                 n_errores++;
-                                if (arreglo_ser[j - 1] == '"') {
+                                if (arreglo_err_sig[j - 1] == '"') {
                                     caracter = "♥"
                                 } else {
-                                    caracter = arreglo_ser[j - 1];
+                                    caracter = arreglo_err_sig[j - 1];
                                 }
-                                correcto = arreglo_ser[j];
-                                tipo_err = arreglo_ser[j + 1];
+                                correcto = arreglo_err_sig[j];
+                                tipo_err = arreglo_err_sig[j + 1];
                                 palabra_id = caracter + "-" + correcto + "-" + tipo_err + "-" + n_errores + "-" + id_pal;
-                                sugerencias = "sugerencias(this,'" + palabra_id + "');";
+                                sugerencias = "sugerencias(this,'" + palabra_id + "',0);";
                             }
                         }
-
                     }
 
                     cadena = cadena +
@@ -112,20 +136,13 @@ function detecta(e) {
                         "border-radius: 5px; " +
                         "font-family: 'Times New Roman', Times, serif; " +
                         "font-size: 18px; " +
-                        "cursor: pointer;\">" + lista[i - 1] + "</span>";
+                        "cursor: pointer;\">" + arreglo_pal_val_mym[i - 1] + "</span>";
 
 
                     id_pal++;
-                    contador = contador + lista[i - 1].length;
+                    contador = contador + arreglo_pal_val_mym[i - 1].length;
                 }
             }
-
-            $.ajax({
-                url: "/validar_palabra/" + text + "/"
-            }).done(function(res) {
-                var cadena = res.validar;
-                console.log(cadena)
-            });
 
             document.getElementById("text-area-div").innerText = " ";
             document.execCommand("insertHTML", false, cadena);
