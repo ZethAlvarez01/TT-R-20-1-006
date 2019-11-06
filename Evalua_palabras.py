@@ -15,6 +15,7 @@ def buscar(palabra):
 
 def evalua_palabra(cadena):
 	cadena = cadena.replace(u'\xa0', u' ')
+	print("Cad: recibida: "+cadena)
 	j = len(cadena)
 	cad = ""
 	palabras = []
@@ -38,6 +39,8 @@ def evalua_palabra(cadena):
 				palabras.append(cad)
 				cad = ""
 				palabras.append(cadena[i])
+
+	print(palabras)
 
 	if cad != " " and len(cad) != 0:
 		if cad != 0:
