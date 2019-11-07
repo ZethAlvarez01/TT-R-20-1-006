@@ -1,5 +1,2 @@
-ib
 id
-in
 ir
-is

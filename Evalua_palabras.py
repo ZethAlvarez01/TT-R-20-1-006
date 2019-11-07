@@ -3,7 +3,7 @@ def buscar(palabra):
 	long = len(palabra)
 	ini = palabra[0]
 		
-	archivo = open("Diccionario_de_palabras/PorInicialyTamano/"+ini+str(long)+".txt","r+")
+	archivo = open("Diccionario_de_palabras/PorInicialyTamano/"+ini+str(long)+".txt","r+",encoding="utf8")
 	for linea in archivo.readlines():
 		aux2 = linea.split()
 		linea = aux2[0]

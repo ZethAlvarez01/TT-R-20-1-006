@@ -1,4 +1,4 @@
-function sugerencias(elemento, cadena,oog) {
+function sugerencias(elemento, cadena, oog) {
     var cte = elemento.getAttribute('id');
     console.log("Sugerencias: " + cte);
     var lista = cadena.split("-");
@@ -25,11 +25,11 @@ function sugerencias(elemento, cadena,oog) {
             $("#linea").css("border", "2px solid rgba(250, 15, 78, 0.3)");
             $("#linea").css("border-radius", "5px");
             $("#linea").css("transition", "0.8s");
-        } else if(lista[2] == 0){
+        } else if (lista[2] == 0) {
             $("#linea").css("border", "2px solid rgba(254, 128, 0, 0.3)");
             $("#linea").css("border-radius", "5px");
             $("#linea").css("transition", "0.8s");
-        }else {
+        } else {
             $("#linea").css("border", "2px solid rgba(52, 152, 219, 0.3)");
             $("#linea").css("border-radius", "5px");
             $("#linea").css("transition", "0.8s");
@@ -51,34 +51,38 @@ function sugerencias(elemento, cadena,oog) {
         $("#mala-buena1").hover(function() {
             if (lista[1] == "false") {
                 $("#mala-buena1").css("background", "rgba(250, 15, 78, 0.3)");
+            } else if (lista[2] == 0) {
+                $("#mala-buena1").css("background", "rgba(254, 128, 0, 0.3)");
             } else {
-                $("#mala-buena1").css("background", "rgba(52, 152, 219, 0.3)");
+                $("#mala-buena1").css("background", "#b3e5fc");
             }
             $("#mala-buena1").css("transition", "0.5s");
             $("#mala-buena1").css("padding", "2px 5px");
             $("#mala-buena1").css("border-radius", "5px");
         }, function() {
-            $("#mala-buena1").css("background", "white");
+            $("#mala-buena1").css("background", "#f1f4ff");
         });
 
 
         $("#mala-buena2").hover(function() {
             if (lista[1] == "false") {
                 $("#mala-buena2").css("background", "rgba(250, 15, 78, 0.3)");
+            } else if (lista[2] == 0) {
+                $("#mala-buena2").css("background", "rgba(254, 128, 0, 0.3)");
             } else {
-                $("#mala-buena2").css("background", "rgba(52, 152, 219, 0.3)");
+                $("#mala-buena2").css("background", "#b3e5fc");
             }
             $("#mala-buena2").css("transition", "0.5s");
             $("#mala-buena2").css("padding", "2px 5px");
             $("#mala-buena2").css("border-radius", "5px");
         }, function() {
-            $("#mala-buena2").css("background", "white");
+            $("#mala-buena2").css("background", "#f1f4ff");
 
         });
 
         $("#tarjeta-ortg").hover(function() {
 
-            $(this).css("background-color", "rgba(214,214,214,0.8)");
+            $(this).css("background-color", "#f1f4ff");
             $(this).css("transition", "0.8s");
             $(this).css("cursor", "pointer");
 
@@ -86,15 +90,18 @@ function sugerencias(elemento, cadena,oog) {
                 $("#linea").css("border", "2px solid #fa0f4e");
                 $("#linea").css("border-radius", "5px");
                 $("#linea").css("transition", "0.8s");
-            } else if(lista[2] == 0){
-                $("#linea").css("border", "2px solid rgb(254, 128, 0, 0.3");
+            } else if (lista[2] == 0) {
+                $("#linea").css("border", "2px solid #ff8000");
                 $("#linea").css("border-radius", "5px");
                 $("#linea").css("transition", "0.8s");
-            }else {
+            } else {
                 $("#linea").css("border", "2px solid #3498DB");
                 $("#linea").css("border-radius", "5px");
                 $("#linea").css("transition", "0.8s");
             }
+
+            $("#mala-buena1").css("background", "#f1f4ff");
+            $("#mala-buena2").css("background", "#f1f4ff");
 
 
         }, function() {
@@ -106,22 +113,19 @@ function sugerencias(elemento, cadena,oog) {
                 $("#linea").css("border", "2px solid rgba(250, 15, 78, 0.3)");
                 $("#linea").css("border-radius", "5px");
                 $("#linea").css("transition", "0.8s");
-            } else if(lista[2] == 0){
+            } else if (lista[2] == 0) {
                 $("#linea").css("border", "2px solid rgba(254, 128, 0, 0.3)");
                 $("#linea").css("border-radius", "5px");
                 $("#linea").css("transition", "0.8s");
-            }else {
+            } else {
                 $("#linea").css("border", "2px solid rgba(52, 152, 219, 0.3)");
                 $("#linea").css("border-radius", "5px");
                 $("#linea").css("transition", "0.8s");
             }
+
+            $("#mala-buena1").css("background", "white");
+            $("#mala-buena2").css("background", "white");
         });
-
-        //console.log(lista[0] + "  " + lista[1] + " " + lista[2]);
-
-        if(lista[1] == "true" && lista[2] == 0){
-            console.log("Hasta aqui chido");
-        }
 
         if (lista[1] == "false") {
 
@@ -171,11 +175,25 @@ function sugerencias(elemento, cadena,oog) {
                 document.getElementById("mala-buena2").setAttribute("onclick", "");
             }
 
-        }else if(lista[2] == 0){
-            console.log("YYA");
+        } else if (lista[2] == 0) {
+
             document.getElementById("tipo-error").innerText = "Alerta de ortografía";
             document.getElementById("sugerencia").innerText = "Quizás quisiste decir: ";
-        }else {
+
+            var textsn = lista[0];
+
+            document.getElementById("mala-buena1").innerText = textsn;
+            document.getElementById("mala-buena1").setAttribute("onclick",
+                "cambiar(this,'" + cte + "')");
+
+            document.getElementById("error").innerText = "No reconocemos esta palabra. Podría ser que la escribiste mal o no esta en nuestro diccionario. ";
+
+            $("#mala-buena2").css("visibility", "hidden");
+            document.getElementById("mala-buena2").innerText = "  ";
+            document.getElementById("mala-buena2").setAttribute("onclick", "");
+
+
+        } else {
 
             document.getElementById("tipo-error").innerText = "Alerta de ortografía";
 
@@ -250,7 +268,7 @@ function sugerencias(elemento, cadena,oog) {
 
     } else {
 
-///////Correcciones gramaticales
+        ///////Correcciones gramaticales
 
 
 

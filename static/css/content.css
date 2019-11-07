@@ -157,7 +157,7 @@ select {
 }
 
 #boton-descargar:hover {
-    background: rgba(214,214,214,0.8);
+    background: #ede7f6;
     border-radius: 5px;
     transition: 0.8s;
 }
@@ -171,14 +171,14 @@ select {
 
 .palabra-no-encontrada:hover {
     color: #ff8000;
-    background: rgba(254,128, 0, 0.233);
+    background: rgba(254, 128, 0, 0.233);
     transition: 0.8s;
     padding: 2px 5px;
 }
 
 .spanlabel:hover {
     color: #439bff;
-    background: rgba(0, 0, 254, 0.233);
+    background: #b3e5fc;
     transition: 0.8s;
     padding: 2px 5px;
 }

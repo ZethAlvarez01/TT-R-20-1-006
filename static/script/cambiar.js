@@ -12,4 +12,13 @@ function cambiar(correccion, tag_error) {
     var spnlabel = document.getElementById(tag_error);
     spnlabel.innerText = $(correccion).text();
     spnlabel.style.color = "black";
+
+    $(spnlabel).hover(function() {
+        $(this).css("background-color", "white");
+        $(this).css("padding", "0px");
+    }, function() {
+        $(this).css("background-color", "white");
+        $(this).css("padding", "0px");
+    });
+
 }

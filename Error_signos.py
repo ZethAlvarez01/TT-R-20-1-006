@@ -9,7 +9,7 @@ def error_signos(cadena):
     signos = ['(', ')', ',', '-', '.', ':', ';', '¿', '?', '¡', '!', '"']  # Arreglo de signos a validar
     signos1 = ['(', ')', '-', ':', ';', '¿', '?', '¡', '!', '"']  # Arreglo de signos a validar
     signos2 = [',', '.', ':', ';']  # Arreglo de signos sin interrogacion, exclamacion , parentesis y doble comilla
-    signos3 = ['(', ',', '-', ':', '¿', '?', '¡', '!', '"']  # Arreglo de signos a validar despues de cerrar comillas
+    signos3 = ['(', '-', ':', '¿', '?', '¡', '!', '"']  # Arreglo de signos a validar despues de cerrar comillas
     signos4 = [')', ',', '-', ':', ';', '¿', '?', '¡', '!', '"']  # Signos para comparar domillas dobles
     signos5 = [',', '-', ':', ';', '"']  # Signos para comparar domillas dobles
     signos6 = [',', '-', ':', ';', '.', ')', '(']  # Signos para comparar parentesis

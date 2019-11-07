@@ -59,14 +59,14 @@ function detecta(e) {
                 }
             }
             console.log("Valida palabras en el diccionario");
-            for(let i=0;i<arreglo_dicc.length;i++){
+            for (let i = 0; i < arreglo_dicc.length; i++) {
                 console.log(arreglo_dicc[i]);
             }
             console.log("------");
 
-            for(let i = 0; i < arreglo_pal_val_mym.length; i++){
-                
-                if((i % 3) == 1){
+            for (let i = 0; i < arreglo_pal_val_mym.length; i++) {
+
+                if ((i % 3) == 1) {
                     let color;
                     let mal_bien;
                     let sugerencias;
@@ -85,10 +85,11 @@ function detecta(e) {
                         correcto = arreglo_pal_val_mym[i];
                         tipo_err = arreglo_pal_val_mym[i + 1];
                         palabra_id = caracter + "-" + correcto + "-" + tipo_err + "-" + n_errores + "-" + id_pal;
-                        sugerencias = "buscar('" + palabra_id + "');";
-                    } 
+                        //sugerencias = "buscar('" + palabra_id + "');";
+                        sugerencias = " ";
+                    }
 
-                    if (arreglo_dicc[i] == 0){
+                    if (arreglo_dicc[i] == 0) {
                         color = "color: #ff8000;";
                         mal_bien = "palabra-no-encontrada";
                         n_errores++;
@@ -96,9 +97,9 @@ function detecta(e) {
                         correcto = arreglo_pal_val_mym[i];
                         tipo_err = arreglo_pal_val_mym[i + 1];
                         palabra_id = caracter + "-" + correcto + "-" + tipo_err + "-" + n_errores + "-" + id_pal;
-                        sugerencias = "sugerencias(this,'" + palabra_id + "',1);";
+                        sugerencias = "sugerencias(this,'" + palabra_id + "',0);";
                     }
-                    
+
                     if (arreglo_pal_val_mym[i] == false) {
                         color = "color: rgb(254, 0, 0);";
                         mal_bien = "palabra-mala";
@@ -109,7 +110,7 @@ function detecta(e) {
                         palabra_id = caracter + "-" + correcto + "-" + tipo_err + "-" + n_errores + "-" + id_pal;
                         sugerencias = "sugerencias(this,'" + palabra_id + "',0);";
                     }
-                    
+
                     for (let j = 0; j < arreglo_err_sig.length; j++) {
                         if ((j % 3) == 1) {
                             if (contador == arreglo_err_sig[j]) {
