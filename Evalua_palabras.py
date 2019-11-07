@@ -54,6 +54,7 @@ def evalua_palabra(cadena):
 			if ( i in palabra ) == True:
 				flg=1
 		if (flg == 1):
+			#Aqui va para corregir la palabra que tiene un punto despues
 			arr_err.append(2) # Incorrecta 0 Correcta 1 no apta a buscar 2
 			arr_err.append(404)
 		else:	
