@@ -3,6 +3,9 @@ function sugerencias(elemento, cadena,oog) {
     console.log("Sugerencias: " + cte);
     var lista = cadena.split("-");
     var tarjeta = document.getElementById("tarjeta-ortg");
+    for (let i = 0; i < lista.length; i++) {
+        console.log(lista[i]);
+    }
 
 
     for (let i = 0; i < lista.length; i++) {
@@ -10,6 +13,7 @@ function sugerencias(elemento, cadena,oog) {
             lista[i] = '"';
         }
     }
+
 
     if (oog == 0) {
 
@@ -21,7 +25,11 @@ function sugerencias(elemento, cadena,oog) {
             $("#linea").css("border", "2px solid rgba(250, 15, 78, 0.3)");
             $("#linea").css("border-radius", "5px");
             $("#linea").css("transition", "0.8s");
-        } else {
+        } else if(lista[2] == 0){
+            $("#linea").css("border", "2px solid rgba(254, 128, 0, 0.3)");
+            $("#linea").css("border-radius", "5px");
+            $("#linea").css("transition", "0.8s");
+        }else {
             $("#linea").css("border", "2px solid rgba(52, 152, 219, 0.3)");
             $("#linea").css("border-radius", "5px");
             $("#linea").css("transition", "0.8s");
@@ -39,7 +47,6 @@ function sugerencias(elemento, cadena,oog) {
         $("#mala-buena2").css("text-align", "center");
         $("#mala-buena2").css("padding", "2px 5px");
         $("#mala-buena2").css("cursor", "pointer");
-
 
         $("#mala-buena1").hover(function() {
             if (lista[1] == "false") {
@@ -70,6 +77,7 @@ function sugerencias(elemento, cadena,oog) {
         });
 
         $("#tarjeta-ortg").hover(function() {
+
             $(this).css("background-color", "rgba(214,214,214,0.8)");
             $(this).css("transition", "0.8s");
             $(this).css("cursor", "pointer");
@@ -78,7 +86,11 @@ function sugerencias(elemento, cadena,oog) {
                 $("#linea").css("border", "2px solid #fa0f4e");
                 $("#linea").css("border-radius", "5px");
                 $("#linea").css("transition", "0.8s");
-            } else {
+            } else if(lista[2] == 0){
+                $("#linea").css("border", "2px solid rgb(254, 128, 0, 0.3");
+                $("#linea").css("border-radius", "5px");
+                $("#linea").css("transition", "0.8s");
+            }else {
                 $("#linea").css("border", "2px solid #3498DB");
                 $("#linea").css("border-radius", "5px");
                 $("#linea").css("transition", "0.8s");
@@ -94,15 +106,22 @@ function sugerencias(elemento, cadena,oog) {
                 $("#linea").css("border", "2px solid rgba(250, 15, 78, 0.3)");
                 $("#linea").css("border-radius", "5px");
                 $("#linea").css("transition", "0.8s");
-            } else {
+            } else if(lista[2] == 0){
+                $("#linea").css("border", "2px solid rgba(254, 128, 0, 0.3)");
+                $("#linea").css("border-radius", "5px");
+                $("#linea").css("transition", "0.8s");
+            }else {
                 $("#linea").css("border", "2px solid rgba(52, 152, 219, 0.3)");
                 $("#linea").css("border-radius", "5px");
                 $("#linea").css("transition", "0.8s");
             }
         });
 
-        console.log(lista[0] + "  " + lista[1] + " " + lista[2]);
+        //console.log(lista[0] + "  " + lista[1] + " " + lista[2]);
 
+        if(lista[1] == "true" && lista[2] == 0){
+            console.log("Hasta aqui chido");
+        }
 
         if (lista[1] == "false") {
 
@@ -120,7 +139,7 @@ function sugerencias(elemento, cadena,oog) {
                 $("#mala-buena2").css("visibility", "visible");
 
             } else if (lista[2] == '2') {
-                document.getElementById("error").innerText = "Primer caracter despues de un punto debe ser mayúscula.";
+                document.getElementById("error").innerText = "Primer caracter despues de un punto o la primer letra de una oración debe ser mayúscula.";
                 var textoL = lista[0];
                 var textoLV = "";
                 for (let i = 0; i < textoL.length; i++) {
@@ -152,7 +171,11 @@ function sugerencias(elemento, cadena,oog) {
                 document.getElementById("mala-buena2").setAttribute("onclick", "");
             }
 
-        } else {
+        }else if(lista[2] == 0){
+            console.log("YYA");
+            document.getElementById("tipo-error").innerText = "Alerta de ortografía";
+            document.getElementById("sugerencia").innerText = "Quizás quisiste decir: ";
+        }else {
 
             document.getElementById("tipo-error").innerText = "Alerta de ortografía";
 
@@ -225,8 +248,13 @@ function sugerencias(elemento, cadena,oog) {
 
 
 
-
     } else {
+
+///////Correcciones gramaticales
+
+
+
+
 
     }
 

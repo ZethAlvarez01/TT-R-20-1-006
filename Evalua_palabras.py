@@ -24,27 +24,28 @@ def evalua_palabra(cadena):
 	arr_err = []
 
 	for i in range(j):
-		if cadena[i].islower() is True or cadena[i].isupper() is True or cadena[i] == '.' or \
-			num.__contains__(cadena[i]) is True:
-				cad = cad + cadena[i]
+		if cadena[i].islower() is True or cadena[i].isupper() is True or cadena[i] == '.' or num.__contains__(cadena[i]) is True:
+			cad = cad + cadena[i]
 		elif cadena[i].isspace() is True and len(cad) != 0:
 			palabras.append(cad)
 			cad = ""
 			palabras.append(cadena[i])
 		elif cadena[i].isspace() is True and len(cad) == 0:
 			palabras.append(cadena[i])
-		elif cadena[i].islower() is False and cadena[i].isupper() is False and cadena[i] != '.' and \
-				num.__contains__(cadena[i]) is False:
+		elif cadena[i].islower() is False and cadena[i].isupper() is False and cadena[i] != '.' and num.__contains__(cadena[i]) is False:
 			if len(cad) != 0:
 				palabras.append(cad)
-				cad = ""
-				palabras.append(cadena[i])
+				cad=""
+			palabras.append(cadena[i])
 
 	print(palabras)
 
 	if cad != " " and len(cad) != 0:
 		if cad != 0:
-			palabras.append(cad) 
+			palabras.append(cad)
+	
+	print(palabras)
+
 			
 	for palabra in palabras:
 		arr_err.append(palabra)
