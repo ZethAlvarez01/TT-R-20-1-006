@@ -45,11 +45,12 @@ def error_signos(cadena):
                 aerr.append(cadena[i])
                 aerr.append(i)
                 aerr.append(1)
-            if i < j - 4 and cadena[i + 1] == cadena[i + 2] == cadena[i + 3] == '.':
+            if i < j - 4 and cadena[i + 1] == cadena[i + 2] == '.' and cadena[i + 3].isspace() is False:
                 print("Caracter: %d: solo se utilizan 3 puntos para puntos suspensivos." % i)
                 aerr.append(cadena[i])
                 aerr.append(i)
                 aerr.append(1)
+                i += 2
             if i > 1 and (cadena[i - 1] == ':' or cadena[i - 1] == ';'):
                 print("Caracter: %d: no se puede poner un punto despues de un doble punto." % i)
                 aerr.append(cadena[i])

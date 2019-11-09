@@ -90,7 +90,7 @@ function detecta(e) {
                     }
 
                     if (arreglo_dicc[i] == 0) {
-                        color = "color: #ff8000;";
+                        color = "color: rgb(195, 0, 235);";
                         mal_bien = "palabra-no-encontrada";
                         n_errores++;
                         caracter = arreglo_pal_val_mym[i - 1];

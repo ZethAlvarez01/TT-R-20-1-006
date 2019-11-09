@@ -52,11 +52,25 @@ def evalua_palabra(cadena):
 		flg = 0
 		for i in com:
 			if ( i in palabra ) == True:
-				flg=1
+				flg = 1
 		if (flg == 1):
-			#Aqui va para corregir la palabra que tiene un punto despues
-			arr_err.append(2) # Incorrecta 0 Correcta 1 no apta a buscar 2
-			arr_err.append(404)
+				if (palabra[len(palabra)-1] == "."):
+					print("--")
+					palAux = ""
+					i = 0
+					while (palabra[i] != "."):
+						palAux = palAux + palabra[i]
+						i = i + 1
+					print(palAux)
+					palAux = palAux.lower()
+					tipo = buscar(palAux)
+					print(tipo)
+					arr_err.append(tipo)
+					arr_err.append(404)
+				else:
+					print("----")
+					arr_err.append(2) # Incorrecta 0 Correcta 1 no apta a buscar 2
+					arr_err.append(404)
 		else:	
 			tipo = -1
 			tipo2 = -1
@@ -73,9 +87,9 @@ def evalua_palabra(cadena):
 					tipo = tipo2
 			else:
 				tipo = 0
-
 			arr_err.append(tipo)
 			arr_err.append(404)
+	
 	return arr_err
 
 

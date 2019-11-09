@@ -26,7 +26,7 @@ function sugerencias(elemento, cadena, oog) {
             $("#linea").css("border-radius", "5px");
             $("#linea").css("transition", "0.8s");
         } else if (lista[2] == 0) {
-            $("#linea").css("border", "2px solid rgba(254, 128, 0, 0.3)");
+            $("#linea").css("border", "2px solid rgba(195, 0, 235, 0.3)");
             $("#linea").css("border-radius", "5px");
             $("#linea").css("transition", "0.8s");
         } else {
@@ -52,7 +52,7 @@ function sugerencias(elemento, cadena, oog) {
             if (lista[1] == "false") {
                 $("#mala-buena1").css("background", "rgba(250, 15, 78, 0.3)");
             } else if (lista[2] == 0) {
-                $("#mala-buena1").css("background", "rgba(254, 128, 0, 0.3)");
+                $("#mala-buena1").css("background", "rgba(195, 0, 235, 0.3)");
             } else {
                 $("#mala-buena1").css("background", "#b3e5fc");
             }
@@ -68,7 +68,7 @@ function sugerencias(elemento, cadena, oog) {
             if (lista[1] == "false") {
                 $("#mala-buena2").css("background", "rgba(250, 15, 78, 0.3)");
             } else if (lista[2] == 0) {
-                $("#mala-buena2").css("background", "rgba(254, 128, 0, 0.3)");
+                $("#mala-buena2").css("background", "rgba(195, 0, 235, 0.3)");
             } else {
                 $("#mala-buena2").css("background", "#b3e5fc");
             }
@@ -91,7 +91,7 @@ function sugerencias(elemento, cadena, oog) {
                 $("#linea").css("border-radius", "5px");
                 $("#linea").css("transition", "0.8s");
             } else if (lista[2] == 0) {
-                $("#linea").css("border", "2px solid #ff8000");
+                $("#linea").css("border", "2px solid rgba(195, 0, 235)");
                 $("#linea").css("border-radius", "5px");
                 $("#linea").css("transition", "0.8s");
             } else {
@@ -114,7 +114,7 @@ function sugerencias(elemento, cadena, oog) {
                 $("#linea").css("border-radius", "5px");
                 $("#linea").css("transition", "0.8s");
             } else if (lista[2] == 0) {
-                $("#linea").css("border", "2px solid rgba(254, 128, 0, 0.3)");
+                $("#linea").css("border", "2px solid rgba(195, 0, 235, 0.3)");
                 $("#linea").css("border-radius", "5px");
                 $("#linea").css("transition", "0.8s");
             } else {
@@ -206,7 +206,7 @@ function sugerencias(elemento, cadena, oog) {
             document.getElementById("mala-buena2").innerText = "  ";
             document.getElementById("mala-buena2").setAttribute("onclick", "");
 
-            document.getElementById("sugerencia").innerText = "El error esta en: ";
+            document.getElementById("sugerencia").innerText = "El error está en: ";
             if (lista[2] == '1') {
                 document.getElementById("error").innerText = "El uso del punto \".\"";
             } else if (lista[2] == '2') {
@@ -221,13 +221,13 @@ function sugerencias(elemento, cadena, oog) {
                 document.getElementById("error").innerText = "El uso de las comillas \" \"";
             } else if (lista[2] == '7') {
                 if (lista[0] == '¿' || lista[0] == '?') {
-                    document.getElementById("error").innerText = "El uso de los \"¿ ?\"";
+                    document.getElementById("error").innerText = "El uso de los signos de interrogación \"¿ ?\"";
                 }
                 if (lista[0] == '¡' || lista[0] == '!') {
-                    document.getElementById("error").innerText = "El uso de los \"¡ !\"";
+                    document.getElementById("error").innerText = "El uso de los signos de admiración \"¡ !\"";
                 }
                 if (lista[0] == '(' || lista[0] == ')') {
-                    document.getElementById("error").innerText = "El uso de los \"( )\"";
+                    document.getElementById("error").innerText = "El uso de los paréntesis\"( )\"";
                 }
                 if (lista[0] == '"' || lista[0] == '"') {
                     document.getElementById("error").innerText = "El uso de las comillas \" \"";
@@ -256,9 +256,9 @@ function sugerencias(elemento, cadena, oog) {
                 }
                 if (lista[0] == '"' || lista[0] == '"') {
                     if (lista[0] == '"') {
-                        document.getElementById("error").innerText = "No se cerró el signo \"";
+                        document.getElementById("error").innerText = "Falta abrir o cerrar las comillas \"\"";
                     } else {
-                        document.getElementById("error").innerText = "No se abrió el signo \"";
+                        document.getElementById("error").innerText = "Falta abrir o cerrar las comillas \"\"";
                     }
                 }
             }

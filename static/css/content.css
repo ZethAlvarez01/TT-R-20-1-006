@@ -170,8 +170,8 @@ select {
 }
 
 .palabra-no-encontrada:hover {
-    color: #ff8000;
-    background: rgba(254, 128, 0, 0.233);
+    color: rgb(195, 0, 235);
+    background: rgba(195, 0, 235, 0.3);
     transition: 0.8s;
     padding: 2px 5px;
 }
