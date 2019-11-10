@@ -142,6 +142,7 @@ actas
 actea
 actor
 actos
+actúe
 acuda
 acude
 acudí

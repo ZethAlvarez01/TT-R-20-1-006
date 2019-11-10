@@ -11,8 +11,15 @@ function limitar(e, contenido, caracteres) {
 }
 
 function detecta(e) {
-    if ((e.keyCode == 32) || (e.keyCode == 46)) {
+    if ((e.keyCode == 32) || (e.keyCode == 190)) {
         let text = $(".hijo").text();
+        console.log("V1: "+text);
+        
+        for(let i = 0;i < text.length; i++){
+            text = text.replace("/","|");
+        }
+
+        console.log("V2: "+text);
         text = encodeURIComponent(text);
         var arreglo_err_sig;
         var arreglo_pal_val_mym;

@@ -5604,6 +5604,7 @@ escribís
 escriños
 escripia
 escritor
+escritos
 escrotos
 escrutad
 escrutan
@@ -7393,6 +7394,7 @@ expropie
 expropié
 expropio
 expropió
+expuesto
 expugnad
 expugnan
 expugnar

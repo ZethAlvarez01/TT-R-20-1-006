@@ -1,4 +1,5 @@
 def validacion(cadena):
+
     tipo_error = 0 #Variableque guarda el numero de identificacion de error:
                    # 0 = Correcto
                    # 1 = Palabra con mayusculas / minusculas / numeros intercalados
@@ -28,7 +29,7 @@ def validacion(cadena):
     # Esto solo separa la cadena por palabras poniendo los signos de puntuacion por separado
     for i in range(j):
         #flg = cadena[i].isspace()
-        if cadena[i].islower() is True or cadena[i].isupper() is True or cadena[i] == '.' or num.__contains__(cadena[i]) is True:
+        if cadena[i].islower() is True or cadena[i].isupper() is True or num.__contains__(cadena[i]) is True:
             cad = cad + cadena[i]
         elif cadena[i].isspace() is True and len(cad) != 0:
             palabras.append(cad)
@@ -36,7 +37,7 @@ def validacion(cadena):
             palabras.append(cadena[i])
         elif cadena[i].isspace() is True and len(cad) == 0:
             palabras.append(cadena[i])
-        elif cadena[i].islower() is False and cadena[i].isupper() is False and cadena[i] != '.' and num.__contains__(cadena[i]) is False:
+        elif cadena[i].islower() is False and cadena[i].isupper() is False and num.__contains__(cadena[i]) is False:
             if len(cad) != 0:
                 palabras.append(cad)
                 cad = ""

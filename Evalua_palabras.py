@@ -1,4 +1,5 @@
 def buscar(palabra):
+		
 	aux = []
 	long = len(palabra)
 	ini = palabra[0]
@@ -24,7 +25,7 @@ def evalua_palabra(cadena):
 	arr_err = []
 
 	for i in range(j):
-		if cadena[i].islower() is True or cadena[i].isupper() is True or cadena[i] == '.' or num.__contains__(cadena[i]) is True:
+		if cadena[i].islower() is True or cadena[i].isupper() is True or num.__contains__(cadena[i]) is True:
 			cad = cad + cadena[i]
 		elif cadena[i].isspace() is True and len(cad) != 0:
 			palabras.append(cad)
@@ -32,7 +33,7 @@ def evalua_palabra(cadena):
 			palabras.append(cadena[i])
 		elif cadena[i].isspace() is True and len(cad) == 0:
 			palabras.append(cadena[i])
-		elif cadena[i].islower() is False and cadena[i].isupper() is False and cadena[i] != '.' and num.__contains__(cadena[i]) is False:
+		elif cadena[i].islower() is False and cadena[i].isupper() is False and num.__contains__(cadena[i]) is False:
 			if len(cad) != 0:
 				palabras.append(cad)
 				cad=""
@@ -54,23 +55,8 @@ def evalua_palabra(cadena):
 			if ( i in palabra ) == True:
 				flg = 1
 		if (flg == 1):
-				if (palabra[len(palabra)-1] == "."):
-					print("--")
-					palAux = ""
-					i = 0
-					while (palabra[i] != "."):
-						palAux = palAux + palabra[i]
-						i = i + 1
-					print(palAux)
-					palAux = palAux.lower()
-					tipo = buscar(palAux)
-					print(tipo)
-					arr_err.append(tipo)
-					arr_err.append(404)
-				else:
-					print("----")
-					arr_err.append(2) # Incorrecta 0 Correcta 1 no apta a buscar 2
-					arr_err.append(404)
+			arr_err.append(2) # Incorrecta 0 Correcta 1 no apta a buscar 2
+			arr_err.append(404)
 		else:	
 			tipo = -1
 			tipo2 = -1

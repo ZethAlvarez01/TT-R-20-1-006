@@ -532,6 +532,7 @@ posan
 posar
 posas
 posca
+posee
 posen
 poses
 posma

@@ -42,11 +42,11 @@ def validar_palabra(texto):
         'validar': evalua_palabra(texto)
     })
 
-# Descarga el texto en archivos pdf y txt
+# Descarga el texto en archivos Pdf y txt
 @app.route('/return_file/<texto>/<opcion>')
 def return_file(texto,opcion):
     return descargar(texto,opcion)
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=9946)
+    app.run(debug=True, port=9974)

@@ -1,6 +1,7 @@
 # Algoritmo para identificar errores de puntuación: paréntesis, comas, guiones, puntos,
 # doble punto, punto y coma, interrogación, exclamación y comillas dobles
 def error_signos(cadena):
+    
     # Algoritmo para identificar errores de puntuación: paréntesis, comas, guiones, puntos,
     # doble punto, punto y coma, interrogación, exclamación y comillas dobles
 
