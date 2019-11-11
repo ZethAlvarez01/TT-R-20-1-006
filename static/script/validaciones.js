@@ -13,13 +13,13 @@ function limitar(e, contenido, caracteres) {
 function detecta(e) {
     if ((e.keyCode == 32) || (e.keyCode == 190)) {
         let text = $(".hijo").text();
-        console.log("V1: "+text);
-        
-        for(let i = 0;i < text.length; i++){
-            text = text.replace("/","|");
+        //console.log("V1: "+text);
+
+        for (let i = 0; i < text.length; i++) {
+            text = text.replace("/", "|");
         }
 
-        console.log("V2: "+text);
+        //console.log("V2: "+text);
         text = encodeURIComponent(text);
         var arreglo_err_sig;
         var arreglo_pal_val_mym;
@@ -54,22 +54,6 @@ function detecta(e) {
             var contador = 0;
 
             arreglo_dicc = res.validar;
-            console.log("Palabras");
-            for (let i = 0; i < arreglo_pal_val_mym.length; i++) {
-                console.log(arreglo_pal_val_mym[i]);
-            }
-            console.log("Arreglo de errores de signo");
-            for (let i = 0; i < arreglo_err_sig.length; i++) {
-                console.log(arreglo_err_sig[i]);
-                if (arreglo_err_sig[i] == " ") {
-                    console.log("Espacio");
-                }
-            }
-            console.log("Valida palabras en el diccionario");
-            for (let i = 0; i < arreglo_dicc.length; i++) {
-                console.log(arreglo_dicc[i]);
-            }
-            console.log("------");
 
             for (let i = 0; i < arreglo_pal_val_mym.length; i++) {
 

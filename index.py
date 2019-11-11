@@ -43,10 +43,10 @@ def validar_palabra(texto):
     })
 
 # Descarga el texto en archivos Pdf y txt
-@app.route('/return_file/<texto>/<opcion>/<Thtml>')
-def return_file(texto,opcion,Thtml):
-    return descargar(texto,opcion,Thtml)
+@app.route('/return_file/<texto>/<opcion>/<Errores_rojosC>/<Errores_azulesC>/<Errores_moradosC>')
+def return_file(texto,opcion,Errores_rojosC,Errores_azulesC,Errores_moradosC):
+    return descargar(texto,opcion,Errores_rojosC,Errores_azulesC,Errores_moradosC)
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8101)
+    app.run(debug=True, port=8280)

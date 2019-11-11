@@ -1,16 +1,44 @@
 function descargar() {
 
     var texto = $("#text-area-div").text();
-    var html = $("#text-area-div").html();
 
-    html = String(html);
-    console.log("Imprimir: "+ String(html))
-    //console.log("Descargar: " + texto);
+    var Errores_rojos = $(".palabra-mala").map(function() {
+        return $(this).text();
+    }).get();
 
-    for(let i = 0;i < html.length; i++){
-        html = html.replace("/","|");
+    console.log(Errores_rojos);
+
+    var Errores_morados = $(".palabra-no-encontrada").map(function() {
+        return $(this).text();
+    }).get();
+
+    console.log(Errores_morados);
+
+    var Errores_azules = $(".spanlabel").map(function() {
+        return $(this).text();
+    }).get();
+
+    console.log(Errores_azules);
+
+    var Errores_rojosC = "|"
+    var Errores_azulesC = "|"
+    var Errores_moradosC = "|"
+
+    for (let i = 0; i < Errores_rojos.length; i++) {
+        Errores_rojosC = Errores_rojosC + Errores_rojos[i] + "|";
     }
 
+    for (let i = 0; i < Errores_azules.length; i++) {
+        Errores_azulesC = Errores_azulesC + Errores_azules[i] + "|";
+    }
+
+    for (let i = 0; i < Errores_morados.length; i++) {
+        Errores_moradosC = Errores_moradosC + Errores_morados[i] + "|";
+    }
+
+    Errores_rojosC = encodeURIComponent(Errores_rojosC);
+    Errores_azulesC = encodeURIComponent(Errores_azulesC);
+    Errores_moradosC = encodeURIComponent(Errores_moradosC);
 
     var combo = document.getElementById("combo-opciones");
     var selected = combo.options[combo.selectedIndex].value;
@@ -23,7 +51,7 @@ function descargar() {
 
     let res = encodeURIComponent(texto);
 
-    url = "/return_file/" + res + "/" + opcion + "/" + html
+    url = "/return_file/" + res + "/" + opcion + "/" + Errores_rojosC + "/" + Errores_azulesC + "/" + Errores_moradosC
     document.getElementById("download").setAttribute("href", url);
     alert("¡El documento se descargo con éxito!");
 }

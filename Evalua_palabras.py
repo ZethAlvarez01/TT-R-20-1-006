@@ -2,16 +2,31 @@ def buscar(palabra):
 		
 	aux = []
 	long = len(palabra)
-	ini = palabra[0]
-		
-	archivo = open("Diccionario_de_palabras/PorInicialyTamano/"+ini+str(long)+".txt","r+",encoding="utf8")
-	for linea in archivo.readlines():
-		aux.append(linea)
-	for pal in aux:
-		if ( pal ==  palabra):
-			return 1
-	return 0
 
+	ini = palabra[0]
+
+	try:
+		archivo = open("Diccionario_de_palabras/PorInicialyTamano/"+ini+str(long)+".txt","r+",encoding="utf8")
+		#print("Si entro")
+
+		for linea in archivo.readlines():
+			#print(str(len(linea))+ " " + str(long))
+			auxP = ""
+			longi = len(linea) - 1
+			for i in range(0,longi):
+				auxP = auxP + linea[i]
+			#print(str(len(auxP))+ " " + str(long))
+			aux.append(auxP)
+
+		for pal in aux:
+			if ( pal ==  palabra):
+				return 1
+		return 0
+
+	except IOError:
+		return 0
+
+	
 def evalua_palabra(cadena):
 	cadena = cadena.replace(u'\xa0', u' ')
 	#print("Cad: recibida: "+cadena)
@@ -19,7 +34,7 @@ def evalua_palabra(cadena):
 	cad = ""
 	palabras = []
 	num = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
-	com = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0','(', ')', ',', '-', '.', ':', ';', '¿', '?', '¡', '!', '"'," "]
+	conti = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0','(', ')', ',', '-', '.', ':', ';', '¿', '?', '¡', '!', '"'," "]
 	arr_err = []
 
 	for i in range(j):
@@ -42,22 +57,20 @@ def evalua_palabra(cadena):
 	if cad != " " and len(cad) != 0:
 		if cad != 0:
 			palabras.append(cad)
-	
-	#print(palabras)
-
 			
 	for palabra in palabras:
 		arr_err.append(palabra)
+
 		flg = 0
-		for i in com:
+		for i in conti:
 			if ( i in palabra ) == True:
 				flg = 1
 		if (flg == 1):
 			arr_err.append(2) # Incorrecta 0 Correcta 1 no apta a buscar 2
 			arr_err.append(404)
 		else:	
-			tipo = -1
-			tipo2 = -1
+			tipo = 0
+			tipo2 = 0
 			if(palabra.islower() == True):
 				tipo = buscar(palabra)
 			elif(palabra.isupper() == True):
@@ -69,8 +82,7 @@ def evalua_palabra(cadena):
 					tipo = tipo
 				else:
 					tipo = tipo2
-			else:
-				tipo = 0
+
 			arr_err.append(tipo)
 			arr_err.append(404)
 	

@@ -1,12 +1,12 @@
 function sugerencias(elemento, cadena, oog) {
     var cte = elemento.getAttribute('id');
-    console.log("Sugerencias: " + cte);
+    //console.log("Sugerencias: " + cte);
     var lista = cadena.split("-");
     var tarjeta = document.getElementById("tarjeta-ortg");
-    for (let i = 0; i < lista.length; i++) {
+    /*for (let i = 0; i < lista.length; i++) {
         console.log(lista[i]);
     }
-
+*/
 
     for (let i = 0; i < lista.length; i++) {
         if (lista[i] == "♥") {
