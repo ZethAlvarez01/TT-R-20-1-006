@@ -24,7 +24,7 @@ def validacion(cadena):
     flgptr = True  # Bandera para identificar si acaba de pasar un punto 1 = antes habia punto, 0 = no hay punto
     palabras = []  # Arreglo en donde se van a guardar las palabras cada una por separado
     cad = ""  # Variable para concatenar los caracteres que formen cada palabra
-    print("La cadena tiene %d caracteres" % j)
+    #print("La cadena tiene %d caracteres" % j)
 
     # Esto solo separa la cadena por palabras poniendo los signos de puntuacion por separado
     for i in range(j):
@@ -46,7 +46,7 @@ def validacion(cadena):
         if cad != 0:
             palabras.append(cad)  # Agrega la ultima palabra al arreglo si no es un espacio o cadena vacía
 
-    print(palabras)  # se imprimen las palabras 
+    #print(palabras)  # se imprimen las palabras 
 
     npal = palabras.__len__()  # Número de palabras encontradas
 
@@ -139,7 +139,7 @@ def validacion(cadena):
 
             h += 1
         # Se imprime la palabra, True = valido, False = rechazado
-        print("Palabra %d: %s ==> %s" % (i + 1, palabras[i], flg2))
+        #print("Palabra %d: %s ==> %s" % (i + 1, palabras[i], flg2))
         lista.append(palabras[i])
         lista.append(flg2)
         lista.append(tipo_error)

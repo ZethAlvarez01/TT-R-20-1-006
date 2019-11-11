@@ -6,8 +6,6 @@ def buscar(palabra):
 		
 	archivo = open("Diccionario_de_palabras/PorInicialyTamano/"+ini+str(long)+".txt","r+",encoding="utf8")
 	for linea in archivo.readlines():
-		aux2 = linea.split()
-		linea = aux2[0]
 		aux.append(linea)
 	for pal in aux:
 		if ( pal ==  palabra):
@@ -16,7 +14,7 @@ def buscar(palabra):
 
 def evalua_palabra(cadena):
 	cadena = cadena.replace(u'\xa0', u' ')
-	print("Cad: recibida: "+cadena)
+	#print("Cad: recibida: "+cadena)
 	j = len(cadena)
 	cad = ""
 	palabras = []
@@ -39,13 +37,13 @@ def evalua_palabra(cadena):
 				cad=""
 			palabras.append(cadena[i])
 
-	print(palabras)
+	#print(palabras)
 
 	if cad != " " and len(cad) != 0:
 		if cad != 0:
 			palabras.append(cad)
 	
-	print(palabras)
+	#print(palabras)
 
 			
 	for palabra in palabras:

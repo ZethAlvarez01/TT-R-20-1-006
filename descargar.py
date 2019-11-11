@@ -6,9 +6,47 @@ from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.units import inch
 from datetime import date
+from html.parser import HTMLParser
 import time
 
-def descargar(texto,opcion):
+class MyHTMLParser(HTMLParser):
+    def handle_starttag(self, tag, attrs):
+        print("Start tag:", tag)
+        for attr in attrs:
+            print("     attr:", attr)
+
+    def handle_endtag(self, tag):
+        print("End tag  :", tag)
+
+    def handle_data(self, data):
+        print("Data     :", data)
+
+    def handle_comment(self, data):
+        print("Comment  :", data)
+
+    def handle_charref(self, name):
+        if name.startswith('x'):
+            c = chr(int(name[1:], 16))
+        else:
+            c = chr(int(name))
+        print("Num ent  :", c)
+
+    def handle_decl(self, data):
+        print("Decl     :", data)
+
+
+def descargar(texto,opcion,Thtml):
+
+    #print(Thtml)
+
+    Thtml = Thtml.replace("|","/",len(Thtml))
+
+    print(Thtml)
+
+    parser = MyHTMLParser()
+    parser.feed(Thtml)
+
+    print(parser)
 
     variablee = texto
     if(opcion == '1'):
@@ -30,23 +68,23 @@ def descargar(texto,opcion):
 
         texto = "Prototipo de asistente corrector gramatical y ortográfico"
         Story.append(Paragraph(texto, estilos2["Center"]))
-        texto = "  "
+        texto = "----"
         Story.append(Paragraph(texto, estilos2["Center"]))
-        texto = "  "
+        texto = "----"
         Story.append(Paragraph(texto, estilos2["Center"]))
         
     
         Story.append(Paragraph(variablee, estilos["Justify"]))
         Story.append(Spacer(1, 12))
 
-        texto = "  "
+        texto = "-----"
         Story.append(Paragraph(texto, estilos2["Center"]))
-        texto = "  "
+        texto = "-----"
         Story.append(Paragraph(texto, estilos2["Center"]))
-        texto = "  "
+        texto = "-----"
         Story.append(Paragraph(texto, estilos2["Center"]))
         
-        texto = '\n\n\nInstituto Politécnico Nacional'
+        texto = 'nInstituto Politécnico Nacional'
         Story.append(Paragraph(texto, estilos["Justify"]))
         Story.append(Spacer(1, 12))
         texto = 'Escuela superior de cómputo'
