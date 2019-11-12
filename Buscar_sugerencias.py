@@ -17,7 +17,7 @@ def sin_acentos(texto):
     return cad
 
 def buscar_sug(texto):
-    texto = "adios"
+
     longitud = len(texto)
     longitud_arch = 0
 
@@ -40,7 +40,7 @@ def buscar_sug(texto):
         tamaño_palabras_d = tamaño_palabras_d - 1
         pivote = int(tamaño_palabras_d / 2)
 
-        longitud_arch = len(palabras)
+        longitud_arch = len(palabras) - 1
         
         min = 0
         max = len(palabras)
@@ -52,37 +52,37 @@ def buscar_sug(texto):
         print(comparo)
 
         while( aux < longitud):
-            auxP = comparo
             if(busco[aux] == comparo[aux]):
                 print("Igual")
                 ant = busco[aux]
                 aux = aux + 1
+                if aux == longitud:
+                    break
             if(busco[aux] < comparo[aux]):
                 print("Arriba")
                 max = pivote
                 pivote = pivote - int((pivote - min) / 2)
                 comparo = sin_acentos(palabras[pivote]).lower()
-                #print(comparo)
+                print(comparo)
                 if( ant != comparo[aux-1]):
-                    while ant != comparo[aux-1] :
+                    while ant != comparo[aux-1]:
                         pivote = pivote + 1
                         comparo = sin_acentos(palabras[pivote]).lower()
-
+                if (pivote == max):
+                    break
             if(busco[aux] > comparo[aux]):
                 print("Abajo")
                 min = pivote
                 pivote = pivote + int((max - pivote) / 2)
                 comparo = sin_acentos(palabras[pivote]).lower()
-                #print(comparo)
+                print(comparo)
 
                 if( ant != comparo[aux-1]):
-                    while ant != comparo[aux-1] :
+                    while ant != comparo[aux-1]:
                         pivote = pivote - 1
                         comparo = sin_acentos(palabras[pivote]).lower()
-
-
-            if(auxP == comparo):
-                break 
+                if (pivote == min):
+                    break
         
 
         print("------")
@@ -96,6 +96,7 @@ def buscar_sug(texto):
         else:
             arreglo_2[1] = palabras[pivote - 1]
 
+        print(arreglo_2)
         return arreglo_2
 
     except IOError:

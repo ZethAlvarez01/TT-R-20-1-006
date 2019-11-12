@@ -57,5 +57,5 @@ def return_file(texto,opcion,Errores_rojosC,Errores_azulesC,Errores_moradosC):
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8486)
+    app.run(debug=True, port=8493)
     
