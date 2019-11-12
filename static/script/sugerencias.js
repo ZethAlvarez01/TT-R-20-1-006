@@ -182,15 +182,27 @@ function sugerencias(elemento, cadena, oog) {
 
             var textsn = lista[0];
 
-            document.getElementById("mala-buena1").innerText = textsn;
+            /////////////////////////////
+            var cadena_c = "";
+
+
+            $.ajax({
+                url: "/buscar_sugerencias/" + textsn + "/"
+            }).done(function(res) {
+                document.getElementById("mala-buena1").innerText = res.sugerencia[0];
+                document.getElementById("mala-buena2").innerText = res.sugerencia[1];
+            });
+
+            $("#mala-buena2").css("visibility", "visible");
             document.getElementById("mala-buena1").setAttribute("onclick",
+                "cambiar(this,'" + cte + "')");
+            document.getElementById("mala-buena2").setAttribute("onclick",
                 "cambiar(this,'" + cte + "')");
 
             document.getElementById("error").innerText = "No reconocemos esta palabra. Podría ser que la escribiste mal o no esta en nuestro diccionario. ";
 
-            $("#mala-buena2").css("visibility", "hidden");
-            document.getElementById("mala-buena2").innerText = "  ";
-            document.getElementById("mala-buena2").setAttribute("onclick", "");
+            //$("#mala-buena2").css("visibility", "hidden");
+            
 
 
         } else {

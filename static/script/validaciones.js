@@ -15,10 +15,6 @@ function detecta(e) {
         let text = $(".hijo").text();
         //console.log("V1: "+text);
 
-        for (let i = 0; i < text.length; i++) {
-            text = text.replace("/", "|");
-        }
-
         //console.log("V2: "+text);
         text = encodeURIComponent(text);
         var arreglo_err_sig;
@@ -113,6 +109,7 @@ function detecta(e) {
                                 } else {
                                     caracter = arreglo_err_sig[j - 1];
                                 }
+                                
                                 correcto = arreglo_err_sig[j];
                                 tipo_err = arreglo_err_sig[j + 1];
                                 palabra_id = caracter + "-" + correcto + "-" + tipo_err + "-" + n_errores + "-" + id_pal;

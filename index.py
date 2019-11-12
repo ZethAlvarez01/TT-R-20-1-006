@@ -5,6 +5,7 @@ from Error_signos import error_signos
 from Evalua_palabras import evalua_palabra
 from buscar_significado import buscar_significado
 from descargar import descargar
+from Buscar_sugerencias import buscar_sug
 from datetime import date
 
 app = Flask(__name__)
@@ -42,11 +43,19 @@ def validar_palabra(texto):
         'validar': evalua_palabra(texto)
     })
 
-# Descarga el texto en archivos Pdf y txt
+#Encuentra las sugerencias de las palabras mal escritas
+@app.route('/buscar_sugerencias/<string:textsn>/')
+def buscar_sugerencias(textsn):
+    return json.jsonify({
+        'sugerencia': buscar_sug(textsn)
+    })
+
+# Descarga el texto en archivos pdf y txt
 @app.route('/return_file/<texto>/<opcion>/<Errores_rojosC>/<Errores_azulesC>/<Errores_moradosC>')
 def return_file(texto,opcion,Errores_rojosC,Errores_azulesC,Errores_moradosC):
     return descargar(texto,opcion,Errores_rojosC,Errores_azulesC,Errores_moradosC)
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8280)
+    app.run(debug=True, port=8481)
+    
