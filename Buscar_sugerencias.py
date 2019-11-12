@@ -1,7 +1,8 @@
 def buscar_sug(texto):
     longitud = len(texto)
     ini = texto[0]
-
+    vocales_a = ["á","é","í","ó","ú"]
+    vocales_s = ["a","e","i","o","u"]
     arreglo_2 = [" "," "] 
 
     try:
@@ -21,43 +22,15 @@ def buscar_sug(texto):
         tam = tam - 1
         pivote = int(tam / 2)
 
+
         palabra = palabras[pivote]
+        for i in range(0, len(palabra)):
+            for j in range(0, len(vocales_a)):
+                if( palabra[i] == vocales_a[j] ): 
+                    palabra[i] = vocales_s[j]
+        
 
-        print("Mitad: "+palabra+" "+texto)
 
-        aux = 0
-        max = longitud
-        min = 0
-
-
-        while aux < longitud:
-            if(texto[aux] == palabra[aux]):
-                aux = aux + 1
-            else:
-                if(palabra[aux] < texto[aux]):
-                    print(palabra[aux] + "<" + texto[aux])
-                    #Arriba
-                    max = pivote
-                    pivote = pivote - int(((pivote - min) / 2))
-                    if palabra == palabras[pivote]:
-                        break
-                    else:
-                        palabra = palabras[pivote]
-                    print(palabra)
-                else:
-                    print(palabra[aux] + "<" + texto[aux])
-                    #Abajo
-                    min = pivote
-                    pivote = pivote + int(((max - pivote) / 2))
-                    if palabra == palabras[pivote]:
-                        break
-                    else:
-                        palabra = palabras[pivote]
-                    print(palabra)
-                    
-                    
-
-        print("Sigerencia: "+palabra)
 
         return arreglo_2
 
