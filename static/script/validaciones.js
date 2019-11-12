@@ -109,7 +109,7 @@ function detecta(e) {
                                 } else {
                                     caracter = arreglo_err_sig[j - 1];
                                 }
-                                
+
                                 correcto = arreglo_err_sig[j];
                                 tipo_err = arreglo_err_sig[j + 1];
                                 palabra_id = caracter + "-" + correcto + "-" + tipo_err + "-" + n_errores + "-" + id_pal;
@@ -133,10 +133,23 @@ function detecta(e) {
                 }
             }
 
+
+
             document.getElementById("text-area-div").innerText = " ";
             document.execCommand("insertHTML", false, cadena);
             document.getElementById("text-area-div").setAttribute("text-align", "none");
 
         });
+
+
+        // Verifica la escructura de las oraciones 
+
+        $.ajax({
+            url: "/oraciones_validar/" + text + "/"
+        }).done(function(res) {
+            var f_val = res.validar;
+            console.log("Lo validado: " + f_val);
+        });
+
     }
 }
