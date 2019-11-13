@@ -10,6 +10,7 @@ function limitar(e, contenido, caracteres) {
     return true;
 }
 
+
 function detecta(e) {
     if ((e.keyCode == 32) || (e.keyCode == 190)) {
         let text = $(".hijo").text();
@@ -20,6 +21,18 @@ function detecta(e) {
         var arreglo_err_sig;
         var arreglo_pal_val_mym;
         var arreglo_dicc;
+        var arreglo_estructura;
+
+        /*Chahahahahahahahahahaha*/ 
+
+        $.ajax({
+            url: "/oraciones_validar/" + text + "/"
+        }).done(function(res) {
+            let arreglo_pal = res.validar;
+            console.log("Error");
+            console.log(arreglo_pal);
+            arreglo_estructura = arreglo_pal;
+        });
 
         /*Corrección de mayusculas, minusculas y números*/
 
@@ -39,15 +52,20 @@ function detecta(e) {
             arreglo_err_sig = arreglo_pal;
         });
 
+        console.log("Error 2");
+        console.log(arreglo_estructura)
+
         /*Validacion en el diccionario las palabras*/
 
         $.ajax({
-            url: "/validar_palabra/" + text + "/"
+            url: "/validar_palabra/" + text + "/",
+            async: false
         }).done(function(res) {
             var cadena = "";
             var n_errores = 0;
             var id_pal = 0;
             var contador = 0;
+            var cont_aux = 0;
 
             arreglo_dicc = res.validar;
 
@@ -66,14 +84,28 @@ function detecta(e) {
                     palabra_id = caracter + "-" + correcto + "-" + tipo_err + "-" + n_errores + "-" + id_pal;
 
                     if (arreglo_pal_val_mym[i] == true) {
-                        color = "color: black;";
-                        mal_bien = "palabra-buena";
-                        caracter = arreglo_pal_val_mym[i - 1];
-                        correcto = arreglo_pal_val_mym[i];
-                        tipo_err = arreglo_pal_val_mym[i + 1];
-                        palabra_id = caracter + "-" + correcto + "-" + tipo_err + "-" + n_errores + "-" + id_pal;
-                        //sugerencias = "buscar('" + palabra_id + "');";
-                        sugerencias = " ";
+
+                        if(i == arreglo_estructura[cont_aux]){
+                            color = "color: yellow;";
+                            mal_bien = "frase-mala";
+                            n_errores++;
+                            caracter = arreglo_pal_val_mym[i - 1];
+                            correcto = arreglo_pal_val_mym[i];
+                            tipo_err = arreglo_pal_val_mym[i + 1];
+                            palabra_id = caracter + "-" + correcto + "-" + tipo_err + "-" + n_errores + "-" + id_pal;
+                            //sugerencias = "buscar('" + palabra_id + "');";
+                            sugerencias = " ";
+                            cont_aux++;
+                        }else{
+                            color = "color: black;";
+                            mal_bien = "palabra-buena";
+                            caracter = arreglo_pal_val_mym[i - 1];
+                            correcto = arreglo_pal_val_mym[i];
+                            tipo_err = arreglo_pal_val_mym[i + 1];
+                            palabra_id = caracter + "-" + correcto + "-" + tipo_err + "-" + n_errores + "-" + id_pal;
+                            //sugerencias = "buscar('" + palabra_id + "');";
+                            sugerencias = " ";
+                        }
                     }
 
                     if (arreglo_dicc[i] == 0) {
@@ -139,16 +171,6 @@ function detecta(e) {
             document.execCommand("insertHTML", false, cadena);
             document.getElementById("text-area-div").setAttribute("text-align", "none");
 
-        });
-
-
-        // Verifica la escructura de las oraciones 
-
-        $.ajax({
-            url: "/oraciones_validar/" + text + "/"
-        }).done(function(res) {
-            var f_val = res.validar;
-            console.log("Lo validado: " + f_val);
         });
 
     }

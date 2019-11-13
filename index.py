@@ -16,6 +16,13 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+# Verifica la escructura de las oraciones 
+@app.route('/oraciones_validar/<string:texto>/')
+def oraciones_validar(texto):
+    return json.jsonify({
+        'validar': evalua_frases(texto)
+    })
+
 # Valida el uso de mayusculas, minusculas y numeros
 @app.route('/validacion_minusculas_mayusculas/<string:texto>/')
 def background_process_test(texto):
@@ -31,11 +38,11 @@ def background_process_test2(texto):
     })
 
 # Busca el significado de alguna palabra en la web (No corriendo)
-@app.route('/buscar_palabra/<string:texto>/')
-def buscar_palabra(texto):
-    return json.jsonify({
-        'palabra': buscar_significado(texto)
-    })
+#@app.route('/buscar_palabra/<string:texto>/')
+#def buscar_palabra(texto):
+#    return json.jsonify({
+#         'palabra': buscar_significado(texto)
+#    })
 
 # Valida palabra con el diccionario, regresa si esta correcta o no
 @app.route('/validar_palabra/<string:texto>/')
@@ -51,20 +58,12 @@ def buscar_sugerencias(textsn):
         'sugerencia': buscar_sug(textsn)
     })
 
-# Verifica la escructura de las oraciones 
-@app.route('/oraciones_validar/<string:texto>/')
-def oraciones_validar(texto):
-    return json.jsonify({
-        'validar': evalua_frases(texto)
-    })
-
 # Descarga el texto en archivos pdf y txt
 @app.route('/return_file/<texto>/<opcion>/<Errores_rojosC>/<Errores_azulesC>/<Errores_moradosC>')
 def return_file(texto,opcion,Errores_rojosC,Errores_azulesC,Errores_moradosC):
     return descargar(texto,opcion,Errores_rojosC,Errores_azulesC,Errores_moradosC)
 
 
-
 if __name__ == '__main__':
-    app.run(debug=True, port=8583)
+    app.run(debug=True, port=8089)
     

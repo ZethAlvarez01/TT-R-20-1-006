@@ -1,0 +1,1 @@
+Este reporte presenta el avance de la propuesta e implementación de un prototipo de asistente corrector gramatical y ortográfico para la redacción de protocolos gramaticalmente correctos, basado en la arquitectura orientada a servicios, denominada software como servicio o SaaS por sus siglas en inglés.

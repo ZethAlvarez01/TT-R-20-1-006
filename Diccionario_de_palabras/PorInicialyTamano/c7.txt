@@ -2790,9 +2790,8 @@ compres
 computa
 compute
 computé
-computo
-computó
 cómputo
+computó
 comulga
 comulgo
 comulgó

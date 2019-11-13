@@ -1,11 +1,8 @@
 def evalua_frases(cadena):
-    cadena = "Este reporte presenta el avance de la propuesta e implementación de un prototipo de asistente corrector " \
-         "gramatical y ortográfico para la redacción de protocolos gramaticalmente correctos, basado en la " \
-         "arquitectura orientada a servicios, denominada software como servicio o SaaS por sus siglas en inglés. "
+    
     arr = []
     arrep = []
     arren = []
-    respuesta = ""
     ef = [2, 3, 4, 5, 7, 9]  # Estados finales
     signos = ['-', ',', ':', ';', '¿', '?', '¡', '!', '"', ' '] # Signos que no afectan
     signosf = ['.', '?', '!'] # Signos que afectan
@@ -13,20 +10,21 @@ def evalua_frases(cadena):
     j = len(cadena)
     palabras = []
     cad = ""
+    arr_err = []
     #   Aqui se separan las palabras que se van a analizar
     for i in range(j):
         flg = cadena[i].isspace()
-        if cadena[i].islower() is True or cadena[i].isupper() is True or \
-                num.__contains__(cadena[i]) is True:
+        if cadena[i].islower() == True or cadena[i].isupper() == True or \
+                num.__contains__(cadena[i]) == True:
             cad = cad + cadena[i].lower()
-        elif cadena[i].isspace() is True and len(cad) != 0:
+        elif cadena[i].isspace() == True and len(cad) != 0:
             palabras.append(cad)
             cad = ""
             palabras.append(cadena[i])
-        elif cadena[i].isspace() is True and len(cad) == 0:
+        elif cadena[i].isspace() == True and len(cad) == 0:
             palabras.append(cadena[i])
-        elif cadena[i].islower() is False and cadena[i].isupper() is False and \
-                num.__contains__(cadena[i]) is False:
+        elif cadena[i].islower() == False and cadena[i].isupper() == False and \
+                num.__contains__(cadena[i]) == False:
             if len(cad) != 0:
                 palabras.append(cad)
                 cad = ""
@@ -35,7 +33,7 @@ def evalua_frases(cadena):
         if cad != 0:
             palabras.append(cad)
     #   Aqui se lee el documento de las etiquetas
-    doc = open("Diccionario_de_palabras/Etiquetado.txt", 'r')
+    doc = open("C:/Users/zetha/Desktop/TT-R-20-1-006/Diccionario_de_palabras/Etiquetado.txt", "r+",encoding="utf8")
     for linea in doc.readlines():
         x = linea.split("/")
         arrep.append(x[0])
@@ -53,10 +51,10 @@ def evalua_frases(cadena):
             elif signosf.__contains__(palabras[h]):
                 arr.append(1)
                 break
-            elif palabras[h] is '(':
+            elif palabras[h] == '(':
                 arr.append(2)
                 break
-            elif palabras[h] is ')':
+            elif palabras[h] == ')':
                 arr.append(3)
                 break
             elif r == len(arrep) -1:
@@ -70,165 +68,167 @@ def evalua_frases(cadena):
     print(arr)
 
     for i in range(len(arr)):
-
+        #k = pos
         if pos == 0:
-            if arr[i] is 'A' or arr[i] is 'F':
+            if arr[i] == 'A' or arr[i] == 'F':
                 pos = 1
-            elif arr[i] is 'B':
+            elif arr[i] == 'B':
                 pos = 2
-            elif arr[i] is 'C':
+            elif arr[i] == 'C':
                 pos = 7
-            elif arr[i] is 'D':
+            elif arr[i] == 'D':
                 pos = 12
-            elif arr[i] is 'E':
+            elif arr[i] == 'E':
                 pos = 6
-            elif arr[i] is 'G':
+            elif arr[i] == 'G':
                 pos = 11
-            elif arr[i] is 'H':
+            elif arr[i] == 'H':
                 pos = 10
 
         elif pos == 1:
-            if arr[i] is 'A' or arr[i] is 'C' or arr[i] is 'D' or arr[i] is 'E' or arr[i] is 'F' or arr[i] is 'G' \
-                    or arr[i] is 'H':
+            if arr[i] == 'A' or arr[i] == 'C' or arr[i] == 'D' or arr[i] == 'E' or arr[i] == 'F' or arr[i] == 'G' \
+                    or arr[i] == 'H':
                 pos = -1
-            elif arr[i] is 'B':
+            elif arr[i] == 'B':
                 pos = 2
 
         elif pos == 2:
-            if arr[i] is 'A':
+            if arr[i] == 'A':
                 pos = 1
-            elif arr[i] is 'B' or arr[i] is 'E' or arr[i] is 'H':
+            elif arr[i] == 'B' or arr[i] == 'E' or arr[i] == 'H':
                 pos = 2
-            elif arr[i] is 'C':
+            elif arr[i] == 'C':
                 pos = 3
-            elif arr[i] is 'D':
+            elif arr[i] == 'D':
                 pos = 5
-            elif arr[i] is 'F':
+            elif arr[i] == 'F':
                 pos = 4
-            elif arr[i] is 'G':
+            elif arr[i] == 'G':
                 pos = 9
 
         elif pos == 3:
-            if arr[i] is 'A':
+            if arr[i] == 'A':
                 pos = 1
-            elif arr[i] is 'B':
+            elif arr[i] == 'B':
                 pos = 2
-            elif arr[i] is 'C':
+            elif arr[i] == 'C':
                 pos = 3
-            elif arr[i] is 'D':
+            elif arr[i] == 'D':
                 pos = 5
-            elif arr[i] is 'E' or arr[i] is 'F' or arr[i] is 'H':
+            elif arr[i] == 'E' or arr[i] == 'F' or arr[i] == 'H':
                 pos = -1
-            elif arr[i] is 'G':
+            elif arr[i] == 'G':
                 pos = 9
 
         elif pos == 4:
-            if arr[i] is 'A':
+            if arr[i] == 'A':
                 pos = 1
-            elif arr[i] is 'B':
+            elif arr[i] == 'B':
                 pos = 2
-            elif arr[i] is 'C':
+            elif arr[i] == 'C':
                 pos = 3
-            elif arr[i] is 'D':
+            elif arr[i] == 'D':
                 pos = 5
-            elif arr[i] is 'E' or arr[i] is 'G' or arr[i] is 'H':
+            elif arr[i] == 'E' or arr[i] == 'G' or arr[i] == 'H':
                 pos = -1
-            elif arr[i] is 'F':
+            elif arr[i] == 'F':
                 pos = 4
 
         elif pos == 5:
-            if arr[i] is 'A':
+            if arr[i] == 'A':
                 pos = 1
-            elif arr[i] is 'B':
+            elif arr[i] == 'B':
                 pos = 2
-            elif arr[i] is 'C' or arr[i] is 'E' or arr[i] is 'H':
+            elif arr[i] == 'C' or arr[i] == 'E' or arr[i] == 'H':
                 pos = -1
-            elif arr[i] is 'D':
+            elif arr[i] == 'D':
                 pos = 5
-            elif arr[i] is 'F':
+            elif arr[i] == 'F':
                 pos = 4
-            elif arr[i] is 'G':
+            elif arr[i] == 'G':
                 pos = 9
 
         elif pos == 6:
-            if arr[i] is 'A':
+            if arr[i] == 'A':
                 pos = 1
-            elif arr[i] is 'B':
+            elif arr[i] == 'B':
                 pos = 2
-            elif arr[i] is 'C':
+            elif arr[i] == 'C':
                 pos = 7
-            elif arr[i] is 'D' or arr[i] is 'E' or arr[i] is 'F':
+            elif arr[i] == 'D' or arr[i] == 'E' or arr[i] == 'F':
                 pos = -1
-            elif arr[i] is 'G':
+            elif arr[i] == 'G':
                 pos = 8
-            elif arr[i] is 'H':
+            elif arr[i] == 'H':
                 pos = 2
 
         elif pos == 7:
-            if arr[i] is 'A':
+            if arr[i] == 'A':
                 pos = 1
-            elif arr[i] is 'B':
+            elif arr[i] == 'B':
                 pos = 2
-            elif arr[i] is 'C':
+            elif arr[i] == 'C':
                 pos = 7
-            elif arr[i] is 'D':
+            elif arr[i] == 'D':
                 pos = 4
-            elif arr[i] is 'E' or arr[i] is 'F' or arr[i] is 'G':
+            elif arr[i] == 'E' or arr[i] == 'F' or arr[i] == 'G':
                 pos = -1
-            elif arr[i] is 'H':
+            elif arr[i] == 'H':
                 pos = 10
 
         elif pos == 8:
-            if arr[i] is 'A' or arr[i] is 'B' or arr[i] is 'D' or arr[i] is 'E' or arr[i] is 'F' or arr[i] is 'G' \
-                    or arr[i] is 'H':
+            if arr[i] == 'A' or arr[i] == 'B' or arr[i] == 'D' or arr[i] == 'E' or arr[i] == 'F' or arr[i] == 'G' \
+                    or arr[i] == 'H':
                 pos = -1
-            elif arr[i] is 'C':
+            elif arr[i] == 'C':
                 pos = 7
 
         elif pos == 9:
-            if arr[i] is 'A' or arr[i] is 'B' or arr[i] is 'D' or arr[i] is 'E' or arr[i] is 'F' or arr[i] is 'G' \
-                    or arr[i] is 'H':
+            if arr[i] == 'A' or arr[i] == 'B' or arr[i] == 'D' or arr[i] == 'E' or arr[i] == 'F' or arr[i] == 'G' \
+                    or arr[i] == 'H':
                 pos = -1
-            elif arr[i] is 'C':
+            elif arr[i] == 'C':
                 pos = 3
 
         elif pos == 10:
-            if arr[i] is 'A':
+            if arr[i] == 'A':
                 pos = 1
-            elif arr[i] is 'B':
+            elif arr[i] == 'B':
                 pos = 2
-            elif arr[i] is 'C':
+            elif arr[i] == 'C':
                 pos = 7
-            elif arr[i] is 'D' or arr[i] is 'E' or arr[i] is 'F' or arr[i] is 'H':
+            elif arr[i] == 'D' or arr[i] == 'E' or arr[i] == 'F' or arr[i] == 'H':
                 pos = -1
-            elif arr[i] is 'G':
+            elif arr[i] == 'G':
                 pos = 8
 
         elif pos == 11:
-            if arr[i] is 'A' or arr[i] is 'B' or arr[i] is 'D' or arr[i] is 'E' or arr[i] is 'F' or arr[i] is 'G' \
-                    or arr[i] is 'H':
+            if arr[i] == 'A' or arr[i] == 'B' or arr[i] == 'D' or arr[i] == 'E' or arr[i] == 'F' or arr[i] == 'G' \
+                    or arr[i] == 'H':
                 pos = -1
-            elif arr[i] is 'C':
+            elif arr[i] == 'C':
                 pos = 7
 
         elif pos == 12:
-            if arr[i] is 'A':
+            if arr[i] == 'A':
                 pos = 1
-            elif arr[i] is 'B':
+            elif arr[i] == 'B':
                 pos = 2
-            elif arr[i] is 'C' or arr[i] is 'E' or arr[i] is 'F' or arr[i] is 'G' or arr[i] is 'H':
+            elif arr[i] == 'C' or arr[i] == 'E' or arr[i] == 'F' or arr[i] == 'G' or arr[i] == 'H':
                 pos = -1
-            elif arr[i] is 'D':
+            elif arr[i] == 'D':
                 pos = 12
 
         elif pos == -1 and flg == 0:
             flg = 1
+            #respuesta = "Tu error se originó en la palabra: %d" % i
             print("Tu error se originó en la palabra: %d" % i)
+            arr_err.append(i)
 
         # Si encuentra un signo de puntuación, reinicia el autómata
-        elif arr[i] == 1:
-            if ef.__contains__(pos) is False:
-                respuesta = "Tu estado (%d) no es un estado final, por lo que la oración está mal." % pos
+        if arr[i] == 1:
+            if ef.__contains__(pos) == False:
+                #respuesta = "Tu estado (%d) no es un estado final, por lo que la oración está mal." % pos
                 print("Tu estado (%d) no es un estado final, por lo que la oración está mal." % pos)
             pos = 0
             flg = 0
@@ -240,18 +240,20 @@ def evalua_frases(cadena):
             flg = 0
         # Si encuentra un ) termina el ciclo del autómata y retoma el ciclo anterior hasta el punto en que se había quedado
         elif arr[i] == 3:
-            if ef.__contains__(pos) is False:
-                respuesta = "Tu estado (%d) no es un estado final, por lo que la oración está mal." % pos
+            if ef.__contains__(pos) == False:
+                ##respuesta = "Tu estado (%d) no es un estado final, por lo que la oración está mal." % pos
                 print("Tu estado (%d) no es un estado final, por lo que la oración está mal." % pos)
+                arr_err.append(i)
             pos = h
             h = 0
             flg = hflg
             hflg = 0
-        print("%i: %s, %i" % (h, arr[i], pos))
+        #print("%i: %s, %i" % (k, arr[i], pos))
 
-    if ef.__contains__(pos) is True:
-        respuesta = "Felicidades, tu cadena se escribió con exito!"
+    if ef.__contains__(pos) == True:
+        ##respuesta = "Felicidades, tu cadena se escribió con exito!"
         print("Felicidades, tu cadena se escribió con exito!")
+    
     #print(palabras)
     #print(arr)
-    return respuesta
+    return arr_err
