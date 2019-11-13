@@ -202,7 +202,7 @@ function sugerencias(elemento, cadena, oog) {
             document.getElementById("error").innerText = "No reconocemos esta palabra. Podría ser que la escribiste mal o no esta en nuestro diccionario. ";
 
             //$("#mala-buena2").css("visibility", "hidden");
-            
+
 
 
         } else {
@@ -280,10 +280,73 @@ function sugerencias(elemento, cadena, oog) {
 
     } else {
 
-        ///////Correcciones gramaticales
+        //Alerta Gramatical
+
+        tarjeta.style.visibility = "visible";
+        $("#mala-buena2").css("visibility", "hidden");
+
+        $("#tarjeta-ortg").hover(function() {
+
+            $(this).css("background-color", "#f1f4ff");
+            $(this).css("transition", "0.8s");
+            $(this).css("cursor", "pointer");
 
 
+            $("#linea").css("border", "2px solid #FFA420");
+            $("#linea").css("border-radius", "5px");
+            $("#linea").css("transition", "0.8s");
 
+
+            $("#mala-buena1").css("background", "#f1f4ff");
+            $("#mala-buena2").css("background", "#f1f4ff");
+
+
+        }, function() {
+            $(this).css("background-color", "white");
+            $(this).css("transition", "0.8s");
+            $(this).css("cursor", "pointer");
+
+            $("#linea").css("border", "2px solid #EDFF21");
+            $("#linea").css("border-radius", "5px");
+            $("#linea").css("transition", "0.8s");
+
+
+            $("#mala-buena1").css("background", "white");
+            $("#mala-buena2").css("background", "white");
+        });
+
+        $("#linea").css("border", "2px solid #EDFF21");
+        $("#linea").css("border-radius", "5px");
+        $("#linea").css("transition", "0.8s");
+
+        $("#tarjeta-ortg").css("background-color", "white");
+        $("#tarjeta-ortg").css("transition", "0.8s");
+
+        $("#mala-buena1").css("font-size", "12px");
+        $("#mala-buena1").css("text-align", "center");
+        $("#mala-buena1").css("padding", "2px 5px");
+        $("#mala-buena1").css("cursor", "pointer");
+
+        $("#mala-buena2").css("font-size", "12px");
+        $("#mala-buena2").css("text-align", "center");
+        $("#mala-buena2").css("padding", "2px 5px");
+        $("#mala-buena2").css("cursor", "pointer");
+
+        $("#mala-buena1").hover(function() {
+
+            $("#mala-buena1").css("background", "#EDFF21");
+            $("#mala-buena1").css("transition", "0.5s");
+            $("#mala-buena1").css("padding", "2px 5px");
+            $("#mala-buena1").css("border-radius", "5px");
+
+        }, function() {
+            $("#mala-buena1").css("background", "#f1f4ff");
+        });
+
+        document.getElementById("tipo-error").innerText = "Alerta de gramática ";
+        document.getElementById("sugerencia").innerText = "  ";
+        document.getElementById("mala-buena1").innerText = "La estructura de tu oración es errónea.";
+        document.getElementById("error").innerText = "Intenta cambiando la forma en como trasmites tu idea.";
 
 
     }

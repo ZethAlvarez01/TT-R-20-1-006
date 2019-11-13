@@ -1,5 +1,7 @@
 def evalua_frases(cadena):
     
+    j = len(cadena)
+    cadena = cadena.replace(u'\xa0',' ',j)
     arr = []
     arrep = []
     arren = []
@@ -12,28 +14,32 @@ def evalua_frases(cadena):
     cad = ""
     arr_err = []
     #   Aqui se separan las palabras que se van a analizar
+    
     for i in range(j):
-        flg = cadena[i].isspace()
-        if cadena[i].islower() == True or cadena[i].isupper() == True or \
-                num.__contains__(cadena[i]) == True:
-            cad = cad + cadena[i].lower()
-        elif cadena[i].isspace() == True and len(cad) != 0:
+        if cadena[i].islower() is True or cadena[i].isupper() is True or num.__contains__(cadena[i]) is True:
+            cad = cad + cadena[i]
+        elif cadena[i].isspace() is True and len(cad) != 0:
             palabras.append(cad)
             cad = ""
             palabras.append(cadena[i])
-        elif cadena[i].isspace() == True and len(cad) == 0:
+        elif cadena[i].isspace() is True and len(cad) == 0:
             palabras.append(cadena[i])
-        elif cadena[i].islower() == False and cadena[i].isupper() == False and \
-                num.__contains__(cadena[i]) == False:
+        elif cadena[i].islower() is False and cadena[i].isupper() is False and num.__contains__(cadena[i]) is False:
             if len(cad) != 0:
                 palabras.append(cad)
                 cad = ""
             palabras.append(cadena[i])
+
+
     if cad != " " and len(cad) != 0:
         if cad != 0:
-            palabras.append(cad)
+            palabras.append(cad)  # Agrega la ultima palabra al arreglo si no es un espacio o cadena vacía
+
+    
+    print(palabras)
+    
     #   Aqui se lee el documento de las etiquetas
-    doc = open("C:/Users/zetha/Desktop/TT-R-20-1-006/Diccionario_de_palabras/Etiquetado.txt", "r+",encoding="utf8")
+    doc = open("Diccionario_de_palabras/Etiquetado.txt", "r+",encoding="utf8")
     for linea in doc.readlines():
         x = linea.split("/")
         arrep.append(x[0])
@@ -65,7 +71,7 @@ def evalua_frases(cadena):
     flg = 0
     h = pos
     hflg = 0
-    print(arr)
+    #print(arr)
 
     for i in range(len(arr)):
         #k = pos
@@ -223,7 +229,11 @@ def evalua_frases(cadena):
             flg = 1
             #respuesta = "Tu error se originó en la palabra: %d" % i
             print("Tu error se originó en la palabra: %d" % i)
+            if( i != 1):
+                arr_err.append(i -1)
             arr_err.append(i)
+            if( i != len(palabras)):
+                arr_err.append(i +1)
 
         # Si encuentra un signo de puntuación, reinicia el autómata
         if arr[i] == 1:
@@ -243,7 +253,11 @@ def evalua_frases(cadena):
             if ef.__contains__(pos) == False:
                 ##respuesta = "Tu estado (%d) no es un estado final, por lo que la oración está mal." % pos
                 print("Tu estado (%d) no es un estado final, por lo que la oración está mal." % pos)
+                if( i != 1):
+                    arr_err.append(i -1)
                 arr_err.append(i)
+                if( i != len(palabras)):
+                    arr_err.append(i +1)
             pos = h
             h = 0
             flg = hflg
@@ -253,7 +267,30 @@ def evalua_frases(cadena):
     if ef.__contains__(pos) == True:
         ##respuesta = "Felicidades, tu cadena se escribió con exito!"
         print("Felicidades, tu cadena se escribió con exito!")
+
+    arr_completo = []
+    cont = 0
+
+    if(len(arr_err) != 0):
+        for i in range(0,len(palabras)):
+            arr_completo.append(palabras[i])
+            if i == arr_err[cont]:
+                arr_completo.append(False)
+                cont = cont + 1
+                if (cont >= len(arr_err)):
+                    cont = 0
+            else:
+                arr_completo.append(True)
+            arr_completo.append(0)
+    else:
+        for i in range(0,len(palabras)):
+            arr_completo.append(palabras[i])
+            arr_completo.append(True)
+            arr_completo.append(0)
     
-    #print(palabras)
-    #print(arr)
-    return arr_err
+    
+    print("Arrelo completo")
+    print(arr_completo)
+    print("Arrelo sdsd")
+    print(arr_err)
+    return arr_completo

@@ -106,7 +106,7 @@ h1 {
     /*margin: 10px 30px 10px 10px;*/
     visibility: hidden;
     border-radius: 5px;
-    height: 200px;
+    height: 220px;
     padding: 10px;
     margin-bottom: 20px;
 }
@@ -181,4 +181,15 @@ select {
     background: #b3e5fc;
     transition: 0.8s;
     padding: 2px 5px;
+}
+
+.frase-mala:hover {
+    color: #FFA420;
+    background: #EDFF21;
+    transition: 0.8s;
+    padding: 2px 5px;
+}
+
+#linea {
+    border-bottom: 5px;
 }

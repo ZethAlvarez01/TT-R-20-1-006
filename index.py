@@ -20,7 +20,7 @@ def index():
 @app.route('/oraciones_validar/<string:texto>/')
 def oraciones_validar(texto):
     return json.jsonify({
-        'validar': evalua_frases(texto)
+        'arreglo_pruebas': evalua_frases(texto)
     })
 
 # Valida el uso de mayusculas, minusculas y numeros
@@ -36,13 +36,6 @@ def background_process_test2(texto):
     return json.jsonify({
         'aerr': error_signos(texto)
     })
-
-# Busca el significado de alguna palabra en la web (No corriendo)
-#@app.route('/buscar_palabra/<string:texto>/')
-#def buscar_palabra(texto):
-#    return json.jsonify({
-#         'palabra': buscar_significado(texto)
-#    })
 
 # Valida palabra con el diccionario, regresa si esta correcta o no
 @app.route('/validar_palabra/<string:texto>/')
@@ -65,5 +58,5 @@ def return_file(texto,opcion,Errores_rojosC,Errores_azulesC,Errores_moradosC):
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8089)
+    app.run(debug=True, port=8080)
     
